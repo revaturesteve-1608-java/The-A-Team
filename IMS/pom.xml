@@ -62,7 +62,10 @@
 				<configuration>
 					<url>http://54.242.14.249:8080/manager/text</url>
 					<server>aTeam</server>
+					<username>tomcat1</username>
+					<password>welcome1</password>
 					<path>/IMS</path>
+					<update>true</update>
 				</configuration>
 			</plugin>
 
