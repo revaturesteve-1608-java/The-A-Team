@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+		"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+	<session-factory>
+		<!-- Username -->
+		<property name="hibernate.connection.username">project2_db</property>
+		<!-- Password -->
+		<property name="hibernate.connection.password">p4ssw0rd</property>
+		
+		<!--  Url -->
+		<property name="hibernate.connection.url">jdbc:oracle:thin:@oracle-project2.cqlcn668jd22.us-east-1.rds.amazonaws.com:1521:ORCL</property>
+		
+		<!-- Driver -->
+		<property name="hibernate.connection.driver_class">oracle.jdbc.driver.OracleDriver</property>
+		
+		<!-- Type of DB Dialect -->
+		<property name="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</property>
+		
+		<!-- Want to see hibernate add sql?  add this tag -->
+		<property name="hibernate.show_sql">true</property>
+		
+		<property name="javax.persistence.validation.mode">none</property>
+		
+		<!-- creates the DB -->
+		<!-- Apparently NOT ALLOWED TO USE THIS IN PROJECTS -->
+<!-- 		<property name="hibernate.hbm2ddl.auto">create</property>
+		 -->
+		 
+		 
+		<mapping class="com.wip.ims.model.Categories"/>
+		<mapping class="com.wip.ims.model.Inventory"/>
+		<mapping class="com.wip.ims.model.Location"/>
+		<mapping class="com.wip.ims.model.PoLine"/>
+		<mapping class="com.wip.ims.model.Product"/>
+		<mapping class="com.wip.ims.model.PurchaseOrder"/>
+		<mapping class="com.wip.ims.model.Retailer"/>
+		<mapping class="com.wip.ims.model.Sales"/>
+		<mapping class="com.wip.ims.model.Status"/>
+		<mapping class="com.wip.ims.model.Supplier"/>
+	</session-factory>
+
+</hibernate-configuration>
+
+
+
+
+
