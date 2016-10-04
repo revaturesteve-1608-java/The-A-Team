@@ -5,8 +5,6 @@
 
 <hibernate-configuration>
 	<session-factory>
-
-		<!-- This for local stuffs -->
 		<!-- Username -->
 		<property name="hibernate.connection.username">project2_db</property>
 		<!-- Password -->
@@ -23,13 +21,13 @@
 		
 		<!-- Want to see hibernate add sql?  add this tag -->
 		<property name="hibernate.show_sql">true</property>
-		<property name="hibernate.format_sql">true</property>
 		
 		<property name="javax.persistence.validation.mode">none</property>
 		
-<!-- 		<property name="hibernate.enable_lazy_load_no_trans">true</property>
- -->		
-		
+		<!-- creates the DB -->
+		<!-- Apparently NOT ALLOWED TO USE THIS IN PROJECTS -->
+<!-- 		<property name="hibernate.hbm2ddl.auto">create</property>
+		 -->
 		 
 		 
 		<mapping class="com.wip.ims.model.Categories"/>
