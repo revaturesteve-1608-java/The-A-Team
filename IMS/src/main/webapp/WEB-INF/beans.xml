@@ -28,11 +28,5 @@
 		<property name="suffix">
 			<value>.jsp</value>
 		</property>
-
-
 	</bean>
-
-
-
-
 </beans>
