@@ -27,18 +27,18 @@ public class InitServiceImpl implements InitService{
 		// grab data from BB
 				// trainer, unavailable, skill, room, location
 		List<Trainer> trainerList_BB = rest.getItemFromRest(new Trainer());
-		List<Unavailable> unavailableList_BB = rest.getItemFromRest(new Unavailable());
+/*		List<Unavailable> unavailableList_BB = rest.getItemFromRest(new Unavailable());
 		List<Skill> skillList_BB = rest.getItemFromRest(new Skill());
 		List<Room> roomList_BB = rest.getItemFromRest(new Room());
 		List<Location> locationList_BB = rest.getItemFromRest(new Location());
-
+*/
+		/*
 		// grab data from DB
-		List<Trainer> trainerList_DB = null;
-		List<Unavailable> unavailableList_DB = null;
-		List<Skill> skillList_DB = null;
-		List<Room> roomList_DB = null;
-		List<Location> locationList_DB = null;
-
+		List<Trainer> trainerList_DB = dao.getAllItem(new Trainer());
+		List<Unavailable> unavailableList_DB = dao.getAllItem(new Unavailable());
+		List<Skill> skillList_DB = dao.getAllItem(new Skill());
+		List<Room> roomList_DB = dao.getAllItem(new Room());
+		List<Location> locationList_DB = dao.getAllItem(new Location());
 		
 		// Compare data from BB to data from DB
 		if(!isSame(trainerList_BB, trainerList_DB)){
@@ -61,7 +61,7 @@ public class InitServiceImpl implements InitService{
 			//update the db for location
 		}
 	
-
+*/
 		
 		// if anything has changed, update DB
 		

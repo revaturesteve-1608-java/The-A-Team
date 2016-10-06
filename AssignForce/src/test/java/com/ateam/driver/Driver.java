@@ -11,6 +11,8 @@ public class Driver {
 		//TODO test InitService and RestService
 		InitServiceImpl isi = new InitServiceImpl();
 		
+		isi.initSetup();// tests the init setup pieces
+		
 	}
 
 }
