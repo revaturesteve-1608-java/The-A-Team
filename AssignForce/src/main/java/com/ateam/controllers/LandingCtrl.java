@@ -1,4 +1,4 @@
-package com.ateam.controller;
+package com.ateam.controllers;
 
 import org.springframework.stereotype.Controller;
 
