@@ -21,7 +21,6 @@ public class InitServiceImpl implements InitService{
 	@Autowired
 	private DaoService dao;
 	
-	@Override
 	public void initSetup(){
 		//TODO
 		// grab data from BB
