@@ -19,7 +19,7 @@ public class InitServiceImpl implements InitService{
 	private RestService rest;
 
 	@Autowired
-	private DaoService dao;
+	private DaoServiceImpl dao;
 	
 	@Override
 	public void initSetup(){

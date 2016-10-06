@@ -14,6 +14,7 @@ import com.ateam.dao.SkillDao;
 import com.ateam.dao.TopicDao;
 import com.ateam.dao.TrainerDao;
 import com.ateam.dao.UnavailableDao;
+import com.ateam.domain.Trainer;
 
 @Transactional
 @Service
@@ -38,6 +39,11 @@ public class DaoServiceImpl implements DaoService{
 	TrainerDao TrainerDao;
 	@Autowired
 	UnavailableDao UnavailableDao;
+	
+	
+	
+	
+	
 	
 	
 	

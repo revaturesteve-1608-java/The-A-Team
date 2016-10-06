@@ -40,21 +40,21 @@ public class Room {
 	@ManyToOne
 	@JoinColumn(name = "RS_ID")
 	@Fetch(FetchMode.JOIN)
-	private int roomStatusID;
+	private R_Status roomStatusID;
 
 	// @ManyToOne(fetch=FetchType.LAZY)
 	// @ManyToOne(fetch=FetchType.EAGER)
 	@ManyToOne
 	@JoinColumn(name = "L_ID")
 	@Fetch(FetchMode.JOIN)
-	private int roomLocationID;
+	private Location roomLocationID;
 
 	public Room() {
 		super();
 		this.unavailable = new ArrayList<Unavailable>();
 	}
 
-	public Room(int roomID, String roomName, int roomStatusID, int roomLocationID) {
+	public Room(int roomID, String roomName, R_Status roomStatusID, Location roomLocationID) {
 		super();
 		this.roomID = roomID;
 		this.roomName = roomName;
@@ -62,7 +62,7 @@ public class Room {
 		this.roomLocationID = roomLocationID;
 	}
 
-	public Room(int roomID, String roomName, List<Unavailable> unavailable, int roomStatusID, int roomLocationID) {
+	public Room(int roomID, String roomName, List<Unavailable> unavailable, R_Status roomStatusID, Location roomLocationID) {
 		super();
 		this.roomID = roomID;
 		this.roomName = roomName;
@@ -95,19 +95,19 @@ public class Room {
 		this.unavailable = unavailable;
 	}
 
-	public int getRoomStatusID() {
+	public R_Status getRoomStatusID() {
 		return roomStatusID;
 	}
 
-	public void setRoomStatusID(int roomStatusID) {
+	public void setRoomStatusID(R_Status roomStatusID) {
 		this.roomStatusID = roomStatusID;
 	}
 
-	public int getLocationID() {
+	public Location getLocationID() {
 		return roomLocationID;
 	}
 
-	public void setLocationID(int roomLocationID) {
+	public void setLocationID(Location roomLocationID) {
 		this.roomLocationID = roomLocationID;
 	}
 

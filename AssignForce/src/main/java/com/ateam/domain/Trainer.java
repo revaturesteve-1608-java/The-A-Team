@@ -41,14 +41,17 @@ public class Trainer {
 	@ManyToOne
 	@JoinColumn(name = "TS_ID")
 	@Fetch(FetchMode.JOIN)
-	private int trainerStatusID;
+	private T_Status trainerStatusID;
 
 	// @OneToOne(fetch=FetchType.LAZY)
 	// @OneToOne(fetch=FetchType.EAGER)
-	@OneToOne
+	
+	@ManyToOne
 	@JoinColumn(name = "L_ID")
-	@Fetch(FetchMode.JOIN)
-	private int trainerLocationID;
+	//@OneToOne
+	//@JoinColumn(name = "L_ID")
+	//@Fetch(FetchMode.JOIN)
+	private Location trainerLocationID;
 
 	@ManyToMany(mappedBy="trainer", cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	private List<Unavailable> unavailable;
@@ -62,8 +65,8 @@ public class Trainer {
 		this.skill = new ArrayList<Skill>();
 	}
 
-	public Trainer(int trainerID, String trainerFirstName, String trainerLastName, int trainerStatusID,
-			int trainerLocationID) {
+	public Trainer(int trainerID, String trainerFirstName, String trainerLastName, T_Status trainerStatusID,
+			Location trainerLocationID) {
 		super();
 		this.trainerID = trainerID;
 		this.trainerFirstName = trainerFirstName;
@@ -72,8 +75,8 @@ public class Trainer {
 		this.trainerLocationID = trainerLocationID;
 	}
 
-	public Trainer(int trainerID, String trainerFirstName, String trainerLastName, int trainerStatusID,
-			int trainerLocationID, List<Unavailable> unavailable, List<Skill> skill) {
+	public Trainer(int trainerID, String trainerFirstName, String trainerLastName, T_Status trainerStatusID,
+			Location trainerLocationID, List<Unavailable> unavailable, List<Skill> skill) {
 		super();
 		this.trainerID = trainerID;
 		this.trainerFirstName = trainerFirstName;
@@ -108,19 +111,19 @@ public class Trainer {
 		this.trainerLastName = trainerLastName;
 	}
 
-	public int getTrainerStatusID() {
+	public T_Status getTrainerStatusID() {
 		return trainerStatusID;
 	}
 
-	public void setTrainerStatusID(int trainerStatusID) {
+	public void setTrainerStatusID(T_Status trainerStatusID) {
 		this.trainerStatusID = trainerStatusID;
 	}
 
-	public int getTrainerLocationID() {
+	public Location getTrainerLocationID() {
 		return trainerLocationID;
 	}
 
-	public void setTrainerLocationID(int trainerLocationID) {
+	public void setTrainerLocationID(Location trainerLocationID) {
 		this.trainerLocationID = trainerLocationID;
 	}
 
