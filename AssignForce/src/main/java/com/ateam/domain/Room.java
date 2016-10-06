@@ -1,4 +1,4 @@
-package com.af.model;
+package com.ateam.domain;
 
 import java.util.ArrayList;
 import java.util.List;
