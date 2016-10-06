@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename source folder &apos;AssignForce/src/main/javaz&apos; to &apos;java&apos;&#x0D;&#x0A;- Original project: &apos;AssignForce&apos;&#x0D;&#x0A;- Original element: &apos;AssignForce/src/main/javaz&apos;&#x0D;&#x0A;- Renamed element: &apos;AssignForce/src/test/java&apos;" description="Rename source folder &apos;src/main/javaz&apos;" id="org.eclipse.jdt.ui.rename.source.folder" input="/src\/main\/javaz" name="java" stamp="1475690426897" version="1.0"/>
+</session>

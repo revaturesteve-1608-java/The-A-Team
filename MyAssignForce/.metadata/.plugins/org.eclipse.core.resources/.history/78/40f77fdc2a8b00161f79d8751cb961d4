@@ -1,0 +1,146 @@
+package com.af.model;
+
+import java.sql.Timestamp;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "BATCH")
+public class Batch {
+
+	@Id
+	@Column(name = "B_ID")
+	@SequenceGenerator(allocationSize = 1, name = "batchSeq", sequenceName = "BATCH_SEQ")
+	@GeneratedValue(generator = "batchSeq", strategy = GenerationType.SEQUENCE)
+	Integer batchID;
+
+	@Column(name = "B_START_DATE")
+	Timestamp batchStartDate;
+
+	@Column(name = "B_END_DATE")
+	Timestamp batchEndDate;
+
+	// @ManyToOne
+	// @JoinColumn(name = "")
+	// @Fetch(FetchMode.JOIN)
+	Integer batchTopicID;
+
+	// @ManyToOne
+	// @JoinColumn(name = "")
+	// @Fetch(FetchMode.JOIN)
+	Integer batchCurriculumID;
+	
+	//@OneToOne
+	//@JoinColumn(name = "")
+	//@Fetch(FetchMode.JOIN)
+	Integer batchRoomID;
+	
+	// @ManyToOne
+	// @JoinColumn(name = "")
+	// @Fetch(FetchMode.JOIN)
+	Integer batchStatusID;
+	
+	//@OneToOne
+	//@JoinColumn(name = "")
+	//@Fetch(FetchMode.JOIN)
+	Integer batchTrainerID;
+
+	public Batch() {
+		super();
+	}
+
+	public Batch(Integer batchID, Timestamp batchStartDate, Timestamp batchEndDate, Integer batchTopicID,
+			Integer batchCurriculumID, Integer batchRoomID, Integer batchStatusID, Integer batchTrainerID) {
+		super();
+		this.batchID = batchID;
+		this.batchStartDate = batchStartDate;
+		this.batchEndDate = batchEndDate;
+		this.batchTopicID = batchTopicID;
+		this.batchCurriculumID = batchCurriculumID;
+		this.batchRoomID = batchRoomID;
+		this.batchStatusID = batchStatusID;
+		this.batchTrainerID = batchTrainerID;
+	}
+
+	public Integer getBatchID() {
+		return batchID;
+	}
+
+	public void setBatchID(Integer batchID) {
+		this.batchID = batchID;
+	}
+
+	public Timestamp getBatchStartDate() {
+		return batchStartDate;
+	}
+
+	public void setBatchStartDate(Timestamp batchStartDate) {
+		this.batchStartDate = batchStartDate;
+	}
+
+	public Timestamp getBatchEndDate() {
+		return batchEndDate;
+	}
+
+	public void setBatchEndDate(Timestamp batchEndDate) {
+		this.batchEndDate = batchEndDate;
+	}
+
+	public Integer getBatchTopicID() {
+		return batchTopicID;
+	}
+
+	public void setBatchTopicID(Integer batchTopicID) {
+		this.batchTopicID = batchTopicID;
+	}
+
+	public Integer getBatchCurriculumID() {
+		return batchCurriculumID;
+	}
+
+	public void setBatchCurriculumID(Integer batchCurriculumID) {
+		this.batchCurriculumID = batchCurriculumID;
+	}
+
+	public Integer getBatchRoomID() {
+		return batchRoomID;
+	}
+
+	public void setBatchRoomID(Integer batchRoomID) {
+		this.batchRoomID = batchRoomID;
+	}
+
+	public Integer getBatchStatusID() {
+		return batchStatusID;
+	}
+
+	public void setBatchStatusID(Integer batchStatusID) {
+		this.batchStatusID = batchStatusID;
+	}
+
+	public Integer getBatchTrainerID() {
+		return batchTrainerID;
+	}
+
+	public void setBatchTrainerID(Integer batchTrainerID) {
+		this.batchTrainerID = batchTrainerID;
+	}
+
+	@Override
+	public String toString() {
+		return "Batch [batchID=" + batchID + ", batchStartDate=" + batchStartDate + ", batchEndDate=" + batchEndDate
+				+ ", batchTopicID=" + batchTopicID + ", batchCurriculumID=" + batchCurriculumID + ", batchRoomID="
+				+ batchRoomID + ", batchStatusID=" + batchStatusID + ", batchTrainerID=" + batchTrainerID + "]";
+	}
+	
+	
+	
+	
+
+}

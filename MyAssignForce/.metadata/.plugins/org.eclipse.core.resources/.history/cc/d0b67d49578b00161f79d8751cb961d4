@@ -1,0 +1,24 @@
+package com.af.model;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "LOCATION")
+public class Location {
+	
+	@Id
+	@Column(name = "L_ID")
+	@SequenceGenerator(allocationSize = 1, name = "loactionSeq", sequenceName = "LOCATION_SEQ")
+	@GeneratedValue(generator = "locationSeq", strategy = GenerationType.SEQUENCE)
+	private int locationID;
+	
+	@Column(name = "L_NAME", unique=true, nullable=false)
+	private String locationName;
+
+}

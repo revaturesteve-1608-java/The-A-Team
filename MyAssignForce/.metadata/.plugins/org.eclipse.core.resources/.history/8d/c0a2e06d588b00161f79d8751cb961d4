@@ -1,0 +1,56 @@
+package com.af.model;
+
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
+@Entity
+@Table(name = "TRAINER")
+public class Trainer {
+
+	@Id
+	@Column(name = "T_ID")
+	@SequenceGenerator(allocationSize = 1, name = "trainerSeq", sequenceName = "TRAINER_SEQ")
+	@GeneratedValue(generator = "trainerSeq", strategy = GenerationType.SEQUENCE)
+	private int trainerID;
+
+	@Column(name = "T_FIRSTNAME", nullable = false)
+	private String trainerFirstName;
+
+	@Column(name = "T_LASTNAME", nullable = false)
+	private String trainerLastName;
+
+	// @ManyToOne(fetch=FetchType.LAZY)
+	// @ManyToOne(fetch=FetchType.EAGER)
+	@ManyToOne
+	@JoinColumn(name = "TS_ID")
+	@Fetch(FetchMode.JOIN)
+	private int trainerStatusID;
+
+	// @OneToOne(fetch=FetchType.LAZY)
+	// @OneToOne(fetch=FetchType.EAGER)
+	// @OneToOne
+	// @JoinColumn(name = "")
+	// @Fetch(FetchMode.JOIN)
+	private int trainerLocationID;
+
+	@ManyToMany(mappedBy="trainer", cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	private List<Unavailable> unavailable;
+
+	@ManyToMany(mappedBy="trainer", cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	private List<Skill> skill;
+}

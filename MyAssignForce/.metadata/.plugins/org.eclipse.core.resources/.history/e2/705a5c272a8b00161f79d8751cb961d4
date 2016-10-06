@@ -1,0 +1,54 @@
+package com.af.model;
+
+import java.sql.Timestamp;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "BATCH")
+public class Batch {
+
+	@Id
+	@Column(name = "B_ID")
+	@SequenceGenerator(allocationSize = 1, name = "batchSeq", sequenceName = "BATCH_SEQ")
+	@GeneratedValue(generator = "batchSeq", strategy = GenerationType.SEQUENCE)
+	Integer batchID;
+
+	@Column(name = "B_START_DATE")
+	Timestamp batchStartDate;
+
+	@Column(name = "B_END_DATE")
+	Timestamp batchEndDate;
+
+	// @ManyToOne
+	// @JoinColumn(name = "")
+	// @Fetch(FetchMode.JOIN)
+	Integer batchTopicID;
+
+	// @ManyToOne
+	// @JoinColumn(name = "")
+	// @Fetch(FetchMode.JOIN)
+	Integer batchCurriculumID;
+	
+	//@OneToOne
+	//@JoinColumn(name = "")
+	//@Fetch(FetchMode.JOIN)
+	Integer batchRoomID;
+	
+	// @ManyToOne
+	// @JoinColumn(name = "")
+	// @Fetch(FetchMode.JOIN)
+	Integer batchStatusID;
+	
+	//@OneToOne
+	//@JoinColumn(name = "")
+	//@Fetch(FetchMode.JOIN)
+	Integer batchTrainerID;
+
+}

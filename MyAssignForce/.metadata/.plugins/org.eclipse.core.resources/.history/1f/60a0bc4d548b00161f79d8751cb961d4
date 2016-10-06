@@ -1,0 +1,26 @@
+package com.af.model;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "TRAINER")
+public class Trainer {
+	
+	@Id
+	@Column(name = "T_ID")
+	@SequenceGenerator(allocationSize = 1, name = "trainerSeq", sequenceName = "TRAINER_SEQ")
+	@GeneratedValue(generator = "trainerSeq", strategy = GenerationType.SEQUENCE)
+	private int trainerID;
+	
+	@Column(name ="T_FIRSTNAME", nullable=false)
+	private String trainerFirstName;
+
+	@Column(name ="T_LASTNAME", nullable=false)
+	private String trainerLastName;
+}

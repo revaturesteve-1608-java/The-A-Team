@@ -1,0 +1,40 @@
+package com.af.model;
+
+import java.sql.Timestamp;
+import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "UNVAILABLE")
+public class Unavailable {
+	
+	@Id
+	@Column(name = "UN_ID")
+	@SequenceGenerator(allocationSize = 1, name = "unvailableSeq", sequenceName = "UNVAILABLE_SEQ")
+	@GeneratedValue(generator = "unvailableSeq", strategy = GenerationType.SEQUENCE)
+	private int unvailableID;
+	
+	@Column(name = "UN_START_DATE", nullable=false)
+	private Timestamp unvailableStartDate;
+
+	@Column(name = "UN_END_DATE", nullable=false)
+	private Timestamp unvailableEndDate;
+	
+	@ManyToMany(fetch=FetchType.EAGER)
+	@JoinTable(name="TR_UN_JT", 
+	joinColumns=@JoinColumn(name="UN_ID"), 
+	inverseJoinColumns=@JoinColumn(name="T_ID"))
+	private List<Trainer> trainer;
+
+}

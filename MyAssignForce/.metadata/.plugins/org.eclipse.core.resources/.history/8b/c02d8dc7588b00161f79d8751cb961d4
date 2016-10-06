@@ -1,0 +1,21 @@
+package com.af.model;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "UNVAILABLE")
+public class Unavailable {
+	
+	@Id
+	@Column(name = "UN_ID")
+	@SequenceGenerator(allocationSize = 1, name = "unvailableSeq", sequenceName = "UNVAILABLE_SEQ")
+	@GeneratedValue(generator = "unvailableSeq", strategy = GenerationType.SEQUENCE)
+	private int unvailableID;
+
+}
