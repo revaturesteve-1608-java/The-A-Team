@@ -22,7 +22,6 @@ public class RestServiceImpl implements RestService{
 	private static final String BASE_URL  = "";
 	
 	@SuppressWarnings("unchecked")
-	@Override
 	public  <T> List<T> getItemFromRest(T type){
 		RestTemplate restTemplate = new RestTemplate();
 		URI url = null;
