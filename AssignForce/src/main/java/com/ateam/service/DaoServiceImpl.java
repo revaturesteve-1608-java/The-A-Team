@@ -16,6 +16,7 @@ import com.ateam.dao.SkillDao;
 import com.ateam.dao.TopicDao;
 import com.ateam.dao.TrainerDao;
 import com.ateam.dao.UnavailableDao;
+<<<<<<< HEAD
 import com.ateam.domain.B_Status;
 import com.ateam.domain.Batch;
 import com.ateam.domain.Curriculum;
@@ -26,6 +27,9 @@ import com.ateam.domain.Skill;
 import com.ateam.domain.Topic;
 import com.ateam.domain.Trainer;
 import com.ateam.domain.Unavailable;
+=======
+import com.ateam.domain.Trainer;
+>>>>>>> 26f99757ec57e7c8fa789554691ce1f0f64fe241
 
 @Transactional
 @Service
@@ -134,6 +138,11 @@ public class DaoServiceImpl implements DaoService {
 		}
 	
 	}
+	
+	
+	
+	
+	
 	
 	
 	

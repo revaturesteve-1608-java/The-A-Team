@@ -37,42 +37,42 @@ public class Batch {
 	@ManyToOne
 	@JoinColumn(name = "TOP_ID")
 	@Fetch(FetchMode.JOIN)
-	private int batchTopicID;
+	private Topic batchTopicID;
 
 	//@ManyToOne(fetch=FetchType.LAZY)
 	//@ManyToOne(fetch=FetchType.EAGER)
 	@ManyToOne
 	@JoinColumn(name = "CUR_ID")
 	@Fetch(FetchMode.JOIN)
-	private int batchCurriculumID;
+	private Curriculum batchCurriculumID;
 	
 	//@OneToOne(fetch=FetchType.LAZY)
 	//@OneToOne(fetch=FetchType.EAGER)
 	@OneToOne
 	@JoinColumn(name = "R_ID")
 	@Fetch(FetchMode.JOIN)
-	private int batchRoomID;
+	private Room batchRoomID;
 	
 	//@ManyToOne(fetch=FetchType.LAZY)
 	//@ManyToOne(fetch=FetchType.EAGER)
 	@ManyToOne
 	@JoinColumn(name = "BS_ID")
 	@Fetch(FetchMode.JOIN)
-	private int batchStatusID;
+	private B_Status batchStatusID;
 	
 	//@ManyToOne(fetch=FetchType.LAZY)
 	//@ManyToOne(fetch=FetchType.EAGER)
 	@OneToOne
 	@JoinColumn(name = "T_ID")
 	@Fetch(FetchMode.JOIN)
-	private int batchTrainerID;
+	private Trainer batchTrainerID;
 
 	public Batch() {
 		super();
 	}
 
-	public Batch(int batchID, Timestamp batchStartDate, Timestamp batchEndDate, int batchTopicID, int batchCurriculumID,
-			int batchRoomID, int batchStatusID, int batchTrainerID) {
+	public Batch(int batchID, Timestamp batchStartDate, Timestamp batchEndDate, Topic batchTopicID, Curriculum batchCurriculumID,
+			Room batchRoomID, B_Status batchStatusID, Trainer batchTrainerID) {
 		super();
 		this.batchID = batchID;
 		this.batchStartDate = batchStartDate;
@@ -108,43 +108,43 @@ public class Batch {
 		this.batchEndDate = batchEndDate;
 	}
 
-	public int getBatchTopicID() {
+	public Topic getBatchTopicID() {
 		return batchTopicID;
 	}
 
-	public void setBatchTopicID(int batchTopicID) {
+	public void setBatchTopicID(Topic batchTopicID) {
 		this.batchTopicID = batchTopicID;
 	}
 
-	public int getBatchCurriculumID() {
+	public Curriculum getBatchCurriculumID() {
 		return batchCurriculumID;
 	}
 
-	public void setBatchCurriculumID(int batchCurriculumID) {
+	public void setBatchCurriculumID(Curriculum batchCurriculumID) {
 		this.batchCurriculumID = batchCurriculumID;
 	}
 
-	public int getBatchRoomID() {
+	public Room getBatchRoomID() {
 		return batchRoomID;
 	}
 
-	public void setBatchRoomID(int batchRoomID) {
+	public void setBatchRoomID(Room batchRoomID) {
 		this.batchRoomID = batchRoomID;
 	}
 
-	public int getBatchStatusID() {
+	public B_Status getBatchStatusID() {
 		return batchStatusID;
 	}
 
-	public void setBatchStatusID(int batchStatusID) {
+	public void setBatchStatusID(B_Status batchStatusID) {
 		this.batchStatusID = batchStatusID;
 	}
 
-	public int getBatchTrainerID() {
+	public Trainer getBatchTrainerID() {
 		return batchTrainerID;
 	}
 
-	public void setBatchTrainerID(int batchTrainerID) {
+	public void setBatchTrainerID(Trainer batchTrainerID) {
 		this.batchTrainerID = batchTrainerID;
 	}
 
