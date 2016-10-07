@@ -75,6 +75,16 @@ public class Trainer {
 		this.trainerLocationID = trainerLocationID;
 	}
 
+	public Trainer(String trainerFirstName, String trainerLastName, Location trainerLocation,
+			List<Unavailable> unavailableDates, List<Skill> skills) {
+		this();
+		this.trainerFirstName = trainerFirstName;
+		this.trainerLastName = trainerLastName;
+		this.trainerLocationID = trainerLocation;
+		this.unavailable = unavailableDates;
+		this.skill = skills;
+	}
+
 	public Trainer(int trainerID, String trainerFirstName, String trainerLastName, T_Status trainerStatusID,
 			Location trainerLocationID, List<Unavailable> unavailable, List<Skill> skill) {
 		super();

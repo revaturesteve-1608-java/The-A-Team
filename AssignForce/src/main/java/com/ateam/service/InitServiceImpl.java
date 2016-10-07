@@ -5,18 +5,15 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.ateam.domain.Location;
-import com.ateam.domain.Room;
-import com.ateam.domain.Skill;
 import com.ateam.domain.Trainer;
-import com.ateam.domain.Unavailable;
 import com.ateam.rest.RestService;
+import com.ateam.rest.RestServiceImpl;
 
 @Service
 public class InitServiceImpl implements InitService{
 
 	@Autowired
-	private RestService rest;
+	private RestService rest = new RestServiceImpl();
 
 	@Autowired
 	private DaoServiceImpl dao;
@@ -25,7 +22,10 @@ public class InitServiceImpl implements InitService{
 		//TODO
 		// grab data from BB
 				// trainer, unavailable, skill, room, location
+//		dao.getAllItem(new Trainer());
+//		rest.getItemFromRest(new Trainer());
 		List<Trainer> trainerList_BB = rest.getItemFromRest(new Trainer());
+		System.out.println("trainerList_BB" + trainerList_BB);
 /*		List<Unavailable> unavailableList_BB = rest.getItemFromRest(new Unavailable());
 		List<Skill> skillList_BB = rest.getItemFromRest(new Skill());
 		List<Room> roomList_BB = rest.getItemFromRest(new Room());
