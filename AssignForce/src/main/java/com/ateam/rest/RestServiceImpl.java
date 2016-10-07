@@ -19,14 +19,18 @@ import com.ateam.domain.Unavailable;
 @Service
 public class RestServiceImpl implements RestService{
 
-	private static final String BASE_URL  = "";
+	//put this on a random server application for the time being
+	private static final String BASE_URL  = "http://localhost:8080/AssignForce/resources/js/json";
+	// Zach's local
+//	private static final String BASE_URL  = "C:/Users/Zach/Repositories/The-A-Team/AssignForce/src/main/webapp/resources/js/json";
 	
 	@SuppressWarnings("unchecked")
+	@Override
 	public  <T> List<T> getItemFromRest(T type){
 		RestTemplate restTemplate = new RestTemplate();
 		URI url = null;
-		
 		//append different end to url based on input type
+		System.out.println("uhhh");
 		String tail = checkType(type);
 		
 		try {
@@ -56,19 +60,19 @@ public class RestServiceImpl implements RestService{
 		//TODO 
 		// need proper URLs for the test data
 		if((Class<T>) type.getClass() == Trainer.class){
-			return BASE_URL + "/trainer";
+			return "/TrainerJSON.json";
 		}
 		else if((Class<T>) type.getClass() == Unavailable.class){
-			return BASE_URL + "/unavailable";
+			return  "/UnavailableJSON.json";
 		}
 		else if((Class<T>) type.getClass() == Skill.class){
-			return BASE_URL + "/skill";
+			return  "/SkillJSON.json";
 		}
 		else if((Class<T>) type.getClass() == Room.class){
-			return BASE_URL + "/room";
+			return  "/RoomJSON.json";
 		}
 		else if((Class<T>) type.getClass() == Location.class){
-			return BASE_URL + "/location";
+			return "/LocationJSON.json";
 		}
 		
 		
