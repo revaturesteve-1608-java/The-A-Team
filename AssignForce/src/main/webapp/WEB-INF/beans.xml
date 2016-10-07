@@ -13,31 +13,14 @@
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.2.xsd">
 
 
+
+
+
 	<!-- Find Spring Beans -->
 	<context:component-scan base-package="com.ateam" />
-
-	<!-- Searches for @Controller, @RequestMapping etc. -->
-	<mvc:annotation-driven />
-
-	<!-- Tell DispatcherServlet where are our Static Resources -->
-	<mvc:resources location="/resources/" mapping="/resources/**"></mvc:resources>
-	<!-- location is location actual, resources is url mapping, ** for wildcard -->
-
-	<!-- Configure the ViewResolver SPRING MVC-->
-	<bean
-		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="prefix">
-			<value>/WEB-INF/pages/</value>
-		</property>
-
-		<property name="suffix">
-			<value>.html</value>
-		</property>
-	</bean>
-
-	<!-- Enable @Transactional annotation -->
+	<mvc:annotation-driven></mvc:annotation-driven>
 	<tx:annotation-driven />
-
+	
 	<!-- Define DataSource -->
 	<bean id="mydataSource" class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"></property>
@@ -47,11 +30,7 @@
 		<property name="username" value="ateam_db"></property>
 		<property name="password" value="p4ssw0rd"></property>
 	</bean>
-
-	<!-- Because we use Hibernate -->
-	<bean id="hibernateJpaVendorAdapter"
-		class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"></bean>
-
+	
 	<!-- Because Spring Data doesn't natively support Hibernate (But it does 
 		support JPA) -->
 	<bean id="entityManagerFactory"
@@ -69,14 +48,26 @@
 		</property>
 	</bean>
 	
+	
 	<!-- Because tx are cool -->
 	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
 		<property name="entityManagerFactory" ref="entityManagerFactory" />
 	</bean>
+
+
+	<!-- Because we use Hibernate -->
+	<bean id="hibernateJpaVendorAdapter"
+		class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"></bean>
+
+	
+
+	
+	
 	
 	<!-- Find JPA Repositories -->
 	<jpa:repositories base-package="com.ateam.dao" />
-
+	
+	
 
 
 </beans>

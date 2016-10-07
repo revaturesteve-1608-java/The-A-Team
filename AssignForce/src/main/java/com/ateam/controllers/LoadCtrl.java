@@ -9,11 +9,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import com.ateam.service.InitService;
+import com.ateam.service.InitServiceImpl;
 
 @Controller
 public class LoadCtrl {
 	@Autowired
-	private InitService initService;
+	private InitServiceImpl initService;
+	
+	@RequestMapping(value="/home")
+	public String home(ModelMap modelMap){
+		System.out.println("home direction");
+		return "NewFile";	// not really sure what to return here
+	}
 	
 	
 	@RequestMapping(value="/init", method=RequestMethod.GET)
