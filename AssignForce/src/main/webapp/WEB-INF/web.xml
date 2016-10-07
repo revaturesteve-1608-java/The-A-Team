@@ -11,6 +11,12 @@
   </welcome-file-list>
   
   
+	<!-- Mapping beans.xml Context -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>/WEB-INF/beans.xml</param-value>
+	</context-param>
+  
   	<!-- Listener -->
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
@@ -24,19 +30,16 @@
 			<param-name>contextConfigLocation</param-name>
 			<param-value>/WEB-INF/beans.xml</param-value>
 		</init-param>
+		<load-on-startup>1</load-on-startup>
 	</servlet>
 
 	<!-- Map springs front controller -->
 	<servlet-mapping>
 		<servlet-name>SpringServlet</servlet-name>
-		<url-pattern>/</url-pattern>
+		<url-pattern>/rest/*</url-pattern>
 	</servlet-mapping>
 
-	<!-- Mapping beans.xml Context -->
-	<context-param>
-		<param-name>contextConfigLocation</param-name>
-		<param-value>/WEB-INF/beans.xml</param-value>
-	</context-param>
+	
   
   
 </web-app>

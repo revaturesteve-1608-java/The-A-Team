@@ -29,7 +29,7 @@ import com.ateam.domain.Unavailable;
 
 @Transactional
 @Service
-public class DaoServiceImpl implements DaoService {
+public class DaoServiceImpl{
 	@Autowired
 	BatchDao BatchDao;
 	@Autowired
@@ -52,7 +52,6 @@ public class DaoServiceImpl implements DaoService {
 	UnavailableDao UnavailableDao;
 
 	@SuppressWarnings("unchecked")
-	@Override
 	public <T> List<T> getAllItem(T sample) {
 
 		if ((Class<T>) sample.getClass() == Batch.class) {
@@ -81,7 +80,6 @@ public class DaoServiceImpl implements DaoService {
 	}
 
 	@SuppressWarnings("unchecked")
-	@Override
 	public <T> T save(T sample) {
 		if ((Class<T>) sample.getClass() == Batch.class) {
 			return (T) BatchDao.save((Batch) sample);
@@ -109,7 +107,6 @@ public class DaoServiceImpl implements DaoService {
 	}
 
 	@SuppressWarnings("unchecked")
-	@Override
 	public <T> void delete(T sample) {
 		if ((Class<T>) sample.getClass() == Batch.class) {
 			BatchDao.delete((Batch) sample);
