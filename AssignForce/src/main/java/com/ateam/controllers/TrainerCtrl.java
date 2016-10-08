@@ -20,6 +20,18 @@ public class TrainerCtrl {
 	@Autowired
 	TrainerService trainerServiceImpl;
 	
+	@RequestMapping(value="/savetrainer", method=RequestMethod.POST,
+			consumes=MediaType.APPLICATION_JSON_VALUE,
+			produces=MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Trainer> saveTrainer(Trainer t){
+		System.out.println("Saving trainer: " + t);
+		
+		trainerServiceImpl.saveTrainer(t);
+		
+		return new ResponseEntity<Trainer>(t, HttpStatus.OK);
+		
+	}
+	
 	@RequestMapping(value="/viewtrainers", method=RequestMethod.GET, 
 					produces=MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<Trainer>> getTrainers(){
