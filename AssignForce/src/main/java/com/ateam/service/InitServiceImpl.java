@@ -1,5 +1,6 @@
 package com.ateam.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import com.ateam.domain.Location;
 import com.ateam.domain.Room;
 import com.ateam.domain.Skill;
 import com.ateam.domain.Trainer;
+import com.ateam.domain.Unavailable;
 import com.ateam.rest.RestService;
 import com.ateam.rest.RestServiceImpl;
 
@@ -17,9 +19,11 @@ public class InitServiceImpl implements InitService{
 
 	@Autowired
 	private RestService rest = new RestServiceImpl();
+	// autowiring isnt working... ^ this should not be needed
 
 	@Autowired
-	private DaoServiceImpl dao;
+	private DaoService dao = new DaoServiceImpl();
+	// autowiring isnt working... ^ this should not be needed
 	
 	public void initSetup(){
 		//TODO
@@ -31,27 +35,39 @@ public class InitServiceImpl implements InitService{
 		List<Trainer> trainerList_BB = rest.getItemFromRest(new Trainer());
 		List<Room> roomList_BB = rest.getItemFromRest(new Room());
 		List<Skill> skillList_BB = rest.getItemFromRest(new Skill());
-		System.out.println("SkillList_BB" + skillList_BB);
-/*		List<Unavailable> unavailableList_BB = rest.getItemFromRest(new Unavailable());
-*/
-		/*
-		// grab data from DB
+
+
+/*		List<Unavailable> unavailableList_BB = new ArrayList<Unavailable>();
+		unavailableList_BB.add(arg0);
+*/		
 		List<Trainer> trainerList_DB = dao.getAllItem(new Trainer());
+/*		// grab data from DB
+//		List<Trainer> trainerList_DB = dao.getAllItem(new Trainer());
+		System.out.println("trainerList_BB: " + trainerList_DB);
 		List<Unavailable> unavailableList_DB = dao.getAllItem(new Unavailable());
 		List<Skill> skillList_DB = dao.getAllItem(new Skill());
 		List<Room> roomList_DB = dao.getAllItem(new Room());
 		List<Location> locationList_DB = dao.getAllItem(new Location());
 		
-		// Compare data from BB to data from DB
+*/
+/*		List<Trainer> trainerList_DB = new ArrayList<Trainer>();
+		List<Unavailable> unavailableList_DB = new ArrayList<Unavailable>();
+		List<Skill> skillList_DB = new ArrayList<Skill>();
+		List<Room> roomList_DB = new ArrayList<Room>();
+		List<Location> locationList_DB = new ArrayList<Location>();
+
+*/		// Compare data from BB to data from DB
 		if(!isSame(trainerList_BB, trainerList_DB)){
 			//update the db for trainer
+//			dao.TrainerDao
+//			dao.
 		}
 	
-		if(!isSame(unavailableList_BB, unavailableList_DB)){
+/*		if(!isSame(unavailableList_BB, unavailableList_DB)){
 			//update the db for unavailable
 		}
-	
-		if(!isSame(skillList_BB, skillList_DB)){
+*/	
+/*		if(!isSame(skillList_BB, skillList_DB)){
 			//update the db for skill
 		}
 	
@@ -63,20 +79,40 @@ public class InitServiceImpl implements InitService{
 			//update the db for location
 		}
 	
-*/
-		
+
+*/		
 		// if anything has changed, update DB
 		
 		
 	}
 	
-//	private <T> boolean isSame(List<T> a, List<T> b){
-//
-//		if(a.containsAll(b)){
-//			return true;
-//		}
-//		return false;
-////TODO this might need some tweaking	
-//	}
+	private <T> List<T> getDifferences(List<T> a, List<T> b){
+		List<T> elemList = new ArrayList<T>();
+		int flag = 0;
+		
+		for (T ta : a) {
+			for (T tb : b) {
+				if(ta.equals(tb)){
+					flag = 1;
+					break;
+				}
+			}
+			if(flag == 0){
+				elemList.add(ta);
+				flag = 0;
+			}
+		}
+//TODO		
+		return elemList;
+	}
+	
+	private <T> boolean isSame(List<T> a, List<T> b){
+
+		if(a.containsAll(b)){
+			return true;
+		}
+		return false;
+//TODO this might need some tweaking	
+	}
 	
 }
