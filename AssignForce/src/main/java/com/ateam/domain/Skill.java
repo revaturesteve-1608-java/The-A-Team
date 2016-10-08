@@ -52,6 +52,11 @@ public class Skill {
 		this.skillName = skillName;
 	}
 
+	public Skill(String skillName) {
+		this();
+		this.skillName = skillName;
+	}
+
 	public Skill(int skillID, String skillName, List<Curriculum> curriculum, List<Trainer> trainer) {
 		super();
 		this.skillID = skillID;
