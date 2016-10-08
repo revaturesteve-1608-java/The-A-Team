@@ -62,6 +62,13 @@ public class Room {
 		this.roomLocationID = roomLocationID;
 	}
 
+	public Room(String roomName, Location roomLocationID, List<Unavailable> unavailable) {
+		super();
+		this.roomName = roomName;
+		this.roomLocationID = roomLocationID;
+		this.unavailable = unavailable;
+	}
+
 	public Room(int roomID, String roomName, List<Unavailable> unavailable, R_Status roomStatusID, Location roomLocationID) {
 		super();
 		this.roomID = roomID;

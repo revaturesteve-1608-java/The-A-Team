@@ -57,6 +57,12 @@ public class Unavailable {
 		this.unavailableEndDate = unavailableEndDate;
 	}
 
+	public Unavailable(Timestamp unavailableStartDate, Timestamp unavailableEndDate) {
+		super();
+		this.unavailableStartDate = unavailableStartDate;
+		this.unavailableEndDate = unavailableEndDate;
+	}
+
 	public Unavailable(int unavailableID, Timestamp unavailableStartDate, Timestamp unavailableEndDate,
 			List<Trainer> trainer, List<Room> room) {
 		super();
