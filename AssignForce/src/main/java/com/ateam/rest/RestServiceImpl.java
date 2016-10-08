@@ -59,8 +59,7 @@ public class RestServiceImpl implements RestService {
 		for (R r : respList) {
 			outList.add(convertRespItemToType(sample, (LinkedHashMap) r));
 		}
-		System.out.println("respList: " + respList.get(0).getClass());
-		System.out.println("outList: " + outList);
+
 		return outList;
 	}
 
