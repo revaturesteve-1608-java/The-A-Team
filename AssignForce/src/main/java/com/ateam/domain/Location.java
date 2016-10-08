@@ -31,6 +31,11 @@ public class Location {
 		this.locationName = locationName;
 	}
 
+	public Location(String locationName) {
+		super();
+		this.locationName = locationName;
+	}
+
 	public int getLocationID() {
 		return locationID;
 	}
