@@ -16,9 +16,8 @@ import com.ateam.rest.RestServiceImpl;
 
 @Service
 public class InitServiceImpl implements InitService{
-
 	@Autowired
-	private RestService rest = new RestServiceImpl();
+	private RestService rest;// = new RestServiceImpl();
 	// autowiring isnt working... ^ this should not be needed
 
 	@Autowired
@@ -36,11 +35,13 @@ public class InitServiceImpl implements InitService{
 		List<Room> roomList_BB = rest.getItemFromRest(new Room());
 		List<Skill> skillList_BB = rest.getItemFromRest(new Skill());
 
-
+System.out.println("init makes it");
 /*		List<Unavailable> unavailableList_BB = new ArrayList<Unavailable>();
 		unavailableList_BB.add(arg0);
 */		
-		List<Trainer> trainerList_DB = dao.getAllItem(new Trainer());
+		
+		
+//		List<Trainer> trainerList_DB = dao.getAllItem(new Trainer());
 /*		// grab data from DB
 //		List<Trainer> trainerList_DB = dao.getAllItem(new Trainer());
 		System.out.println("trainerList_BB: " + trainerList_DB);
@@ -50,8 +51,9 @@ public class InitServiceImpl implements InitService{
 		List<Location> locationList_DB = dao.getAllItem(new Location());
 		
 */
-/*		List<Trainer> trainerList_DB = new ArrayList<Trainer>();
-		List<Unavailable> unavailableList_DB = new ArrayList<Unavailable>();
+		List<Trainer> trainerList_DB = new ArrayList<Trainer>();
+//		trainerList_DB.add(new Trainer("Bob","Ross",new Location("Reston, VA"),null,null));
+/*		List<Unavailable> unavailableList_DB = new ArrayList<Unavailable>();
 		List<Skill> skillList_DB = new ArrayList<Skill>();
 		List<Room> roomList_DB = new ArrayList<Room>();
 		List<Location> locationList_DB = new ArrayList<Location>();
@@ -60,7 +62,9 @@ public class InitServiceImpl implements InitService{
 		if(!isSame(trainerList_BB, trainerList_DB)){
 			//update the db for trainer
 //			dao.TrainerDao
-//			dao.
+//			System.out.println("not same, returns what?");
+			getDifferences(trainerList_BB, trainerList_DB);
+//			System.out.println(getDifferences(trainerList_BB, trainerList_DB));
 		}
 	
 /*		if(!isSame(unavailableList_BB, unavailableList_DB)){
@@ -84,7 +88,7 @@ public class InitServiceImpl implements InitService{
 		// if anything has changed, update DB
 		
 		
-	}
+	}//end initSetup()
 	
 	private <T> List<T> getDifferences(List<T> a, List<T> b){
 		List<T> elemList = new ArrayList<T>();
@@ -102,17 +106,15 @@ public class InitServiceImpl implements InitService{
 				flag = 0;
 			}
 		}
-//TODO		
+
 		return elemList;
-	}
+	}//end getDifferences
 	
 	private <T> boolean isSame(List<T> a, List<T> b){
-
-		if(a.containsAll(b)){
+		if(a.containsAll(b) && !b.isEmpty()){
 			return true;
 		}
 		return false;
-//TODO this might need some tweaking	
-	}
+	}//end isSame()
 	
 }
