@@ -42,28 +42,53 @@ System.out.println("init makes it");
 		
 		
 //		List<Trainer> trainerList_DB = dao.getAllItem(new Trainer());
-/*		// grab data from DB
-//		List<Trainer> trainerList_DB = dao.getAllItem(new Trainer());
-		System.out.println("trainerList_BB: " + trainerList_DB);
-		List<Unavailable> unavailableList_DB = dao.getAllItem(new Unavailable());
-		List<Skill> skillList_DB = dao.getAllItem(new Skill());
-		List<Room> roomList_DB = dao.getAllItem(new Room());
+		// grab data from DB
 		List<Location> locationList_DB = dao.getAllItem(new Location());
-		
-*/
-		List<Trainer> trainerList_DB = new ArrayList<Trainer>();
-//		trainerList_DB.add(new Trainer("Bob","Ross",new Location("Reston, VA"),null,null));
-/*		List<Unavailable> unavailableList_DB = new ArrayList<Unavailable>();
-		List<Skill> skillList_DB = new ArrayList<Skill>();
-		List<Room> roomList_DB = new ArrayList<Room>();
-		List<Location> locationList_DB = new ArrayList<Location>();
+		List<Trainer> trainerList_DB = dao.getAllItem(new Trainer());
+		List<Skill> skillList_DB = dao.getAllItem(new Skill());
+		System.out.println("trainerList_DB: " + trainerList_DB);
+/*		List<Unavailable> unavailableList_DB = dao.getAllItem(new Unavailable());
+		List<Room> roomList_DB = dao.getAllItem(new Room());
+*/		
 
-*/		// Compare data from BB to data from DB
+
+		
+		// Compare data from BB to data from DB
+
+		if(!isSame(locationList_BB, locationList_DB)){
+			//update the db for location
+			List<Location> elemList = getDifferences(locationList_BB, locationList_DB);
+			for (Location loc : elemList) {
+				dao.saveItem(loc);
+			}//save all to db
+		}
+	
+		if(!isSame(skillList_BB, skillList_DB)){
+			//update the db for skill
+			List<Skill> elemList = getDifferences(skillList_BB, skillList_DB);
+			for (Skill sk : elemList) {
+				dao.saveItem(sk);
+			}//save all to db
+		}
+	
+/*		if(!isSame(roomList_BB, roomList_DB)){
+			//update the db for room
+			List<Room> elemList = getDifferences(roomList_BB, roomList_DB);
+			for (Room room : elemList) {
+				dao.saveItem(room);
+			}//save all to db
+			
+		}
+*/
 		if(!isSame(trainerList_BB, trainerList_DB)){
 			//update the db for trainer
 //			dao.TrainerDao
 //			System.out.println("not same, returns what?");
-			getDifferences(trainerList_BB, trainerList_DB);
+			List<Trainer> elemList = getDifferences(trainerList_BB, trainerList_DB);
+			for (Trainer trainer : elemList) {
+				dao.saveItem(trainer);
+			}//save all to db
+			
 //			System.out.println(getDifferences(trainerList_BB, trainerList_DB));
 		}
 	
@@ -71,19 +96,7 @@ System.out.println("init makes it");
 			//update the db for unavailable
 		}
 */	
-/*		if(!isSame(skillList_BB, skillList_DB)){
-			//update the db for skill
-		}
-	
-		if(!isSame(roomList_BB, roomList_DB)){
-			//update the db for room
-		}
-
-		if(!isSame(locationList_BB, locationList_DB)){
-			//update the db for location
-		}
-	
-
+/*
 */		
 		// if anything has changed, update DB
 		
