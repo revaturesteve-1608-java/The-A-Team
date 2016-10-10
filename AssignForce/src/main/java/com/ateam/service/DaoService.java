@@ -14,6 +14,6 @@ public interface DaoService{
 	//TODO?
 //	public <T> Optional<T> findOne(ID id);
 	
-	public <T> T save(T persisted);
+	public <T> T saveItem(T persisted);
 	
 }

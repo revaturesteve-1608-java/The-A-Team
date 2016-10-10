@@ -29,7 +29,7 @@ import com.ateam.domain.Unavailable;
 
 @Transactional
 @Service
-public class DaoServiceImpl implements DaoService{
+public class DaoServiceImpl implements DaoService {
 	@Autowired
 	BatchDao BatchDao;
 	@Autowired
@@ -55,10 +55,11 @@ public class DaoServiceImpl implements DaoService{
 	@Override
 	public <T> List<T> getAllItem(T sample) {
 		System.out.println("getAllItem");
-		System.out.println("sample class: "+ sample.getClass());
-		System.out.println("trainer class: "+ Trainer.class);
-		System.out.println("cast trainer class: "+ (Class<T>)Trainer.class);
-		
+		/*
+		 * System.out.println("sample class: "+ sample.getClass());
+		 * System.out.println("trainer class: "+ Trainer.class);
+		 * System.out.println("cast trainer class: "+ (Class<T>)Trainer.class);
+		 */
 
 		if ((Class<T>) sample.getClass() == Batch.class) {
 			return (List<T>) BatchDao.findAll();
@@ -88,27 +89,31 @@ public class DaoServiceImpl implements DaoService{
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public <T> T save(T sample) {
+	public <T> T saveItem(T sample) {
 		if ((Class<T>) sample.getClass() == Batch.class) {
 			return (T) BatchDao.save((Batch) sample);
-		} else if ((Class<T>) sample.getClass() == BStatusDao.class) {
-			return (T) BStatusDao.save( (B_Status) sample);
-		} else if ((Class<T>) sample.getClass() == CurriculumDao.class) {
+		} else if ((Class<T>) sample.getClass() == B_Status.class) {
+			return (T) BStatusDao.save((B_Status) sample);
+		} else if ((Class<T>) sample.getClass() == Curriculum.class) {
 			return (T) CurriculumDao.save((Curriculum) sample);
-		} else if ((Class<T>) sample.getClass() == LocationDao.class) {
-			return (T) LocationDao.save((Location) sample);
-		} else if ((Class<T>) sample.getClass() == RoomDao.class) {
+		} else if ((Class<T>) sample.getClass() == Location.class) {
+			return (T) checksLocationBeforeSave((Location) sample);
+		} else if ((Class<T>) sample.getClass() == Room.class) {
 			return (T) RoomDao.save((Room) sample);
-		} else if ((Class<T>) sample.getClass() == RStatusDao.class) {
+		} else if ((Class<T>) sample.getClass() == R_Status.class) {
 			return (T) RStatusDao.save((R_Status) sample);
-		} else if ((Class<T>) sample.getClass() == SkillDao.class) {
-			return (T) SkillDao.save((Skill) sample);
-		} else if ((Class<T>) sample.getClass() == TopicDao.class) {
+		} else if ((Class<T>) sample.getClass() == Skill.class) {
+			// return (T) SkillDao.save((Skill) sample);
+			return (T) checksSkillBeforeSave((Skill) sample);
+		} else if ((Class<T>) sample.getClass() == Topic.class) {
 			return (T) TopicDao.save((Topic) sample);
-		} else if ((Class<T>) sample.getClass() == TrainerDao.class) {
-			return (T) TrainerDao.save((Trainer) sample);
-		} else if ((Class<T>) sample.getClass() == UnavailableDao.class) {
-			return (T) UnavailableDao.save((Unavailable) sample);
+		} else if ((Class<T>) sample.getClass() == Trainer.class) {
+			System.out.println("trainer if: save");
+			// return (T) TrainerDao.save((Trainer) sample);
+			return (T) checksTrainerBeforeSave((Trainer) sample);
+		} else if ((Class<T>) sample.getClass() == Unavailable.class) {
+//			return (T) UnavailableDao.save((Unavailable) sample);
+			return (T) checksUnavailableBeforeSave((Unavailable) sample);
 		} else {
 			return null;
 		}
@@ -119,33 +124,92 @@ public class DaoServiceImpl implements DaoService{
 	public <T> void delete(T sample) {
 		if ((Class<T>) sample.getClass() == Batch.class) {
 			BatchDao.delete((Batch) sample);
-		} else if ((Class<T>) sample.getClass() == BStatusDao.class) {
-			BStatusDao.delete( (B_Status) sample);
-		} else if ((Class<T>) sample.getClass() == CurriculumDao.class) {
+		} else if ((Class<T>) sample.getClass() == B_Status.class) {
+			BStatusDao.delete((B_Status) sample);
+		} else if ((Class<T>) sample.getClass() == Curriculum.class) {
 			CurriculumDao.delete((Curriculum) sample);
-		} else if ((Class<T>) sample.getClass() == LocationDao.class) {
+		} else if ((Class<T>) sample.getClass() == Location.class) {
 			LocationDao.delete((Location) sample);
-		} else if ((Class<T>) sample.getClass() == RoomDao.class) {
+		} else if ((Class<T>) sample.getClass() == Room.class) {
 			RoomDao.delete((Room) sample);
-		} else if ((Class<T>) sample.getClass() == RStatusDao.class) {
+		} else if ((Class<T>) sample.getClass() == R_Status.class) {
 			RStatusDao.delete((R_Status) sample);
-		} else if ((Class<T>) sample.getClass() == SkillDao.class) {
+		} else if ((Class<T>) sample.getClass() == Skill.class) {
 			SkillDao.delete((Skill) sample);
-		} else if ((Class<T>) sample.getClass() == TopicDao.class) {
+		} else if ((Class<T>) sample.getClass() == Topic.class) {
 			TopicDao.delete((Topic) sample);
-		} else if ((Class<T>) sample.getClass() == TrainerDao.class) {
+		} else if ((Class<T>) sample.getClass() == Trainer.class) {
 			TrainerDao.delete((Trainer) sample);
-		} else if ((Class<T>) sample.getClass() == UnavailableDao.class) {
+		} else if ((Class<T>) sample.getClass() == Unavailable.class) {
 			UnavailableDao.delete((Unavailable) sample);
 		}
-	
+
 	}
-	
-	
-	
-	
-	
-	
-	
-	
+
+	private Trainer checksTrainerBeforeSave(Trainer trainer) {
+		List<Trainer> elems = TrainerDao.findAll();
+		for (Trainer elem : elems) {
+			if (elem.getTrainerFirstName().equals(trainer.getTrainerFirstName())
+					&& elem.getTrainerLastName().equals(trainer.getTrainerLastName())) {
+				trainer.setTrainerID(elem.getTrainerID());
+				trainer.setTrainerLocationID(checkLocation(trainer.getTrainerLocationID()));
+				for (Skill sk : trainer.getSkill()) {
+					trainer.getSkill().set(trainer.getSkill().indexOf(sk), checkSkill(sk));
+				} // updates skills accordingly
+
+				for (Unavailable away : trainer.getUnavailable()) {
+					trainer.getUnavailable().set(trainer.getUnavailable().indexOf(away), checkUnavailable(away));
+				} // updates unavailable accordingly
+
+				// TODO
+			} // if the name is the same, change the value
+		}
+		return TrainerDao.save((Trainer) trainer);
+	}
+
+	private Location checksLocationBeforeSave(Location loc) {
+		loc = checkLocation(loc);
+		return LocationDao.save((Location) loc);
+	}
+
+	private Location checkLocation(Location loc) {
+		List<Location> locs = LocationDao.findAll();
+		for (Location location : locs) {
+			if (location.getLocationName().equals(loc.getLocationName())) {
+				loc.setLocationID(location.getLocationID());
+			} // if the name is the same, change the value
+		}
+		return loc;
+	}
+
+	private Skill checksSkillBeforeSave(Skill skill) {
+		skill = checkSkill(skill);
+		return SkillDao.save((Skill) skill);
+	}
+
+	private Skill checkSkill(Skill skill) {
+		List<Skill> skills = SkillDao.findAll();
+		for (Skill sk : skills) {
+			if (sk.getSkillName().equals(skill.getSkillName())) {
+				skill.setSkillID(sk.getSkillID());
+			} // if the name is the same, change the value
+		}
+		return skill;
+	}
+
+	private Unavailable checksUnavailableBeforeSave(Unavailable away) {
+		away = checkUnavailable(away);
+		return UnavailableDao.save(away);
+	}
+
+	private Unavailable checkUnavailable(Unavailable away) {
+		List<Unavailable> uv = UnavailableDao.findAll();
+		for (Unavailable u : uv) {
+			if (u.getUnavailableStartDate().equals(away.getUnavailableStartDate())
+					&& u.getUnavailableEndDate().equals(away.getUnavailableEndDate())) {
+				away.setUnavailableID(u.getUnavailableID());
+			} // if the name is the same, change the value
+		}
+		return away;
+	}
 }
