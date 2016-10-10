@@ -20,7 +20,7 @@ public class TrainerServiceImpl implements TrainerService{
 	}
 
 	public void saveTrainer(Trainer t) {
-		dao.save(t);
+		dao.saveItem(t);
 	}
 
 }

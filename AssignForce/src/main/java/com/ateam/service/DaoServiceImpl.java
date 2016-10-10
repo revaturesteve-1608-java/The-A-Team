@@ -103,16 +103,17 @@ public class DaoServiceImpl implements DaoService {
 		} else if ((Class<T>) sample.getClass() == R_Status.class) {
 			return (T) RStatusDao.save((R_Status) sample);
 		} else if ((Class<T>) sample.getClass() == Skill.class) {
-//			return (T) SkillDao.save((Skill) sample);
+			// return (T) SkillDao.save((Skill) sample);
 			return (T) checksSkillBeforeSave((Skill) sample);
 		} else if ((Class<T>) sample.getClass() == Topic.class) {
 			return (T) TopicDao.save((Topic) sample);
 		} else if ((Class<T>) sample.getClass() == Trainer.class) {
 			System.out.println("trainer if: save");
-//			return (T) TrainerDao.save((Trainer) sample);
+			// return (T) TrainerDao.save((Trainer) sample);
 			return (T) checksTrainerBeforeSave((Trainer) sample);
 		} else if ((Class<T>) sample.getClass() == Unavailable.class) {
-			return (T) UnavailableDao.save((Unavailable) sample);
+//			return (T) UnavailableDao.save((Unavailable) sample);
+			return (T) checksUnavailableBeforeSave((Unavailable) sample);
 		} else {
 			return null;
 		}
@@ -154,9 +155,13 @@ public class DaoServiceImpl implements DaoService {
 				trainer.setTrainerLocationID(checkLocation(trainer.getTrainerLocationID()));
 				for (Skill sk : trainer.getSkill()) {
 					trainer.getSkill().set(trainer.getSkill().indexOf(sk), checkSkill(sk));
-				}	// updates skills accordingly
-				
-				//TODO
+				} // updates skills accordingly
+
+				for (Unavailable away : trainer.getUnavailable()) {
+					trainer.getUnavailable().set(trainer.getUnavailable().indexOf(away), checkUnavailable(away));
+				} // updates unavailable accordingly
+
+				// TODO
 			} // if the name is the same, change the value
 		}
 		return TrainerDao.save((Trainer) trainer);
@@ -167,7 +172,7 @@ public class DaoServiceImpl implements DaoService {
 		return LocationDao.save((Location) loc);
 	}
 
-	private Location checkLocation(Location loc){
+	private Location checkLocation(Location loc) {
 		List<Location> locs = LocationDao.findAll();
 		for (Location location : locs) {
 			if (location.getLocationName().equals(loc.getLocationName())) {
@@ -176,13 +181,13 @@ public class DaoServiceImpl implements DaoService {
 		}
 		return loc;
 	}
-	
+
 	private Skill checksSkillBeforeSave(Skill skill) {
 		skill = checkSkill(skill);
 		return SkillDao.save((Skill) skill);
 	}
 
-	private Skill checkSkill(Skill skill){
+	private Skill checkSkill(Skill skill) {
 		List<Skill> skills = SkillDao.findAll();
 		for (Skill sk : skills) {
 			if (sk.getSkillName().equals(skill.getSkillName())) {
@@ -190,5 +195,21 @@ public class DaoServiceImpl implements DaoService {
 			} // if the name is the same, change the value
 		}
 		return skill;
+	}
+
+	private Unavailable checksUnavailableBeforeSave(Unavailable away) {
+		away = checkUnavailable(away);
+		return UnavailableDao.save(away);
+	}
+
+	private Unavailable checkUnavailable(Unavailable away) {
+		List<Unavailable> uv = UnavailableDao.findAll();
+		for (Unavailable u : uv) {
+			if (u.getUnavailableStartDate().equals(away.getUnavailableStartDate())
+					&& u.getUnavailableEndDate().equals(away.getUnavailableEndDate())) {
+				away.setUnavailableID(u.getUnavailableID());
+			} // if the name is the same, change the value
+		}
+		return away;
 	}
 }
