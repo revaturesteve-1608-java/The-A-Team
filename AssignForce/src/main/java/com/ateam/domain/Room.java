@@ -55,7 +55,7 @@ public class Room {
 	}
 
 	public Room(int roomID, String roomName, R_Status roomStatusID, Location roomLocationID) {
-		super();
+		this();
 		this.roomID = roomID;
 		this.roomName = roomName;
 		this.roomStatusID = roomStatusID;

@@ -12,17 +12,15 @@ import com.ateam.domain.Trainer;
 public class TrainerServiceImpl implements TrainerService{
 
 	@Autowired
-	DaoServiceImpl dao;
+	DaoService dao;
 	
 	public List<Trainer> getTrainers() {
-		List<Trainer> trainers = dao.TrainerDao.findAll();
+		List<Trainer> trainers = dao.getAllItem(new Trainer());
 		return trainers;
 	}
 
-	@Transactional
 	public void saveTrainer(Trainer t) {
-		dao.TrainerDao.save(t);
-		
+		dao.saveItem(t);
 	}
 
 }
