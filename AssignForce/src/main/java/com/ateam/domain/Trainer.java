@@ -46,7 +46,7 @@ public class Trainer {
 	// @OneToOne(fetch=FetchType.LAZY)
 	// @OneToOne(fetch=FetchType.EAGER)
 	
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name = "L_ID")
 	//@OneToOne
 	//@JoinColumn(name = "L_ID")

@@ -55,11 +55,18 @@ public class Room {
 	}
 
 	public Room(int roomID, String roomName, R_Status roomStatusID, Location roomLocationID) {
-		super();
+		this();
 		this.roomID = roomID;
 		this.roomName = roomName;
 		this.roomStatusID = roomStatusID;
 		this.roomLocationID = roomLocationID;
+	}
+
+	public Room(String roomName, Location roomLocationID, List<Unavailable> unavailable) {
+		super();
+		this.roomName = roomName;
+		this.roomLocationID = roomLocationID;
+		this.unavailable = unavailable;
 	}
 
 	public Room(int roomID, String roomName, List<Unavailable> unavailable, R_Status roomStatusID, Location roomLocationID) {
