@@ -11,6 +11,6 @@ import com.ateam.domain.Curriculum;
 public class BatchCtrl {
 
 	public ResponseEntity<List<Curriculum>> getCurriculums(){
-		
+		return null;
 	}
 }
