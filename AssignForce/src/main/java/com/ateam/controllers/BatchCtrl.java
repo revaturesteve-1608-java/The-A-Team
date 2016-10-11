@@ -46,8 +46,8 @@ public class BatchCtrl {
 			produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<Batch>> getBatches() {
 
-//		List<Batch> re = daoService.findAllTrainers();
-		List<Batch> re = daoService.getAllItem(new Batch());
+//		List<Batch> re = daoService.getAllItem(new Batch());
+		List<Batch> re = daoService.findAllBatches();
 System.out.println("re: " + re);
 		return new ResponseEntity<List<Batch>>(re, HttpStatus.OK);
 	}//end getTrainers()

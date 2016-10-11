@@ -34,13 +34,14 @@ public class Skill {
 	@JoinTable(name="CUR_SKILL_JT", 
 	joinColumns=@JoinColumn(name="SKILL_ID"), 
 	inverseJoinColumns=@JoinColumn(name="CUR_ID"))
+	@JsonBackReference
 	private List<Curriculum> curriculum;
 	
 	@ManyToMany(fetch=FetchType.LAZY)
 	@JoinTable(name="TR_SKILL_JT", 
 	joinColumns=@JoinColumn(name="SKILL_ID"), 
 	inverseJoinColumns=@JoinColumn(name="T_ID"))
-	@JsonBackReference	
+	@JsonBackReference
 	private List<Trainer> trainer;
 
 	public Skill() {
