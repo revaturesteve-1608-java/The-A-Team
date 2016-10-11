@@ -5,6 +5,16 @@
 <title>Trainer Page</title>
 </head>
 <body>
-<h1>Here's the list of trainers:</h1>
+	<section id="viewTrainerContainer">
+	<header>
+		<h1>Here's the list of trainers:</h1>
+	</header>
+	<article class="trainerDetailContainer" ng-repeat="trainer in trainers">
+		<h3>{{trainer.trainerFirstName}} {{trainer.trainerLastName}}</h3>
+		<div class="locationLabel"><p>Location: {{trainer.trainerLocationID.locationName}}</p></div><div class="statusLabel"><p>Status: {{trainer.trainerStatusID.tName}}</p></div>
+		
+	</article>
+	<footer></footer>
+	</section>
 </body>
 </html>
