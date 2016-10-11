@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ateam.domain.Curriculum;
+import com.ateam.domain.Trainer;
 import com.ateam.service.DaoService;
 
 @RestController
@@ -27,5 +28,18 @@ public class BatchCtrl {
 		List<Curriculum> re = daoService.getAllItem(new Curriculum());
 
 		return new ResponseEntity<List<Curriculum>>(re, HttpStatus.OK);
-	}
+	}//end getCurriculums()
+
+	@RequestMapping(value = { "/trainer"}, 
+			method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE, 
+			produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<Trainer>> getTrainers() {
+
+		List<Trainer> re = daoService.getAllItem(new Trainer());
+
+		return new ResponseEntity<List<Trainer>>(re, HttpStatus.OK);
+	}//end getTrainers()
+
+	
+	
 }
