@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ateam.domain.Batch;
 import com.ateam.domain.Curriculum;
 import com.ateam.domain.Trainer;
 import com.ateam.service.DaoService;
@@ -35,10 +36,20 @@ public class BatchCtrl {
 			produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<Trainer>> getTrainers() {
 
-//		List<Trainer> re = daoService.getAllItem(new Trainer());
 		List<Trainer> re = daoService.findAllTrainers();
 
 		return new ResponseEntity<List<Trainer>>(re, HttpStatus.OK);
+	}//end getTrainers()
+
+	@RequestMapping(value = { "/batchTest"}, 
+			method = RequestMethod.GET, 
+			produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<Batch>> getBatches() {
+
+//		List<Batch> re = daoService.findAllTrainers();
+		List<Batch> re = daoService.getAllItem(new Batch());
+System.out.println("re: " + re);
+		return new ResponseEntity<List<Batch>>(re, HttpStatus.OK);
 	}//end getTrainers()
 
 	

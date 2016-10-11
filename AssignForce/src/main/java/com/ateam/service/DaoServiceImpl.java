@@ -234,8 +234,6 @@ public class DaoServiceImpl implements DaoService {
 				skill.setCurriculum(null);
 			}
 		}
-		
-		
 		return trainers;
 		
 		
