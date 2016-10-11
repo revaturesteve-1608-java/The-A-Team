@@ -20,6 +20,6 @@ public interface DaoService{
 	public <T> T saveItem(T persisted);
 	
 	public Trainer findTrainerById(int id);
-
+	public List<Trainer> findAllTrainers();
 	
 }

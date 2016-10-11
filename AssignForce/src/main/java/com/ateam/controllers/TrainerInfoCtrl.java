@@ -36,7 +36,7 @@ public class TrainerInfoCtrl {
 			produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Trainer> getTrainerTest() {
 		Trainer re = daoService.findTrainerById(4);
-System.out.println("RE: " + re);
+//System.out.println("RE: " + re);
 		return new ResponseEntity<Trainer>(re, HttpStatus.OK);
 	}//end getCurriculums()
 
