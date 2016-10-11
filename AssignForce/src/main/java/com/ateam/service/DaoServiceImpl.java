@@ -212,4 +212,32 @@ public class DaoServiceImpl implements DaoService {
 		}
 		return away;
 	}
+
+	@Override
+	public Trainer findTrainerById(int id){
+		Trainer trainer = TrainerDao.findByTrainerID(id);
+//		trainer.getSkill()
+		
+		for (Skill skill : trainer.getSkill()) {
+			skill.setCurriculum(null);
+		}
+		
+		return trainer;
+	}
+	
+	@Override
+	public List<Trainer> findAllTrainers(){
+		List<Trainer> trainers = TrainerDao.findAll();
+		
+		for (Trainer trainer : trainers) {
+			for (Skill skill : trainer.getSkill()) {
+				skill.setCurriculum(null);
+			}
+		}
+		return trainers;
+		
+		
+		
+	}
+	
 }
