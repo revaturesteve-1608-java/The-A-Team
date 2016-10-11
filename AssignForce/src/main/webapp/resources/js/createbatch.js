@@ -1,39 +1,19 @@
 /**
  * 
  */
-
-//Basic routing information
-var app = angular.module("batchApp", ['ngRoute', 'ui.bootstrap']);
-	app.config(['$routeProvider', function($routeProvider){
-		$routeProvider.
-		when('/home', {
-			templateUrl : 'home.html'
-		}).
-		when('/viewbatches', {
-			templateUrl : 'viewbatches.html'
-		}).
-		when('/viewtrainers', {
-			templateUrl : 'viewtrainers.html',
-		}).
-		when('/createbatches', {
-			templateUrl : 'createbatches.html',
-			controller : 'dateCtrl'
-		}).
-		when('/locations', {
-			templateUrl : 'locations.html'
-		});
-	}]);
+var app = angular.module("createApp", ['ui.bootstrap']);
 	
-	//Create Batch
 	app.controller('dateCtrl', function($scope){
 		$scope.today = function(){
 			$scope.dt = new Date();
+			$scope.dt2 = new Date();
 		};
 		
 		$scope.today();
 		
 		$scope.clear = function(){
 			$scope.dt = null;
+			$scope.dt2 = null;
 		};
 		
 		$scope.inlineOptions = {
@@ -125,26 +105,5 @@ var app = angular.module("batchApp", ['ngRoute', 'ui.bootstrap']);
 		}
 		
 		
-	}); // End of date timer
-	
-//	app.controller('trainerCtrl', function($scope, trainerService){
-//		console.log('Getting Trainers');
-//		$scope.getTrainers = trainerService.getTrainers();
-//	});
-//	
-//	app.service('trainerService', function($http, $q){
-//		
-//		this.getTrainers = function(){
-//			var tpromise = $http.get('/viewtrainers').then(
-//					function(response){
-//						console.log(response + 'I think I got the trainers')
-//					},
-//					function(error){
-//						console.log($q.reject(error))
-//					}
-//			)
-//			
-//		}
-//	});
-	
-	app.controller('batchCtrl', function($scope, cService, tService))
+	});
+
