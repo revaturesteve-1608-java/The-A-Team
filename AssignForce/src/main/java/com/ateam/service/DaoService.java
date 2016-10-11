@@ -2,6 +2,9 @@ package com.ateam.service;
 
 import java.util.List;
 import java.util.Optional;
+
+import com.ateam.domain.Trainer;
+
 import java.io.Serializable;
 
 public interface DaoService{
@@ -15,5 +18,8 @@ public interface DaoService{
 //	public <T> Optional<T> findOne(ID id);
 	
 	public <T> T saveItem(T persisted);
+	
+	public Trainer findTrainerById(int id);
+
 	
 }

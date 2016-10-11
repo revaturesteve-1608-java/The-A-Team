@@ -212,4 +212,9 @@ public class DaoServiceImpl implements DaoService {
 		}
 		return away;
 	}
+
+	@Override
+	public Trainer findTrainerById(int id){
+		return TrainerDao.findByTrainerID(id);
+	}
 }

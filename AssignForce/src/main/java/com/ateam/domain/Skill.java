@@ -9,11 +9,13 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import javax.persistence.JoinColumn;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 @Table(name = "SKILL")
@@ -38,6 +40,7 @@ public class Skill {
 	@JoinTable(name="TR_SKILL_JT", 
 	joinColumns=@JoinColumn(name="SKILL_ID"), 
 	inverseJoinColumns=@JoinColumn(name="T_ID"))
+	@JsonBackReference	
 	private List<Trainer> trainer;
 
 	public Skill() {
