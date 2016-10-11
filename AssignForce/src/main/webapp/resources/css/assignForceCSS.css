@@ -1,4 +1,11 @@
 @CHARSET "ISO-8859-1";
+div.container nav{
+	padding: 5%;
+    width: 110%;
+    margin-left: -5%;
+    margin-top: 0%;
+}
+
 
 section#viewTrainerContainer article.trainerDetailContainer{
 	padding: 5px 5%;
@@ -19,10 +26,10 @@ section#viewTrainerContainer article.trainerDetailContainer div.statusLabel {
 }
 
 section#viewTrainerContainer .modal {
-    display: none; /* Hidden by default */
+    display: block; /* Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
-    padding-top: 100px; /* Location of the box */
+    padding-top: 200px; /* Location of the box */
     left: 0;
     top: 0;
     width: 100%; /* Full width */
