@@ -22,7 +22,7 @@ public class BatchCtrl {
 	DaoService daoService;
 
 	@RequestMapping(value = { "/curriculum"}, 
-			method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE, 
+			method = RequestMethod.GET,
 			produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<Curriculum>> getCurriculums() {
 
@@ -32,7 +32,7 @@ public class BatchCtrl {
 	}//end getCurriculums()
 
 	@RequestMapping(value = { "/trainer"}, 
-			method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE, 
+			method = RequestMethod.GET,
 			produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<Trainer>> getTrainers() {
 

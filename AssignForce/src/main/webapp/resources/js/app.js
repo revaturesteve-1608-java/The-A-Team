@@ -25,17 +25,32 @@ var app = angular.module("batchApp", ['ngRoute']);
 	
 	app.controller('trainerCtrl', function($scope, trainerService){
 		console.log('Getting Trainers');
-		$scope.getTrainers = trainerService.getTrainers();
+		console.log('takin care of business');
+		$scope.testingVar = 12345;
+		$scope.getTrainers = trainerService.getAllTrainers(
+			function(response){
+				$scope.trainers = response.data
+			}
+		);
+		console.log('BallyHoo');
 	})
 	
 	app.service('trainerService', function($http, $q){
 		
+		this.getAllTrainers = function(callback){
+			$http.get('rest/trainer').then(callback);
+		}
+		
 		this.getTrainers = function(){
-			var tpromise = $http.get('/viewtrainers').then(
+			console.log('and workin overtime');
+			var tpromise = $http.get('rest/trainer').then(
 					function(response){
+						console.log('its alright');
+						console.log(response);
 						console.log(response + 'I think I got the trainers')
 					},
 					function(error){
+						console.log('NAAW');
 						console.log($q.reject(error))
 					}
 			)
