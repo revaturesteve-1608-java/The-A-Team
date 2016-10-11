@@ -23,6 +23,7 @@ var app = angular.module("batchApp", ['ngRoute']);
 		});
 	}]);
 	
+	
 	app.controller('trainerCtrl', function($scope, trainerService){
 		console.log('Getting Trainers');
 		$scope.getTrainers = trainerService.getTrainers();
