@@ -25,6 +25,7 @@ var app = angular.module("batchApp", ['ngRoute', 'ui.bootstrap']);
 	}]);
 	
 <<<<<<< HEAD
+<<<<<<< HEAD
 	//Create Batch
 	app.controller('dateCtrl', function($scope){
 		$scope.today = function(){
@@ -116,6 +117,9 @@ var app = angular.module("batchApp", ['ngRoute', 'ui.bootstrap']);
 					if (dayToCheck === currentDay){
 						return $scope.events[i].status;
 =======
+=======
+	
+>>>>>>> 5ae6964594ab03051d43ea072990ec3f2f066152
 	app.controller('trainerCtrl', function($scope, trainerService){
 		console.log('Getting Trainers');
 		console.log('takin care of business');
