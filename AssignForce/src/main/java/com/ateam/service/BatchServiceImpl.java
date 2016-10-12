@@ -5,19 +5,15 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.ateam.domain.Batch;
+import com.ateam.domain.Curriculum;
 
 @Service
-public class ViewBatchServiceImpl implements ViewBatchService {
+public class BatchServiceImpl {
 
 	@Autowired
 	DaoService dao;
 	
-	public List<Batch> getBatches() {
-		List<Batch> batches = dao.getAllItem(new Batch());
-		return batches;
+	public List<Curriculum> getCurriculums(){
+		return dao.getAllItem(new Curriculum());
 	}
-	
-
-
 }

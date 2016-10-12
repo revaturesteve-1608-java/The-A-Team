@@ -7,6 +7,7 @@
 <body>
 <h1>Create batch here:</h1>
 <form>
+<div ng-controller="dateCtrl">
 <div class="form-group">
 	<label for="name">Name:</label>
 	<input type="text" class="form-control" id="batchName">
@@ -23,16 +24,27 @@
 	<label for="location">Location:</label>
 	<select></select>
 </div>
-<div class="form-group">
-	<label for="startDate">Start Date:</label>
-	<select></select>
-</div>
-<div class="form-group">
-	<label for="endDate">End Date:</label>
-	<select></select>
+<pre>Selected Date is: <em>{{dt | date:'fullDate'}}</em></pre>
+<div class="row">
+	<div class="col-md-6">
+		<p class="input-group">
+		<h5>Start Date</h5>
+			<input type="date" class="form-control" datepicker-popup="{{format}}" ng-model="dt"
+			 is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close"/>
+		</p>
+	</div>
+	
+	<div class="col-md-6">
+		<p class="input-group">
+		<h5>End Date</h5>
+			<input type="date" class="form-control" datepicker-popup="{{format}}" ng-model="dt2"
+			 is-open="popup2.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close"/>
+		</p>
+	</div>
 </div>
 <div class="form-group">
 	<input type="submit" value="Create Batch" class="btn btn-warning btn-large btn-block">
+</div>
 </div>
 </form>
 </body>
