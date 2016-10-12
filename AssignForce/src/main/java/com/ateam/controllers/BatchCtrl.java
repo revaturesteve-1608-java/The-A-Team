@@ -6,19 +6,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.ateam.domain.Batch;
 import com.ateam.domain.Curriculum;
+import com.ateam.service.BatchService;
 import com.ateam.domain.Trainer;
 import com.ateam.service.DaoService;
+
 
 @RestController
 public class BatchCtrl {
 
-	@Autowired
 	DaoService daoService;
 
 	@RequestMapping(value = { "/curriculum"}, 
@@ -49,7 +50,4 @@ public class BatchCtrl {
 
 		return new ResponseEntity<List<Batch>>(re, HttpStatus.OK);
 	}//end getTrainers()
-
-	
-	
 }
