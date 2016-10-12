@@ -1,41 +1,19 @@
 /**
  * 
  */
-
-//Basic routing information
-var app = angular.module("batchApp", ['ngRoute', 'ui.bootstrap']);
-	app.config(['$routeProvider', function($routeProvider){
-		$routeProvider.
-		when('/home', {
-			templateUrl : 'home.html'
-		}).
-		when('/viewbatches', {
-			templateUrl : 'viewbatches.html'
-		}).
-		when('/viewtrainers', {
-			templateUrl : 'viewtrainers.html',
-			controller: 'trainerCtrl'
-		}).
-		when('/createbatches', {
-			templateUrl : 'createbatches.html',
-			controller : 'dateCtrl'
-		}).
-		when('/locations', {
-			templateUrl : 'locations.html',
-				controller : "locationCtrl"
-		});
-	}]);
-
-
+var app = angular.module("createApp", ['ui.bootstrap']);
+	
 	app.controller('dateCtrl', function($scope){
 		$scope.today = function(){
 			$scope.dt = new Date();
+			$scope.dt2 = new Date();
 		};
 		
 		$scope.today();
 		
 		$scope.clear = function(){
 			$scope.dt = null;
+			$scope.dt2 = null;
 		};
 		
 		$scope.inlineOptions = {
@@ -118,48 +96,14 @@ var app = angular.module("batchApp", ['ngRoute', 'ui.bootstrap']);
 						return $scope.events[i].status;
 					}
 				}
-			}
-			return '';
-		}
-}); // End of date timer
-
-
-	
-//-----------------------------------------------------------------------
-//Trainer Section
-	app.controller('trainerCtrl', function($scope, trainerService){
-//		console.log('Getting Trainers');
-//		console.log('takin care of business');
-//		$scope.testingVar = 12345;
-		$scope.getTrainers = trainerService.getAllTrainers(
-			function(response){
-				$scope.trainers = response.data
-			}
-		);
-//		console.log('BallyHoo');
-	})
-	
-	app.service('trainerService', function($http, $q){
-		
-		this.getAllTrainers = function(callback){
-			$http.get('rest/trainer').then(callback);
-		}
-		
-		this.getTrainers = function(){
-//			console.log('and workin overtime');
-			var tpromise = $http.get('rest/trainer').then(
-					function(response){
-//						console.log('its alright');
-						console.log(response);
-//						console.log(response + 'I think I got the trainers')
-					},
-					function(error){
-						console.log('NAAW');
-						console.log($q.reject(error))
-
-					}
-			)		
-		}
 				
+
+			}
+			
+			return '';
+			
+		}
+		
+		
 	});
-	
+
