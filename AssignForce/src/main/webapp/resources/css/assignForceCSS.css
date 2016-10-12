@@ -18,6 +18,15 @@ section#viewTrainerContainer article.trainerDetailContainer h3 {
     margin: 0px;
 }
 
+section#viewTrainerContainer article.trainerDetailContainer header{
+	width: 100%;
+}
+section#viewTrainerContainer article.trainerDetailContainer header h3:hover {
+    cursor: pointer;
+    color: orangered;
+    opacity: .9;
+}
+
 section#viewTrainerContainer article.trainerDetailContainer div.locationLabel,
 section#viewTrainerContainer article.trainerDetailContainer div.statusLabel {
     width: 50%;
@@ -48,17 +57,27 @@ section#viewTrainerContainer .modal-content {
     width: 80%;
 }
 
+section#viewTrainerContainer .modal-content h4{
+    padding-top: 10px;
+    border-top-style: solid;
+    border-top: 2px solid rgba(0, 0, 0, 0.2);
+}
 /* The Close Button */
-section#viewTrainerContainer .close {
+section#viewTrainerContainer .viewTrainerClose {
     color: #aaaaaa;
     float: right;
     font-size: 28px;
     font-weight: bold;
 }
 
-section#viewTrainerContainer .close:hover,
-section#viewTrainerContainer .close:focus {
+section#viewTrainerContainer .viewTrainerClose:hover,
+section#viewTrainerContainer .viewTrainerClose:focus {
     color: #000;
     text-decoration: none;
     cursor: pointer;
+}
+
+section#viewTrainerContainer .trainerDetailSkillList {
+    width: 33%;
+    display: inline-block;
 }
