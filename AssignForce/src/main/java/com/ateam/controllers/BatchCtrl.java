@@ -20,6 +20,7 @@ import com.ateam.service.DaoService;
 @RestController
 public class BatchCtrl {
 
+	@Autowired
 	DaoService daoService;
 
 	@RequestMapping(value = { "/curriculum"}, 

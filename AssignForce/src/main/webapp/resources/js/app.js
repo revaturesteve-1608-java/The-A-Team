@@ -14,13 +14,15 @@ var app = angular.module("batchApp", ['ngRoute', 'ui.bootstrap']);
 		}).
 		when('/viewtrainers', {
 			templateUrl : 'viewtrainers.html',
+			controller : "trainerCtrl"
 		}).
 		when('/createbatches', {
 			templateUrl : 'createbatches.html',
 			controller : 'dateCtrl'
 		}).
 		when('/locations', {
-			templateUrl : 'locations.html'
+			templateUrl : 'locations.html',
+				controller : "locationCtrl"
 		});
 	}]);
 
@@ -128,7 +130,7 @@ var app = angular.module("batchApp", ['ngRoute', 'ui.bootstrap']);
 	app.controller('trainerCtrl', function($scope, trainerService){
 //		console.log('Getting Trainers');
 //		console.log('takin care of business');
-		$scope.testingVar = 12345;
+//		$scope.testingVar = 12345;
 		$scope.getTrainers = trainerService.getAllTrainers(
 			function(response){
 				$scope.trainers = response.data
@@ -160,44 +162,4 @@ var app = angular.module("batchApp", ['ngRoute', 'ui.bootstrap']);
 		}
 				
 	});
-	
-//-----------------------------------------------------------------------
-//Location Section
-	app.controller("locationCtrl", function($scope, locationService){
-		$scope.getLocations = locationService.getAllLocations(
-				function(response){
-					$scope.locations = response.data
-				}
-			);
-	});// end app.controller("locationCtrl")
-	
-	app.service("locationService", function($http, $q){
-		this.getAllLocations = function(callback){
-			$http.get("rest/getlocations").then(callback);
-		}
-	});// end app.service("locationService")
-	
-	
-	
-		
-		
-//	app.controller('trainerCtrl', function($scope, trainerService){
-//		console.log('Getting Trainers');
-//		$scope.getTrainers = trainerService.getTrainers();
-//	});
-//	
-//	app.service('trainerService', function($http, $q){
-//		
-//		this.getTrainers = function(){
-//			var tpromise = $http.get('/viewtrainers').then(
-//					function(response){
-//						console.log(response + 'I think I got the trainers')
-//					},
-//					function(error){
-//						console.log($q.reject(error))
-//					}
-//			)
-//			
-//		}
-//	});
 	
