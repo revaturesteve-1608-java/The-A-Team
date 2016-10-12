@@ -15,6 +15,10 @@ app.controller("locationCtrl", function($scope, locationService) {
 
 	$scope.submitAndVerify = function(nLocation) {
 		$scope.updateTask = locationService.saveLocation(nLocation);
+		$scope.createLocation = !$scope.createLocation;
+//		locationService.getAllLocations(function(response){$scope.locations = response.data})
+		//		$scope.locations += nLocation;
+//		$scope.getLocations = $scope.getLocations;
 	}
 });// end app.controller("locationCtrl")
 
