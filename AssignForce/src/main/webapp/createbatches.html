@@ -7,18 +7,28 @@
 <body>
 <h1>Create batch here:</h1>
 <form>
-<div ng-controller="dateCtrl">
+<div ng-controller="batchCtrl">
 <div class="form-group">
 	<label for="name">Name:</label>
 	<input type="text" class="form-control" id="batchName">
 </div>
 <div class="form-group">
 	<label for="curriculum">Curriculum:</label>
-	<select></select>
+	<select>
+		  
+		<option class="item" ng-repeat="curr in currs">
+		{{curr.curriculumName}}
+		</option>
+		 
+	</select>
 </div>
 <div class="form-group">
 	<label for="trainer">Trainer:</label>
-	<select></select>
+	<select>
+	<option class="item" ng-repeat="trainer in trainers">
+		{{trainer.trainerFirstName}}
+		</option>
+	</select>
 </div>
 <div class="form-group">
 	<label for="location">Location:</label>

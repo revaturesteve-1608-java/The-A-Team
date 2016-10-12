@@ -18,7 +18,7 @@ var app = angular.module("batchApp", ['ngRoute', 'ui.bootstrap']);
 		}).
 		when('/createbatches', {
 			templateUrl : 'createbatches.html',
-			controller : 'dateCtrl'
+			controller : 'batchCtrl'
 		}).
 		when('/locations', {
 			templateUrl : 'locations.html',
@@ -27,7 +27,7 @@ var app = angular.module("batchApp", ['ngRoute', 'ui.bootstrap']);
 	}]);
 
 
-	app.controller('dateCtrl', function($scope){
+	/*app.controller('dateCtrl', function($scope){
 		$scope.today = function(){
 			$scope.dt = new Date();
 		};
@@ -121,7 +121,7 @@ var app = angular.module("batchApp", ['ngRoute', 'ui.bootstrap']);
 			}
 			return '';
 		}
-}); // End of date timer
+}); // End of date timer */
 
 
 	
