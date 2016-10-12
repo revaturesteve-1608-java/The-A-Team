@@ -31,7 +31,7 @@ public class TrainerInfoCtrl {
 		return new ResponseEntity<Trainer>(re, HttpStatus.OK);
 	}//end getCurriculums()
 
-	@RequestMapping(value = { "/getTrainerTest"}, 
+/*	@RequestMapping(value = { "/getTrainerTest"}, 
 			method = RequestMethod.POST, 
 			produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Trainer> getTrainerTest() {
@@ -39,6 +39,6 @@ public class TrainerInfoCtrl {
 		return new ResponseEntity<Trainer>(re, HttpStatus.OK);
 	}//end getCurriculums()
 
-
+*/
 	
 }

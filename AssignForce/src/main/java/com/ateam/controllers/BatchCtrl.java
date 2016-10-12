@@ -23,7 +23,7 @@ public class BatchCtrl {
 	DaoService daoService;
 
 	@RequestMapping(value = { "/curriculum"}, 
-			method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE, 
+			method = RequestMethod.GET,
 			produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<Curriculum>> getCurriculums() {
 
@@ -33,7 +33,7 @@ public class BatchCtrl {
 	}//end getCurriculums()
 
 	@RequestMapping(value = { "/trainer"}, 
-			method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE, 
+			method = RequestMethod.GET,
 			produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<Trainer>> getTrainers() {
 
@@ -42,14 +42,12 @@ public class BatchCtrl {
 		return new ResponseEntity<List<Trainer>>(re, HttpStatus.OK);
 	}//end getTrainers()
 
-	@RequestMapping(value = { "/batchTest"}, 
+	@RequestMapping(value = { "/batches"}, 
 			method = RequestMethod.GET, 
 			produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<Batch>> getBatches() {
+		List<Batch> re = daoService.findAllBatches();
 
-//		List<Batch> re = daoService.findAllTrainers();
-		List<Batch> re = daoService.getAllItem(new Batch());
-System.out.println("re: " + re);
 		return new ResponseEntity<List<Batch>>(re, HttpStatus.OK);
 	}//end getTrainers()
 }

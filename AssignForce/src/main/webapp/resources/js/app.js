@@ -24,6 +24,7 @@ var app = angular.module("batchApp", ['ngRoute', 'ui.bootstrap']);
 		});
 	}]);
 	
+<<<<<<< HEAD
 	//Create Batch
 	app.controller('dateCtrl', function($scope){
 		$scope.today = function(){
@@ -114,6 +115,37 @@ var app = angular.module("batchApp", ['ngRoute', 'ui.bootstrap']);
 					
 					if (dayToCheck === currentDay){
 						return $scope.events[i].status;
+=======
+	app.controller('trainerCtrl', function($scope, trainerService){
+		console.log('Getting Trainers');
+		console.log('takin care of business');
+		$scope.testingVar = 12345;
+		$scope.getTrainers = trainerService.getAllTrainers(
+			function(response){
+				$scope.trainers = response.data
+			}
+		);
+		console.log('BallyHoo');
+	})
+	
+	app.service('trainerService', function($http, $q){
+		
+		this.getAllTrainers = function(callback){
+			$http.get('rest/trainer').then(callback);
+		}
+		
+		this.getTrainers = function(){
+			console.log('and workin overtime');
+			var tpromise = $http.get('rest/trainer').then(
+					function(response){
+						console.log('its alright');
+						console.log(response);
+						console.log(response + 'I think I got the trainers')
+					},
+					function(error){
+						console.log('NAAW');
+						console.log($q.reject(error))
+>>>>>>> 1604940c9531ad87c2245440b4dff9f0ef5f917a
 					}
 				}
 				

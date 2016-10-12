@@ -19,6 +19,9 @@ import javax.persistence.Table;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 @Entity
 @Table(name = "ROOM")
 public class Room {
@@ -33,6 +36,7 @@ public class Room {
 	private String roomName;
 
 	@ManyToMany(mappedBy = "room", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@id")						// ADDED this to fix serialization/infinite loop issues
 	private List<Unavailable> unavailable;
 
 	// @ManyToOne(fetch=FetchType.LAZY)
