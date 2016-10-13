@@ -9,22 +9,28 @@
 <form>
 <div ng-controller="batchCtrl">
 <div class="form-group">
-	<label for="name">Name:</label>
+	<label for="name" ng-model="batchName">Name:</label>
 	<input type="text" class="form-control" id="batchName">
 </div>
 <div class="form-group">
+	<label for="topic">Topic:</label>
+	<select ng-model="topic">
+		<option class="item" ng-repeat="topic in topics">
+		{{topic.topicName}}
+		</option>
+	</select>
+</div>
+<div class="form-group">
 	<label for="curriculum">Curriculum:</label>
-	<select>
-		  
+	<select ng-model="curr">
 		<option class="item" ng-repeat="curr in currs">
 		{{curr.curriculumName}}
 		</option>
-		 
 	</select>
 </div>
 <div class="form-group">
 	<label for="trainer">Trainer:</label>
-	<select>
+	<select ng-model="trainer">
 	<option class="item" ng-repeat="trainer in trainers">
 		{{trainer.trainerFirstName}}
 		</option>
@@ -32,14 +38,26 @@
 </div>
 <div class="form-group">
 	<label for="location">Location:</label>
-	<select></select>
+	<select ng-model="location">
+		<option class="item" ng-repeat="location in locations">
+		{{location.locationName}}
+		</option>
+	</select>
+</div>
+<div class="form-group">
+	<label for="location">Room:</label>
+	<select ng-model="room">
+		<option class="item" ng-repeat="room in rooms">
+		{{room.roomName}}
+		</option>
+	</select>
 </div>
 <pre>Selected Date is: <em>{{dt | date:'fullDate'}}</em></pre>
 <div class="row">
 	<div class="col-md-6">
 		<p class="input-group">
 		<h5>Start Date</h5>
-			<input type="date" class="form-control" datepicker-popup="{{format}}" ng-model="dt"
+			<input type="date" class="form-control" datepicker-popup="{{format}}" ng-model="date"
 			 is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close"/>
 		</p>
 	</div>
@@ -47,13 +65,14 @@
 	<div class="col-md-6">
 		<p class="input-group">
 		<h5>End Date</h5>
-			<input type="date" class="form-control" datepicker-popup="{{format}}" ng-model="dt2"
+			<input type="date" class="form-control" datepicker-popup="{{format}}" ng-model="date2"
 			 is-open="popup2.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close"/>
 		</p>
 	</div>
 </div>
 <div class="form-group">
-	<input type="submit" value="Create Batch" class="btn btn-warning btn-large btn-block">
+	<input type="submit" value="Create Batch" class="btn btn-warning btn-large btn-block" 
+	ng-click="saveBatch(batchName, topic, curr, trainer, location, room, date, date2)">
 </div>
 </div>
 </form>

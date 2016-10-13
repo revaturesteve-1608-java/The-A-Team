@@ -66,6 +66,11 @@ public class Batch {
 	@JoinColumn(name = "T_ID")
 	@Fetch(FetchMode.JOIN)
 	private Trainer batchTrainerID;
+	
+	@ManyToOne
+	@JoinColumn(name = "L_ID")
+	@Fetch(FetchMode.JOIN)
+	private Location location;
 
 	public Batch() {
 		super();
@@ -82,6 +87,21 @@ public class Batch {
 		this.batchRoomID = batchRoomID;
 		this.batchStatusID = batchStatusID;
 		this.batchTrainerID = batchTrainerID;
+	}
+	
+	
+
+	public Batch(Timestamp batchStartDate, Timestamp batchEndDate, Topic batchTopicID, Curriculum batchCurriculumID,
+			Room batchRoomID, B_Status batchStatusID, Trainer batchTrainerID, Location location) {
+		super();
+		this.batchStartDate = batchStartDate;
+		this.batchEndDate = batchEndDate;
+		this.batchTopicID = batchTopicID;
+		this.batchCurriculumID = batchCurriculumID;
+		this.batchRoomID = batchRoomID;
+		this.batchStatusID = batchStatusID;
+		this.batchTrainerID = batchTrainerID;
+		this.location = location;
 	}
 
 	public int getBatchID() {

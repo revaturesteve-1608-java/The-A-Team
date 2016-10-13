@@ -3,7 +3,7 @@
  */
 var app = angular.module("batchApp");
 
-app.controller('batchCtrl', function($scope, batchService, trainerService){
+app.controller('batchCtrl', function($scope, batchService, trainerService, locationService){
 	
 	$scope.getCurrs = batchService.getCurrs(
 			//passed in callback
@@ -20,6 +20,31 @@ app.controller('batchCtrl', function($scope, batchService, trainerService){
 				$scope.trainers = response.data
 			}
 		);
+	
+	$scope.getLocations = locationService.getAllLocations(
+			function(response){
+				$scope.locations = response.data
+			}
+		);
+	
+	$scope.getTopics = batchService.getTopics(
+			function(response){
+				$scope.topics = response.data
+			}
+		);
+	
+	$scope.getRooms = batchService.getRooms(
+			function(response){
+				$scope.rooms = response.data
+			}
+		);
+	
+	$scope.saveBatch = function(batchName, topic, curr, trainer, location, room, date, date2){
+		console.log('Trying to save...')
+		$scope.updateTask = 
+			batchService.saveBatch(batchName, topic, curr, trainer, location, room, date, date2);
+	}
+
 	
 	//////Date Data////////////////////////
 			$scope.today = function(){
@@ -122,6 +147,28 @@ app.service('batchService', function($http, $q){
 	
 	this.getCurrs = function(callback){
 		$http.get('rest/curriculum').then(callback);
+	}
+	
+	this.getTopics = function(callback){
+		$http.get('rest/topics').then(callback);
+	}
+	
+	this.getRooms = function(callback){
+		$http.get('rest/rooms').then(callback);
+	}
+	
+	this.saveBatch = function(batchName, topic, curr, trainer, location, room, date, date2){
+		var promise = $http.post('rest/saveBatch', 
+				batchName, topic, curr, trainer, location, room, date, date2).
+		then(
+				function(response){
+					console.log(response + ' Hope it worked');
+				},
+				
+				function(error){
+					console.log($q.reject(error));
+				}
+		)
 	}
 	
 	
