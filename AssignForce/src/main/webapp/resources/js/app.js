@@ -189,3 +189,20 @@ var app = angular.module("batchApp", ['ngRoute', 'ui.bootstrap']);
 				
 	});
 	
+	
+	app.factory('transferService', function() {
+		 var savedData = {}
+		 
+		 function set(data) {
+		   savedData = data;
+		 }
+		 function get() {
+		  return savedData;
+		 }
+
+		 return {
+		  set: set,
+		  get: get
+		 }
+
+	});

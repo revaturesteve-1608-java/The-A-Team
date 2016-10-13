@@ -16,9 +16,9 @@
 				<th>Start Date</th>
 				<th>End Date</th>
 			</tr>
-			<tr ng-repeat="batch in Batches">
-				<td><a href="#createbatches">{{ batch.bName }}</a></td>
-				<td><a href="#createbatches">{{ batch.batchTopicID.topicName }}</a></td>
+			<tr ng-repeat="batch in Batches" ng-click="editBatch(batch.batchID)">
+				<td>{{ batch.bName }}</td>
+				<td>{{ batch.batchTopicID.topicName }}</td>
 				<td>{{ batch.batchCurriculumID.curriculumName}}</td>
 				<td>{{ batch.batchTrainerID.trainerFirstName }} {{batch.batchTrainerID.trainerLastName}}</td>
 				<td>{{ createDate(batch.batchStartDate) }}</td>

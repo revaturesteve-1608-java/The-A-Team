@@ -9,15 +9,18 @@
 var app = angular.module("batchApp");
 
 
-app.controller("allBatchCtrl", function($scope, allBatchService) {
-	console.log("uhhhh");
+app.controller("allBatchCtrl", function($scope, $location, allBatchService, transferService) {
 	$scope.getBatches = allBatchService.getAllBatches(function(response) {
-		console.log("did it make it?");
 		$scope.Batches = response.data
 	});
 	
 	$scope.createDate = function(ms){
 		return allBatchService.createDate(ms);
+	}
+	
+	$scope.editBatch = function(id){
+		transferService.set(id);
+		$location.path("/createbatches");
 	}
 
 });// end app.controller("allBatchCtrl")
