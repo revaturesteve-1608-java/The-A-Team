@@ -16,6 +16,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Table(name = "UNAVAILABLE")
 public class Unavailable {
@@ -32,16 +34,18 @@ public class Unavailable {
 	@Column(name = "UN_END_DATE", nullable=false)
 	private Timestamp unavailableEndDate;
 	
-	@ManyToMany(fetch=FetchType.EAGER)
+	@ManyToMany(fetch=FetchType.LAZY)
 	@JoinTable(name="TR_UN_JT", 
 	joinColumns=@JoinColumn(name="UN_ID"), 
 	inverseJoinColumns=@JoinColumn(name="T_ID"))
+	@JsonBackReference
 	private List<Trainer> trainer;
 	
-	@ManyToMany(fetch=FetchType.EAGER)
+	@ManyToMany(fetch=FetchType.LAZY)
 	@JoinTable(name="R_UN_JT", 
 	joinColumns=@JoinColumn(name="UN_ID"), 
 	inverseJoinColumns=@JoinColumn(name="R_ID"))
+	@JsonBackReference
 	private List<Room> room;
 
 	public Unavailable() {
