@@ -79,19 +79,20 @@ public class BatchCtrl {
 		}
 	
 	//Save batch
-	@RequestMapping(value = { "/saveBatch"}, 
+	@RequestMapping(value = { "/savebatch"}, 
 			method = RequestMethod.POST, 
 			consumes = MediaType.APPLICATION_JSON_VALUE,
 			produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Batch> saveBatch(@RequestBody String batchName, @RequestBody Topic topic, 
-			@RequestBody Curriculum curr,
-			@RequestBody Trainer t, @RequestBody Location l, @RequestBody Room r, @RequestBody Timestamp d1, 
-			@RequestBody Timestamp d2){
-		
-		Batch b = new Batch(d1, d2, topic, curr, r, new B_Status(1), t, l);
+	public ResponseEntity<Batch> saveBatch(@RequestBody Batch batchObj){
+		System.out.println("Hitting saveBatch.....");
+		System.out.println(batchObj.toString());
+		Batch b = new Batch(batchObj.getbName(), batchObj.getBatchStartDate(), batchObj.getBatchEndDate(),
+				batchObj.getBatchTopicID(), batchObj.getBatchCurriculumID(), batchObj.getBatchRoomID(),
+				new B_Status(1), batchObj.getBatchTrainerID());
 		
 		daoService.saveItem(b);
 		
 		return new ResponseEntity<Batch>(b, HttpStatus.OK);
 	}
+	
 }

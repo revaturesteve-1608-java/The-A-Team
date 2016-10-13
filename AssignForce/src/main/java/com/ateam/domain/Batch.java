@@ -1,5 +1,6 @@
 package com.ateam.domain;
 
+import java.sql.Date;
 import java.sql.Timestamp;
 
 import javax.persistence.Column;
@@ -25,6 +26,9 @@ public class Batch {
 	@SequenceGenerator(allocationSize = 1, name = "batchSeq", sequenceName = "BATCH_SEQ")
 	@GeneratedValue(generator = "batchSeq", strategy = GenerationType.SEQUENCE)
 	private int batchID;
+	
+	@Column(name="B_NAME")
+	private String bName;
 
 	@Column(name = "B_START_DATE", nullable=false)
 	private Timestamp batchStartDate;
@@ -66,11 +70,6 @@ public class Batch {
 	@JoinColumn(name = "T_ID")
 	@Fetch(FetchMode.JOIN)
 	private Trainer batchTrainerID;
-	
-	@ManyToOne
-	@JoinColumn(name = "L_ID")
-	@Fetch(FetchMode.JOIN)
-	private Location location;
 
 	public Batch() {
 		super();
@@ -89,11 +88,22 @@ public class Batch {
 		this.batchTrainerID = batchTrainerID;
 	}
 	
+	public Batch(String name, String curr, Date d, Date d2, String room, String topic, String trainer){
+		String batchName = name;
+		String currName = curr;
+		Date d1 = d;
+		Date d3 = d2;
+		String thisRoom = room;
+		String thisTopic = topic;
+		String thisTrainer = trainer;
+	}
+	
 	
 
-	public Batch(Timestamp batchStartDate, Timestamp batchEndDate, Topic batchTopicID, Curriculum batchCurriculumID,
-			Room batchRoomID, B_Status batchStatusID, Trainer batchTrainerID, Location location) {
+	public Batch(String bName, Timestamp batchStartDate, Timestamp batchEndDate, Topic batchTopicID,
+			Curriculum batchCurriculumID, Room batchRoomID, B_Status batchStatusID, Trainer batchTrainerID) {
 		super();
+		this.bName = bName;
 		this.batchStartDate = batchStartDate;
 		this.batchEndDate = batchEndDate;
 		this.batchTopicID = batchTopicID;
@@ -101,7 +111,6 @@ public class Batch {
 		this.batchRoomID = batchRoomID;
 		this.batchStatusID = batchStatusID;
 		this.batchTrainerID = batchTrainerID;
-		this.location = location;
 	}
 
 	public int getBatchID() {
@@ -168,11 +177,22 @@ public class Batch {
 		this.batchTrainerID = batchTrainerID;
 	}
 
+	public String getbName() {
+		return bName;
+	}
+
+	public void setbName(String bName) {
+		this.bName = bName;
+	}
+
 	@Override
 	public String toString() {
-		return "Batch [batchID=" + batchID + ", batchStartDate=" + batchStartDate + ", batchEndDate=" + batchEndDate
-				+ ", batchTopicID=" + batchTopicID + ", batchCurriculumID=" + batchCurriculumID + ", batchRoomID="
-				+ batchRoomID + ", batchStatusID=" + batchStatusID + ", batchTrainerID=" + batchTrainerID + "]";
+		return "Batch [batchID=" + batchID + ", bName=" + bName + ", batchStartDate=" + batchStartDate
+				+ ", batchEndDate=" + batchEndDate + ", batchTopicID=" + batchTopicID + ", batchCurriculumID="
+				+ batchCurriculumID + ", batchRoomID=" + batchRoomID + ", batchStatusID=" + batchStatusID
+				+ ", batchTrainerID=" + batchTrainerID + "]";
 	}
+
+	
 
 }

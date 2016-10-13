@@ -21,12 +21,6 @@ app.controller('batchCtrl', function($scope, batchService, trainerService, locat
 			}
 		);
 	
-	$scope.getLocations = locationService.getAllLocations(
-			function(response){
-				$scope.locations = response.data
-			}
-		);
-	
 	$scope.getTopics = batchService.getTopics(
 			function(response){
 				$scope.topics = response.data
@@ -35,14 +29,15 @@ app.controller('batchCtrl', function($scope, batchService, trainerService, locat
 	
 	$scope.getRooms = batchService.getRooms(
 			function(response){
+				console.log(response)
 				$scope.rooms = response.data
 			}
 		);
 	
-	$scope.saveBatch = function(batchName, topic, curr, trainer, location, room, date, date2){
+	$scope.saveBatch = function(batchName, topic, curr, trainer, room, date, date2){
 		console.log('Trying to save...')
 		$scope.updateTask = 
-			batchService.saveBatch(batchName, topic, curr, trainer, location, room, date, date2);
+			batchService.saveBatch(batchName, topic, curr, trainer, room, date, date2);
 	}
 
 	
@@ -157,9 +152,19 @@ app.service('batchService', function($http, $q){
 		$http.get('rest/rooms').then(callback);
 	}
 	
-	this.saveBatch = function(batchName, topic, curr, trainer, location, room, date, date2){
-		var promise = $http.post('rest/saveBatch', 
-				batchName, topic, curr, trainer, location, room, date, date2).
+	this.saveBatch = function(batchName, topic, curr, trainer, room, date, date2){
+		console.log('hitting saveBatch js')
+		var batchObj = {};
+		batchObj.batchName = batchName;
+		batchObj.topic = topic;
+		batchObj.curr = curr;
+		batchObj.trainer = trainer;
+		batchObj.room = room;
+		batchObj.date = date;
+		batchObj.date2 = date2;
+		
+		
+		var promise = $http.post('rest/savebatch', batchObj).
 		then(
 				function(response){
 					console.log(response + ' Hope it worked');

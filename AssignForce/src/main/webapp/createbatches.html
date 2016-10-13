@@ -9,8 +9,8 @@
 <form>
 <div ng-controller="batchCtrl">
 <div class="form-group">
-	<label for="name" ng-model="batchName">Name:</label>
-	<input type="text" class="form-control" id="batchName">
+	<label for="name">Name:</label>
+	<input type="text" class="form-control" ng-model="batchName">
 </div>
 <div class="form-group">
 	<label for="topic">Topic:</label>
@@ -33,14 +33,6 @@
 	<select ng-model="trainer">
 	<option class="item" ng-repeat="trainer in trainers">
 		{{trainer.trainerFirstName}}
-		</option>
-	</select>
-</div>
-<div class="form-group">
-	<label for="location">Location:</label>
-	<select ng-model="location">
-		<option class="item" ng-repeat="location in locations">
-		{{location.locationName}}
 		</option>
 	</select>
 </div>
@@ -72,7 +64,7 @@
 </div>
 <div class="form-group">
 	<input type="submit" value="Create Batch" class="btn btn-warning btn-large btn-block" 
-	ng-click="saveBatch(batchName, topic, curr, trainer, location, room, date, date2)">
+	ng-click="saveBatch(batchName, topic, curr, trainer, room, date, date2)">
 </div>
 </div>
 </form>
