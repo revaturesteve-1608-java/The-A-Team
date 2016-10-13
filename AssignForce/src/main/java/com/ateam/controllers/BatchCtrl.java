@@ -6,22 +6,26 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
+import com.ateam.domain.Batch;
 import com.ateam.domain.Curriculum;
+import com.ateam.service.BatchService;
 import com.ateam.domain.Trainer;
 import com.ateam.service.DaoService;
 
+
 @RestController
 public class BatchCtrl {
+
 
 	@Autowired
 	DaoService daoService;
 
 	@RequestMapping(value = { "/curriculum"}, 
-			method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE, 
+			method = RequestMethod.GET,
 			produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<Curriculum>> getCurriculums() {
 
@@ -31,15 +35,21 @@ public class BatchCtrl {
 	}//end getCurriculums()
 
 	@RequestMapping(value = { "/trainer"}, 
-			method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE, 
+			method = RequestMethod.GET,
 			produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<Trainer>> getTrainers() {
 
-		List<Trainer> re = daoService.getAllItem(new Trainer());
+		List<Trainer> re = daoService.findAllTrainers();
 
 		return new ResponseEntity<List<Trainer>>(re, HttpStatus.OK);
 	}//end getTrainers()
 
-	
-	
+	@RequestMapping(value = { "/batches"}, 
+			method = RequestMethod.GET, 
+			produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<Batch>> getBatches() {
+		List<Batch> re = daoService.findAllBatches();
+
+		return new ResponseEntity<List<Batch>>(re, HttpStatus.OK);
+	}//end getTrainers()
 }
