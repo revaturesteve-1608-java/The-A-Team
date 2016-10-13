@@ -3,7 +3,7 @@
  */
 var app = angular.module("createApp", ['ui.bootstrap']);
 	
-	app.controller('dateCtrl', function($scope){
+	app.controller('dateCtrl', function($scope, transferService){
 		$scope.today = function(){
 			$scope.dt = new Date();
 			$scope.dt2 = new Date();
