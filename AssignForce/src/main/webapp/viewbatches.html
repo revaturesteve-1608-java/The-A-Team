@@ -10,9 +10,7 @@
 <link href="resources/css/angular-datatables.css" rel="stylesheet">
 <script type="text/javascript" src="resources/js/AngularDataTables.js"></script>
 </head>
-<body ng-app="showcase">
-	<h1>View Batches</h1>
-	<style>
+<style>
 body {
 	font-family: "Lato", sans-serif;
 }
@@ -60,16 +58,17 @@ ul.tab li a:focus, .active {
 	border-top: none;
 }
 </style>
+<body ng-app="showcase">
+	<h1>View Batches</h1>
 <body>
-
 
 	<ul class="tab">
 		<li><a href="#viewcurrentbatches" class="tablinks"
-			onclick="openCity(event, 'Current')">Current</a></li>
+			onclick="openBatch(event, 'Current')">Current</a></li>
 		<li><a href="#viewupcomingbatches" class="tablinks"
-			onclick="openCity(event, 'Upcoming')">Upcoming</a></li>
+			onclick="openBatch(event, 'Upcoming')">Upcoming</a></li>
 		<li><a href="#viewendedbatches" class="tablinks"
-			onclick="openCity(event, 'Ended')">Ended</a></li>
+			onclick="openBatch(event, 'Ended')">Ended</a></li>
 	</ul>
 
 	<div id="Current" class="tabcontent">
@@ -99,7 +98,7 @@ ul.tab li a:focus, .active {
 		</section>
 	</div>
 	<script>
-		function openCity(evt, cityName) {
+		function openBatch(evt, status) {
 			var i, tabcontent, tablinks;
 			tabcontent = document.getElementsByClassName("tabcontent");
 			for (i = 0; i < tabcontent.length; i++) {
@@ -110,7 +109,7 @@ ul.tab li a:focus, .active {
 				tablinks[i].className = tablinks[i].className.replace(
 						" active", "");
 			}
-			document.getElementById(cityName).style.display = "block";
+			document.getElementById(status).style.display = "block";
 			evt.currentTarget.className += " active";
 		}
 	</script>

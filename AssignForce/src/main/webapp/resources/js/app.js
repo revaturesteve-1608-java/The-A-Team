@@ -20,6 +20,15 @@ var app = angular.module("batchApp", ['ngRoute']);
 		}).
 		when('/locations', {
 			templateUrl : 'locations.html'
+		}).
+		when('/viewcurrentbatches', {
+			templateUrl : 'viewbatches.html'
+		}).
+		when('/viewupcomingbatches', {
+			templateUrl : 'viewbatches.html'
+		}).
+		when('/viewendedbatches', {
+			templateUrl : 'viewbatches.html'
 		});
 	}]);
 	
