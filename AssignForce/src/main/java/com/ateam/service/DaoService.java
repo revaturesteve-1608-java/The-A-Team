@@ -1,8 +1,9 @@
 package com.ateam.service;
 
 import java.util.List;
-import java.util.Optional;
-import java.io.Serializable;
+
+import com.ateam.domain.Batch;
+import com.ateam.domain.Trainer;
 
 public interface DaoService{
 
@@ -16,4 +17,9 @@ public interface DaoService{
 	
 	public <T> T saveItem(T persisted);
 	
+	public Trainer findTrainerById(int id);
+	public List<Trainer> findAllTrainers();
+
+	public List<Batch> findAllBatches();
+
 }

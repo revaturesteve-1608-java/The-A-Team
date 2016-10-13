@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Locations</title>
+</head>
+<body>
+	<section id="viewLocationContainer">
+		<header>
+			<h1>Locations:</h1>
+		</header>
+		<div class="locationContainer" ng-repeat="location in locations">
+			<h3>{{location.locationName}}</h3>
+		</div>
+		<button type="button" ng-click="createLocation =! createLocation">
+			<div ng-switch="createLocation">
+				<span ng-switch-when="false">Add Location</span>
+				<span ng-switch-when="true">Cancel</span>
+				<span ng-switch-default>Add Location</span>
+			</div>
+		</button>
+		<div class="newLocation" ng-show="createLocation">
+			<input class="creating-location" type="text" ng-show="createLocation" ng-model="nLocation.locationName"/>
+			<button type="button" ng-click="submitAndVerify(nLocation)">Add Location</button>
+		</div>
+	
+	
+	
+	</section>
+
+</body>
+</html>

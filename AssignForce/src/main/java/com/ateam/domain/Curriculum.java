@@ -31,7 +31,7 @@ public class Curriculum {
 	private String curriculumName;
 	
 	@ManyToMany(mappedBy="curriculum", cascade=CascadeType.ALL, fetch=FetchType.EAGER)
-	@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@id")						// ADDED this to fix serialization/infinite loop issues
+	@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@id")					// ADDED this to fix serialization/infinite loop issues
 	private List<Skill> skill;
 
 	public Curriculum() {
