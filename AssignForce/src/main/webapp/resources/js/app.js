@@ -136,7 +136,10 @@ var app = angular.module("batchApp", ['ngRoute', 'ui.bootstrap']);
 				$scope.trainers = response.data
 			}
 		);
-//		console.log('BallyHoo');
+/*		$scope.createDate = function(ms){
+			return trainerService.createDate(ms);
+		}
+*///		console.log('BallyHoo');
 	})
 	
 	app.service('trainerService', function($http, $q){
@@ -160,6 +163,16 @@ var app = angular.module("batchApp", ['ngRoute', 'ui.bootstrap']);
 					}
 			)		
 		}
+		
+		this.createDate = function(ms){
+			var date = new Date(ms).toDateString();
+
+			if(date == "Invalid Date"){
+				console.log("here");
+				return "";
+			}
+			return date;
+		}// end createDate
 				
 	});
 	
