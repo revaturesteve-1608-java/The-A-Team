@@ -24,6 +24,15 @@
 		    	<div class="trainerDetailSkillList" ng-repeat="skill in trainer.skill">
 		    		<p class="trainerDetailSkill">{{skill.skillName}}</p>
 		    	</div>
+		    	<h4>Unavailable Days:</h4>
+		    	<div class="trainerDetailSkillList" ng-repeat="away in trainer.unavailable">
+		    		<p class="trainerDetailSkill">{{createDate(away.unavailableStartDate)}} to {{createDate(away.unavailableEndDate)}}</p>
+		    	</div><!--  
+		    	<h4>Batches:</h4>
+		    	<div class="trainerDetailSkillList">
+		    		<p class="trainerDetailSkill">{{trainer.batchTrainerID}}: {{createDate(bat.batchStartDate)}} to {{createDate(bat.batchEndDate)}}</p>
+		    	</div>
+		    	-->
 		    </div>
 		</div>
 	</article>

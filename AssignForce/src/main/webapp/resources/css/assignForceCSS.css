@@ -6,6 +6,10 @@ div.container nav{
     margin-top: 0%;
 }
 
+section#viewTrainerContainer{
+	width: 95%;
+	margin: 0 auto;
+}
 
 section#viewTrainerContainer article.trainerDetailContainer{
 	padding: 5px 5%;
@@ -13,7 +17,7 @@ section#viewTrainerContainer article.trainerDetailContainer{
     border-top: 2px solid rgba(0, 0, 0, 0.2);
 }
 
-section#viewTrainerContainer article.trainerDetailContainer h3 {
+section#viewTrainerContainer article.trainerDetailContainer h3, .locationContainer h3 {
     font-size: 2em;
     margin: 0px;
 }
