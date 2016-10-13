@@ -155,13 +155,14 @@ app.service('batchService', function($http, $q){
 	this.saveBatch = function(batchName, topic, curr, trainer, room, date, date2){
 		console.log('hitting saveBatch js')
 		var batchObj = {};
+		
 		batchObj.batchName = batchName;
 		batchObj.topic = topic;
 		batchObj.curr = curr;
 		batchObj.trainer = trainer;
 		batchObj.room = room;
-		batchObj.date = date;
-		batchObj.date2 = date2;
+//		batchObj.date = date;
+//		batchObj.date2 = date2;
 		
 		
 		var promise = $http.post('rest/savebatch', batchObj).

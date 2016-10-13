@@ -1,6 +1,5 @@
 package com.ateam.controllers;
 
-import java.sql.Timestamp;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,11 +14,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ateam.domain.B_Status;
 import com.ateam.domain.Batch;
 import com.ateam.domain.Curriculum;
-import com.ateam.domain.Location;
 import com.ateam.domain.Room;
 import com.ateam.domain.Topic;
 import com.ateam.domain.Trainer;
 import com.ateam.service.DaoService;
+import com.revature.dto.BatchDTO;
 
 
 @RestController
@@ -83,16 +82,17 @@ public class BatchCtrl {
 			method = RequestMethod.POST, 
 			consumes = MediaType.APPLICATION_JSON_VALUE,
 			produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Batch> saveBatch(@RequestBody Batch batchObj){
+	public ResponseEntity<Batch> saveBatch(@RequestBody BatchDTO batchObj){
 		System.out.println("Hitting saveBatch.....");
-		System.out.println(batchObj.toString());
-		Batch b = new Batch(batchObj.getbName(), batchObj.getBatchStartDate(), batchObj.getBatchEndDate(),
-				batchObj.getBatchTopicID(), batchObj.getBatchCurriculumID(), batchObj.getBatchRoomID(),
-				new B_Status(1), batchObj.getBatchTrainerID());
+		return null;
+//		System.out.println(batchObj.toString());
+//		Batch b = new Batch(batchObj.getbName(), batchObj.getBatchStartDate(), batchObj.getBatchEndDate(),
+//				batchObj.getBatchTopicID(), batchObj.getBatchCurriculumID(), batchObj.getBatchRoomID(),
+//				new B_Status(1), batchObj.getBatchTrainerID());
 		
-		daoService.saveItem(b);
+//		daoService.saveItem(b);
 		
-		return new ResponseEntity<Batch>(b, HttpStatus.OK);
+//		return new ResponseEntity<Batch>(b, HttpStatus.OK);
 	}
 	
 }
