@@ -2,10 +2,14 @@ var app = angular.module('showcase', [ 'datatables' ]).controller(
 		'WithAjaxCtrl', WithAjaxCtrl);
 
 function WithAjaxCtrl(DTOptionsBuilder, DTColumnBuilder) {
+//	var src = 'resources/js/json/demoDataTable.json';
+	var src = function(callback){
+		app.ViewBatchCtrl.getBatches
+		
+	};
 	var vm = this;
-	vm.dtOptions = DTOptionsBuilder.fromSource(
-			'resources/js/json/demoDataTable.json').withPaginationType(
-			'full_numbers');
+	vm.dtOptions = DTOptionsBuilder.newOptions().withPaginationType('full_numbers');
+//	vm.dtOptions = DTOptionsBuilder.fromSource(src).withPaginationType('full_numbers');
 	vm.dtColumns = [
 			DTColumnBuilder.newColumn('B_ID').withTitle('Batch ID'),
 			DTColumnBuilder.newColumn('B_START_DATE').withTitle(
@@ -29,18 +33,21 @@ function WithAjaxCtrl(DTOptionsBuilder, DTColumnBuilder) {
 			templateUrl : 'viewbatches.html',
 		});
 	} ]);
-/*
-	app.controller('ViewBatchCtrl', function($scope, viewBatchService) {
-		$scope.getBatches = ViewBatchService.getBatches(function(response) {
-			$scope.Batches = response.data
-		});
-	});
-	app.service('ViewBatchService', function($http, $q){
-		console.log('calling ViewBatchService');
-		this.getBatches = function(callback){
-			$http.get('rest/batches').then(callback);
-		}
-	})
-	}
-	*/
 }
+
+
+app.controller('ViewBatchCtrl', function($scope, viewBatchService) {
+	$scope.getBatches = ViewBatchService.getBatches(function(response) {
+		$scope.Batches = response.data
+	});
+});
+
+app.service('ViewBatchService', function($http, $q){
+	console.log('calling ViewBatchService');
+	this.getBatches = function(callback){
+		$http.get('rest/batches').then(callback);
+	}
+})
+
+
+

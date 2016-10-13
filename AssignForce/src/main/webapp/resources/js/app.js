@@ -30,6 +30,10 @@ var app = angular.module("batchApp", ['ngRoute', 'ui.bootstrap']);
 		when('/viewupcomingbatches', {
 			templateUrl : 'viewbatches.html'
 		}).
+		when('/allbatches', {
+			templateUrl : 'allbatches.html',
+			controller : 'allBatchCtrl'
+		}).
 		when('/viewendedbatches', {
 			templateUrl : 'viewbatches.html'
 		});
