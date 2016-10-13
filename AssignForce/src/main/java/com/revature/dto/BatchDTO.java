@@ -1,12 +1,16 @@
 package com.revature.dto;
 
+import java.sql.Date;
+
 public class BatchDTO {
 
 	private String batchName;
 	private String topic;
 	private String curr;
-	private String trainerName;
-	private String roomName;
+	private String trainer;
+	private String room;
+	private Date date;
+	private Date date2;
 	public String getBatchName() {
 		return batchName;
 	}
@@ -25,23 +29,38 @@ public class BatchDTO {
 	public void setCurr(String curr) {
 		this.curr = curr;
 	}
-	public String getTrainerName() {
-		return trainerName;
+	public String getTrainer() {
+		return trainer;
 	}
-	public void setTrainerName(String trainerName) {
-		this.trainerName = trainerName;
+	public void setTrainer(String trainer) {
+		this.trainer = trainer;
 	}
-	public String getRoomName() {
-		return roomName;
+	public String getRoom() {
+		return room;
 	}
-	public void setRoomName(String roomName) {
-		this.roomName = roomName;
+	public void setRoom(String room) {
+		this.room = room;
+	}
+	public Date getDate() {
+		return date;
+	}
+	public void setDate(Date date) {
+		this.date = date;
+	}
+	public Date getDate2() {
+		return date2;
+	}
+	public void setDate2(Date date2) {
+		this.date2 = date2;
 	}
 	@Override
 	public String toString() {
-		return "BatchDTO [batchName=" + batchName + ", topic=" + topic + ", curr=" + curr + ", trainerName="
-				+ trainerName + ", roomName=" + roomName + "]";
+		return "BatchDTO [batchName=" + batchName + ", topic=" + topic + ", curr=" + curr + ", trainer=" + trainer
+				+ ", room=" + room + ", date=" + date + ", date2=" + date2 + "]";
 	}
+	
+	
+	
 	
 	
 	

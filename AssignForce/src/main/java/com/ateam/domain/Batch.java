@@ -88,17 +88,6 @@ public class Batch {
 		this.batchTrainerID = batchTrainerID;
 	}
 	
-	public Batch(String name, String curr, Date d, Date d2, String room, String topic, String trainer){
-		String batchName = name;
-		String currName = curr;
-		Date d1 = d;
-		Date d3 = d2;
-		String thisRoom = room;
-		String thisTopic = topic;
-		String thisTrainer = trainer;
-	}
-	
-	
 
 	public Batch(String bName, Timestamp batchStartDate, Timestamp batchEndDate, Topic batchTopicID,
 			Curriculum batchCurriculumID, Room batchRoomID, B_Status batchStatusID, Trainer batchTrainerID) {

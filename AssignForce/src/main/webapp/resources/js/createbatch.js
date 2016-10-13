@@ -161,8 +161,8 @@ app.service('batchService', function($http, $q){
 		batchObj.curr = curr;
 		batchObj.trainer = trainer;
 		batchObj.room = room;
-//		batchObj.date = date;
-//		batchObj.date2 = date2;
+		batchObj.date = date;
+		batchObj.date2 = date2;
 		
 		
 		var promise = $http.post('rest/savebatch', batchObj).

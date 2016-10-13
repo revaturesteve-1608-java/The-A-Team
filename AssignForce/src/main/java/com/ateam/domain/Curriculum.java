@@ -39,6 +39,16 @@ public class Curriculum {
 		this.skill = new ArrayList<Skill>();
 	}
 
+	public Curriculum(int curriculumID) {
+		super();
+		this.curriculumID = curriculumID;
+	}
+
+	public Curriculum(String curriculumName) {
+		super();
+		this.curriculumName = curriculumName;
+	}
+
 	public Curriculum(int curriculumID, String curriculumName) {
 		super();
 		this.curriculumID = curriculumID;

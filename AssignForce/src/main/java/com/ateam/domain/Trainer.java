@@ -36,6 +36,16 @@ public class Trainer {
 	@Column(name = "T_FIRSTNAME", nullable = false)
 	private String trainerFirstName;
 
+	public Trainer(int trainerID) {
+		super();
+		this.trainerID = trainerID;
+	}
+
+	public Trainer(String trainerFirstName) {
+		super();
+		this.trainerFirstName = trainerFirstName;
+	}
+
 	@Column(name = "T_LASTNAME", nullable = false)
 	private String trainerLastName;
 

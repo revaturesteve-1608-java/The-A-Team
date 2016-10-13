@@ -53,9 +53,19 @@ public class Room {
 	@Fetch(FetchMode.JOIN)
 	private Location roomLocationID;
 
+	public Room(int roomID) {
+		super();
+		this.roomID = roomID;
+	}
+
 	public Room() {
 		super();
 		this.unavailable = new ArrayList<Unavailable>();
+	}
+
+	public Room(String roomName) {
+		super();
+		this.roomName = roomName;
 	}
 
 	public Room(int roomID, String roomName, R_Status roomStatusID, Location roomLocationID) {
