@@ -25,25 +25,19 @@ public class Unavailable {
 	
 
 	@Id
-
 	@Column(name = "UN_ID")
-
 	@SequenceGenerator(allocationSize = 1, name = "unavailableSeq", sequenceName = "UNAVAILABLE_SEQ")
-
 	@GeneratedValue(generator = "unavailableSeq", strategy = GenerationType.SEQUENCE)
-
 	private int unavailableID;
 
 	
 
 	@Column(name = "UN_START_DATE", nullable=false)
-
 	private Timestamp unavailableStartDate;
 
 
 
 	@Column(name = "UN_END_DATE", nullable=false)
-
 	private Timestamp unavailableEndDate;
 
 	
