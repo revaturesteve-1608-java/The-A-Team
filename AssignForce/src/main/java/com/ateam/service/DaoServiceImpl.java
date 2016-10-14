@@ -241,7 +241,7 @@ public class DaoServiceImpl implements DaoService {
 		List<Batch> batches = BatchDao.findAll();
 		
 		
-		for (Batch batch : batches) {
+	/*	for (Batch batch : batches) {
 //			batch.setBatchTrainerID(null);
 
 			if(batch.getBatchTrainerID() != null){
@@ -249,16 +249,16 @@ public class DaoServiceImpl implements DaoService {
 			}
 
 			if(batch.getBatchCurriculumID() != null){
-/*				for(Skill skill : batch.getBatchCurriculumID().getSkill()){
+				for(Skill skill : batch.getBatchCurriculumID().getSkill()){
 					skill.setCurriculum(null);
 				}
-*/			}// set redundant to null
+			}// set redundant to null
 			
 			if(batch.getBatchRoomID() != null){
 				batch.getBatchRoomID().setUnavailable(null);
 			}
 		}
-		
+		*/
 		return batches;
 	}
 	
