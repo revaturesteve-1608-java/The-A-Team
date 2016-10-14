@@ -3,6 +3,9 @@ package com.ateam.service;
 import java.util.List;
 
 import com.ateam.domain.Batch;
+import com.ateam.domain.Curriculum;
+import com.ateam.domain.Room;
+import com.ateam.domain.Topic;
 import com.ateam.domain.Trainer;
 
 public interface DaoService{
@@ -21,5 +24,17 @@ public interface DaoService{
 	public List<Trainer> findAllTrainers();
 
 	public List<Batch> findAllBatches();
+	
+	public List<Room> getAllRooms();
+	
+	public List<Curriculum> getAllCurriculums();
+	
+	public Trainer findByTrainerFirstName(String trainerFirstName);
+	
+	public Room findRoomByRoomName(String roomName);
+	
+	public Curriculum findCurriculumByCurriculumName(String curriculumName);
+	
+	public Topic findTopicByTopicName(String topicName);
 
 }

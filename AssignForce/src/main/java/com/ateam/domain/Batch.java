@@ -1,5 +1,6 @@
 package com.ateam.domain;
 
+import java.sql.Date;
 import java.sql.Timestamp;
 
 import javax.persistence.Column;
@@ -25,6 +26,9 @@ public class Batch {
 	@SequenceGenerator(allocationSize = 1, name = "batchSeq", sequenceName = "BATCH_SEQ")
 	@GeneratedValue(generator = "batchSeq", strategy = GenerationType.SEQUENCE)
 	private int batchID;
+	
+	@Column(name="B_NAME")
+	private String bName;
 
 	@Column(name = "B_START_DATE", nullable=false)
 	private Timestamp batchStartDate;
@@ -75,6 +79,20 @@ public class Batch {
 			Room batchRoomID, B_Status batchStatusID, Trainer batchTrainerID) {
 		super();
 		this.batchID = batchID;
+		this.batchStartDate = batchStartDate;
+		this.batchEndDate = batchEndDate;
+		this.batchTopicID = batchTopicID;
+		this.batchCurriculumID = batchCurriculumID;
+		this.batchRoomID = batchRoomID;
+		this.batchStatusID = batchStatusID;
+		this.batchTrainerID = batchTrainerID;
+	}
+	
+
+	public Batch(String bName, Timestamp batchStartDate, Timestamp batchEndDate, Topic batchTopicID,
+			Curriculum batchCurriculumID, Room batchRoomID, B_Status batchStatusID, Trainer batchTrainerID) {
+		super();
+		this.bName = bName;
 		this.batchStartDate = batchStartDate;
 		this.batchEndDate = batchEndDate;
 		this.batchTopicID = batchTopicID;
@@ -148,11 +166,22 @@ public class Batch {
 		this.batchTrainerID = batchTrainerID;
 	}
 
+	public String getbName() {
+		return bName;
+	}
+
+	public void setbName(String bName) {
+		this.bName = bName;
+	}
+
 	@Override
 	public String toString() {
-		return "Batch [batchID=" + batchID + ", batchStartDate=" + batchStartDate + ", batchEndDate=" + batchEndDate
-				+ ", batchTopicID=" + batchTopicID + ", batchCurriculumID=" + batchCurriculumID + ", batchRoomID="
-				+ batchRoomID + ", batchStatusID=" + batchStatusID + ", batchTrainerID=" + batchTrainerID + "]";
+		return "Batch [batchID=" + batchID + ", bName=" + bName + ", batchStartDate=" + batchStartDate
+				+ ", batchEndDate=" + batchEndDate + ", batchTopicID=" + batchTopicID + ", batchCurriculumID="
+				+ batchCurriculumID + ", batchRoomID=" + batchRoomID + ", batchStatusID=" + batchStatusID
+				+ ", batchTrainerID=" + batchTrainerID + "]";
 	}
+
+	
 
 }

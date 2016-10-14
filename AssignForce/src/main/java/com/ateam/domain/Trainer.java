@@ -11,9 +11,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -36,6 +36,16 @@ public class Trainer {
 	@Column(name = "T_FIRSTNAME", nullable = false)
 	private String trainerFirstName;
 
+	public Trainer(int trainerID) {
+		super();
+		this.trainerID = trainerID;
+	}
+
+	public Trainer(String trainerFirstName) {
+		super();
+		this.trainerFirstName = trainerFirstName;
+	}
+
 	@Column(name = "T_LASTNAME", nullable = false)
 	private String trainerLastName;
 
@@ -56,11 +66,19 @@ public class Trainer {
 	//@Fetch(FetchMode.JOIN)
 	private Location trainerLocationID;
 
-	@ManyToMany(mappedBy="trainer", cascade=CascadeType.ALL, fetch=FetchType.EAGER)
-	@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@id")						// ADDED this to fix serialization/infinite loop issues
+//	@ManyToMany(mappedBy="trainer", cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+//	@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@id")						// ADDED this to fix serialization/infinite loop issues
+	@ManyToMany(fetch=FetchType.EAGER)
+	@JoinTable(name="TR_UN_JT", 
+	joinColumns=@JoinColumn(name="T_ID"), 
+	inverseJoinColumns=@JoinColumn(name="UN_ID"))
 	private List<Unavailable> unavailable;
 
-	@ManyToMany(mappedBy="trainer", cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	//@ManyToMany(mappedBy="trainer", cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	@ManyToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
+	@JoinTable(name="TR_SKILL_JT",
+    joinColumns=@JoinColumn(name="T_ID"),
+    inverseJoinColumns=@JoinColumn(name="SKILL_ID"))
 	@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@id")						// ADDED this to fix serialization/infinite loop issues
 	private List<Skill> skill;
 
