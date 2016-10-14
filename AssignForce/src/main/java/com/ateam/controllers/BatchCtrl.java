@@ -40,7 +40,7 @@ public class BatchCtrl {
 	public ResponseEntity<List<Trainer>> getTrainers() {
 
 		List<Trainer> re = daoService.findAllTrainers();
-
+System.out.println(re);
 		return new ResponseEntity<List<Trainer>>(re, HttpStatus.OK);
 	}//end getTrainers()
 
