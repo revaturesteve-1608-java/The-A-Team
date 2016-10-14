@@ -152,6 +152,8 @@ app.service('batchService', function($http, $q){
 		$http.get('rest/rooms').then(callback);
 	}
 	
+	var ex = null;
+	
 	this.saveBatch = function(batchName, topic, curr, trainer, room, date, date2){
 		console.log('hitting saveBatch js')
 		var batchObj = {};
@@ -175,6 +177,7 @@ app.service('batchService', function($http, $q){
 					console.log($q.reject(error));
 				}
 		)
+		
 	}
 	
 	
