@@ -1,6 +1,5 @@
 package com.ateam.controllers;
 
-import java.sql.Timestamp;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ateam.domain.B_Status;
 import com.ateam.domain.Batch;
 import com.ateam.domain.Curriculum;
 import com.ateam.domain.Room;
@@ -87,28 +85,29 @@ public class BatchCtrl {
 			method = RequestMethod.POST, 
 			consumes = MediaType.APPLICATION_JSON_VALUE,
 			produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Batch> saveBatch(@RequestBody BatchDTO batchObj){
+	public ResponseEntity<Batch> saveBatch(@RequestBody BatchDTO batchObj) throws InterruptedException{
 		
-		List<Topic> topics = daoService.getAllItem(new Topic());
-		List<Trainer> re = daoService.findAllTrainers();
-		List<Room> rooms = daoService.getAllItem(new Room());
-		List<Curriculum> cs = daoService.getAllItem(new Curriculum());
 		
 		Trainer t = bServ.getTrainerByName(batchObj.getTrainer());
+		System.out.println(t.toString());
 		Room room = bServ.getRoomByName(batchObj.getRoom());
+		System.out.println(room);
 		Curriculum c = bServ.getCurriculumByName(batchObj.getCurr());
-		Topic topic = bServ.getTopicByName(batchObj.getTopic());
-		
-		Batch b = new Batch(batchObj.getBatchName(), new Timestamp(batchObj.getDate().getTime()), 
-				new Timestamp(batchObj.getDate2().getTime()), topic,
-				c, room, 
-				new B_Status(1), t);
-		
-		System.out.println(b.toString());
-		
-		bServ.saveBatch(b);
-		
-	return new ResponseEntity<Batch>(b, HttpStatus.OK);
+		System.out.println(c);
+//		Topic topic = bServ.getTopicByName(batchObj.getTopic());
+//		System.out.println(topic);
+//		
+//		Batch b = new Batch(batchObj.getBatchName(), new Timestamp(batchObj.getDate().getTime()), 
+//				new Timestamp(batchObj.getDate2().getTime()), topic,
+//				c, room, 
+//				new B_Status(1), t);
+//		
+//		System.out.println(b.toString());
+//		
+//		bServ.saveBatch(b);
+//		
+//	return new ResponseEntity<Batch>(b, HttpStatus.OK);
+		return null;
 	}
 	
 }

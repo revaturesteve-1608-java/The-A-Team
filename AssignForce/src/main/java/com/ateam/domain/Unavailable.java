@@ -32,11 +32,11 @@ public class Unavailable {
 	@Column(name = "UN_END_DATE", nullable=false)
 	private Timestamp unavailableEndDate;
 	
-	@ManyToMany(fetch=FetchType.EAGER)
-	@JoinTable(name="TR_UN_JT", 
-	joinColumns=@JoinColumn(name="UN_ID"), 
-	inverseJoinColumns=@JoinColumn(name="T_ID"))
-	private List<Trainer> trainer;
+//	@ManyToMany(fetch=FetchType.EAGER)
+//	@JoinTable(name="TR_UN_JT", 
+//	joinColumns=@JoinColumn(name="UN_ID"), 
+//	inverseJoinColumns=@JoinColumn(name="T_ID"))
+//	private List<Trainer> trainer;
 	
 	@ManyToMany(fetch=FetchType.EAGER)
 	@JoinTable(name="R_UN_JT", 
@@ -46,7 +46,7 @@ public class Unavailable {
 
 	public Unavailable() {
 		super();
-		this.trainer = new ArrayList<Trainer>();
+//		this.trainer = new ArrayList<Trainer>();
 		this.room = new ArrayList<Room>();
 	}
 
@@ -64,12 +64,11 @@ public class Unavailable {
 	}
 
 	public Unavailable(int unavailableID, Timestamp unavailableStartDate, Timestamp unavailableEndDate,
-			List<Trainer> trainer, List<Room> room) {
+			List<Room> room) {
 		super();
 		this.unavailableID = unavailableID;
 		this.unavailableStartDate = unavailableStartDate;
 		this.unavailableEndDate = unavailableEndDate;
-		this.trainer = trainer;
 		this.room = room;
 	}
 
@@ -97,13 +96,13 @@ public class Unavailable {
 		this.unavailableEndDate = unavailableEndDate;
 	}
 
-	public List<Trainer> getTrainer() {
-		return trainer;
-	}
-
-	public void setTrainer(List<Trainer> trainer) {
-		this.trainer = trainer;
-	}
+//	public List<Trainer> getTrainer() {
+//		return trainer;
+//	}
+//
+//	public void setTrainer(List<Trainer> trainer) {
+//		this.trainer = trainer;
+//	}
 
 	public List<Room> getRoom() {
 		return room;

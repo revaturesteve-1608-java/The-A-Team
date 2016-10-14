@@ -7,4 +7,5 @@ import com.ateam.domain.Topic;
 @Repository
 public interface TopicDao extends BaseRepository<Topic, Integer>{
 
+	public Topic findTopicByTopicName(String topicName);
 }

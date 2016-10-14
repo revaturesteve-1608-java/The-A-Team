@@ -6,6 +6,7 @@ import com.ateam.domain.Room;
 
 @Repository
 public interface RoomDao extends BaseRepository<Room, Integer>{
-	
+
+	public Room findRoomByRoomName(String roomName);
 
 }

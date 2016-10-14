@@ -37,17 +37,17 @@ public class Skill {
 	@JsonBackReference
 	private List<Curriculum> curriculum;
 	
-	@ManyToMany(fetch=FetchType.LAZY)
-	@JoinTable(name="TR_SKILL_JT", 
-	joinColumns=@JoinColumn(name="SKILL_ID"), 
-	inverseJoinColumns=@JoinColumn(name="T_ID"))
-	@JsonBackReference
-	private List<Trainer> trainer;
+//	@ManyToMany(fetch=FetchType.LAZY)
+//	@JoinTable(name="TR_SKILL_JT", 
+//	joinColumns=@JoinColumn(name="SKILL_ID"), 
+//	inverseJoinColumns=@JoinColumn(name="T_ID"))
+//	@JsonBackReference
+//	private List<Trainer> trainer;
 
 	public Skill() {
 		super();
 		this.curriculum = new ArrayList<Curriculum>();
-		this.trainer = new ArrayList<Trainer>();
+//		this.trainer = new ArrayList<Trainer>();
 	}
 
 	public Skill(int skillID, String skillName) {
@@ -66,7 +66,7 @@ public class Skill {
 		this.skillID = skillID;
 		this.skillName = skillName;
 		this.curriculum = curriculum;
-		this.trainer = trainer;
+//		this.trainer = trainer;
 	}
 
 	public int getSkillID() {
@@ -93,18 +93,19 @@ public class Skill {
 		this.curriculum = curriculum;
 	}
 
-	public List<Trainer> getTrainer() {
-		return trainer;
-	}
-
-	public void setTrainer(List<Trainer> trainer) {
-		this.trainer = trainer;
-	}
-
 	@Override
 	public String toString() {
-		return "Skill [skillID=" + skillID + ", skillName=" + skillName + ", curriculum=" + curriculum + ", trainer="
-				+ trainer + "]";
+		return "Skill [skillID=" + skillID + ", skillName=" + skillName + ", curriculum=" + curriculum + "]";
 	}
+
+//	public List<Trainer> getTrainer() {
+//		return trainer;
+//	}
+//
+//	public void setTrainer(List<Trainer> trainer) {
+//		this.trainer = trainer;
+//	}
+
+	
 	
 }

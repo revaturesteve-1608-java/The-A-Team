@@ -261,6 +261,68 @@ public class DaoServiceImpl implements DaoService {
 		
 		return batches;
 	}
+	
+	@Override
+	public List<Room> getAllRooms() {
+		List<Room> rooms = RoomDao.findAll();
+		
+		for (Room room : rooms) {
 
+			if(room.getLocationID() != null){
+				room.setLocationID(null);
+			}
+
+			if(room.getRoomStatusID() != null){
+				room.setRoomStatusID(null);
+			}// set redundant to null
+			
+			if(room.getUnavailable() != null){
+				room.setUnavailable(null);
+			}
+		}
+		
+		return rooms;
+		
+	}
+
+	@Override
+	public List<Curriculum> getAllCurriculums() {
+		List<Curriculum> cs = CurriculumDao.findAll();
+		
+		for (Curriculum c : cs) {
+
+			if(c.getSkill() != null){
+				c.setSkill(null);
+			}
+
+		}
+		
+		return cs;
+		
+	}
+
+	
+	public Trainer findByTrainerFirstName(String trainerFirstName){
+		Trainer t = TrainerDao.findByTrainerFirstName(trainerFirstName);
+//		for (Skill skill : t.getSkill()) {
+//			skill.setCurriculum(null);
+//		}
+//		for (Skill skill : t.getSkill()) {
+////			skill.setTrainer(null);
+//		}
+		return t;
+	}
+
+	public Room findRoomByRoomName(String roomName){
+		return RoomDao.findRoomByRoomName(roomName);
+	}
+	
+	public Curriculum findCurriculumByCurriculumName(String curriculumName){
+		return CurriculumDao.findCurriculumByCurriculumName(curriculumName);
+	}
+	
+	public Topic findTopicByTopicName(String topicName){
+		return TopicDao.findTopicByTopicName(topicName);
+	}
 	
 }
