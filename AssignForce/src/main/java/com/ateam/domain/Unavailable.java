@@ -41,6 +41,7 @@ public class Unavailable {
 	private Timestamp unavailableEndDate;
 
 	
+<<<<<<< HEAD
 
 //	@ManyToMany(fetch=FetchType.EAGER)
 
@@ -56,6 +57,15 @@ public class Unavailable {
 
 /*	@ManyToMany(fetch=FetchType.EAGER)
 
+=======
+//	@ManyToMany(fetch=FetchType.EAGER)
+//	@JoinTable(name="TR_UN_JT", 
+//	joinColumns=@JoinColumn(name="UN_ID"), 
+//	inverseJoinColumns=@JoinColumn(name="T_ID"))
+//	private List<Trainer> trainer;
+	
+/*	@ManyToMany(fetch=FetchType.EAGER)
+>>>>>>> feature-createB
 	@JoinTable(name="R_UN_JT", 
 
 	joinColumns=@JoinColumn(name="UN_ID"), 
@@ -63,17 +73,26 @@ public class Unavailable {
 	inverseJoinColumns=@JoinColumn(name="R_ID"))
 
 	private List<Room> room;
+<<<<<<< HEAD
 
 */
 
+=======
+*/
+>>>>>>> feature-createB
 	public Unavailable() {
 
 		super();
+<<<<<<< HEAD
 
 //		this.trainer = new ArrayList<Trainer>();
 
 //		this.room = new ArrayList<Room>();
 
+=======
+//		this.trainer = new ArrayList<Trainer>();
+//		this.room = new ArrayList<Room>();
+>>>>>>> feature-createB
 	}
 
 
@@ -105,9 +124,13 @@ public class Unavailable {
 
 
 	public Unavailable(int unavailableID, Timestamp unavailableStartDate, Timestamp unavailableEndDate,
+<<<<<<< HEAD
 
 			List<Room> room) {
 
+=======
+			List<Room> room) {
+>>>>>>> feature-createB
 		super();
 
 		this.unavailableID = unavailableID;
@@ -115,9 +138,13 @@ public class Unavailable {
 		this.unavailableStartDate = unavailableStartDate;
 
 		this.unavailableEndDate = unavailableEndDate;
+<<<<<<< HEAD
 
 //		this.room = room;
 
+=======
+//		this.room = room;
+>>>>>>> feature-createB
 	}
 
 
@@ -166,6 +193,7 @@ public class Unavailable {
 
 		this.unavailableEndDate = unavailableEndDate;
 
+<<<<<<< HEAD
 	}
 
 
@@ -188,6 +216,17 @@ public class Unavailable {
 
 /*	public List<Room> getRoom() {
 
+=======
+//	public List<Trainer> getTrainer() {
+//		return trainer;
+//	}
+//
+//	public void setTrainer(List<Trainer> trainer) {
+//		this.trainer = trainer;
+//	}
+
+/*	public List<Room> getRoom() {
+>>>>>>> feature-createB
 		return room;
 
 	}
@@ -199,17 +238,25 @@ public class Unavailable {
 		this.room = room;
 
 	}
+<<<<<<< HEAD
 
 */
 
+=======
+*/
+>>>>>>> feature-createB
 	@Override
 
 	public String toString() {
 
 		return "Unavailable [unavailableID=" + unavailableID + ", unavailableStartDate=" + unavailableStartDate
+<<<<<<< HEAD
 
 				+ ", unavailableEndDate=" + unavailableEndDate + "]";
 
+=======
+				+ ", unavailableEndDate=" + unavailableEndDate + "]";
+>>>>>>> feature-createB
 	}
 
 }

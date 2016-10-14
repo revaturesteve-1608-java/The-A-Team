@@ -31,6 +31,16 @@ public class Topic {
 		this.topicName = topicName;
 	}
 
+	public Topic(int topicID) {
+		super();
+		this.topicID = topicID;
+	}
+
+	public Topic(String topicName) {
+		super();
+		this.topicName = topicName;
+	}
+
 	public int getTopicID() {
 		return topicID;
 	}

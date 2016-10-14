@@ -3,7 +3,6 @@ package com.ateam.domain;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -11,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
@@ -35,7 +35,10 @@ public class Room {
 	@Column(name = "R_NAME", unique = true, nullable = false)
 	private String roomName;
 
-	@ManyToMany(mappedBy = "room", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+//	@ManyToMany(mappedBy = "room", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@ManyToMany(fetch=FetchType.EAGER)
+	@JoinTable(name="R_UN_JT", joinColumns=@JoinColumn(name="R_ID"), 
+	inverseJoinColumns=@JoinColumn(name="UN_ID"))
 	@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@id")						// ADDED this to fix serialization/infinite loop issues
 	private List<Unavailable> unavailable;
 
@@ -53,9 +56,19 @@ public class Room {
 	@Fetch(FetchMode.JOIN)
 	private Location roomLocationID;
 
+	public Room(int roomID) {
+		super();
+		this.roomID = roomID;
+	}
+
 	public Room() {
 		super();
 		this.unavailable = new ArrayList<Unavailable>();
+	}
+
+	public Room(String roomName) {
+		super();
+		this.roomName = roomName;
 	}
 
 	public Room(int roomID, String roomName, R_Status roomStatusID, Location roomLocationID) {

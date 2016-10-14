@@ -136,6 +136,56 @@ app.controller('batchCtrl', function($scope, batchService, trainerService, locat
 		return '';
 	}
 });
+<<<<<<< HEAD
+=======
+
+app.service('batchService', function($http, $q){
+	console.log('calling batchService');
+	
+	this.getCurrs = function(callback){
+		$http.get('rest/curriculum').then(callback);
+	}
+	
+	this.getTopics = function(callback){
+		$http.get('rest/topics').then(callback);
+	}
+	
+	this.getRooms = function(callback){
+		$http.get('rest/rooms').then(callback);
+	}
+	
+	var ex = null;
+	
+	this.saveBatch = function(batchName, topic, curr, trainer, room, date, date2){
+		console.log('hitting saveBatch js')
+		var batchObj = {};
+		
+		batchObj.batchName = batchName;
+		batchObj.topic = topic;
+		batchObj.curr = curr;
+		batchObj.trainer = trainer;
+		batchObj.room = room;
+		batchObj.date = date;
+		batchObj.date2 = date2;
+		
+		
+		var promise = $http.post('rest/savebatch', batchObj).
+		then(
+				function(response){
+					console.log(response + ' Hope it worked');
+				},
+				
+				function(error){
+					console.log($q.reject(error));
+				}
+		)
+		
+	}
+	
+	
+})
+	
+>>>>>>> feature-createB
 
 app.service('batchService', function($http, $q){
 	console.log('calling batchService');
