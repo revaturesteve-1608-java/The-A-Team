@@ -75,10 +75,10 @@ public class Trainer {
 	private List<Unavailable> unavailable;
 
 	//@ManyToMany(mappedBy="trainer", cascade=CascadeType.ALL, fetch=FetchType.EAGER)
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinTable(name="TR_SKILL_JT",
-    joinColumns=@JoinColumn(name="SKILL_ID"),
-    inverseJoinColumns=@JoinColumn(name="T_ID"))
+    joinColumns=@JoinColumn(name="T_ID"),
+    inverseJoinColumns=@JoinColumn(name="SKILL_ID"))
 	@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@id")						// ADDED this to fix serialization/infinite loop issues
 	private List<Skill> skill;
 

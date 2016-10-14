@@ -1,5 +1,6 @@
 package com.ateam.controllers;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ateam.domain.B_Status;
 import com.ateam.domain.Batch;
 import com.ateam.domain.Curriculum;
 import com.ateam.domain.Room;
@@ -35,7 +37,6 @@ public class BatchCtrl {
 			method = RequestMethod.GET,
 			produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<Curriculum>> getCurriculums() {
-
 		List<Curriculum> re = daoService.getAllItem(new Curriculum());
 
 		return new ResponseEntity<List<Curriculum>>(re, HttpStatus.OK);
@@ -77,6 +78,7 @@ public class BatchCtrl {
 		public ResponseEntity<List<Room>> getRooms() {
 			List<Room> rooms = daoService.getAllItem(new Room());
 
+			System.out.println(rooms);
 			return new ResponseEntity<List<Room>>(rooms, HttpStatus.OK);
 		}
 	
@@ -94,20 +96,20 @@ public class BatchCtrl {
 		System.out.println(room);
 		Curriculum c = bServ.getCurriculumByName(batchObj.getCurr());
 		System.out.println(c);
-//		Topic topic = bServ.getTopicByName(batchObj.getTopic());
-//		System.out.println(topic);
-//		
-//		Batch b = new Batch(batchObj.getBatchName(), new Timestamp(batchObj.getDate().getTime()), 
-//				new Timestamp(batchObj.getDate2().getTime()), topic,
-//				c, room, 
-//				new B_Status(1), t);
-//		
-//		System.out.println(b.toString());
-//		
-//		bServ.saveBatch(b);
-//		
-//	return new ResponseEntity<Batch>(b, HttpStatus.OK);
-		return null;
+		Topic topic = bServ.getTopicByName(batchObj.getTopic());
+		System.out.println(topic);
+		
+		Batch b = new Batch(batchObj.getBatchName(), new Timestamp(batchObj.getDate().getTime()), 
+				new Timestamp(batchObj.getDate2().getTime()), topic,
+				c, room, 
+				new B_Status(1), t);
+		
+		System.out.println(b.toString());
+		
+		bServ.saveBatch(b);
+		
+	return new ResponseEntity<Batch>(b, HttpStatus.OK);
+//		return null;
 	}
 	
 }

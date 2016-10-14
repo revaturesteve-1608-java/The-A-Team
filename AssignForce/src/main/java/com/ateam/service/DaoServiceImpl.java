@@ -218,10 +218,10 @@ public class DaoServiceImpl implements DaoService {
 		Trainer trainer = TrainerDao.findByTrainerID(id);
 //		trainer.getSkill()
 		
-		for (Skill skill : trainer.getSkill()) {
+/*		for (Skill skill : trainer.getSkill()) {
 			skill.setCurriculum(null);
 		}
-		
+*/		
 		return trainer;
 	}
 	
@@ -230,10 +230,10 @@ public class DaoServiceImpl implements DaoService {
 		List<Trainer> trainers = TrainerDao.findAll();
 		
 		for (Trainer trainer : trainers) {
-			for (Skill skill : trainer.getSkill()) {
+/*			for (Skill skill : trainer.getSkill()) {
 				skill.setCurriculum(null);
 			}
-		}
+*/		}
 		return trainers;
 	}
 
@@ -249,10 +249,10 @@ public class DaoServiceImpl implements DaoService {
 			}
 
 			if(batch.getBatchCurriculumID() != null){
-				for(Skill skill : batch.getBatchCurriculumID().getSkill()){
+/*				for(Skill skill : batch.getBatchCurriculumID().getSkill()){
 					skill.setCurriculum(null);
 				}
-			}// set redundant to null
+*/			}// set redundant to null
 			
 			if(batch.getBatchRoomID() != null){
 				batch.getBatchRoomID().setUnavailable(null);
