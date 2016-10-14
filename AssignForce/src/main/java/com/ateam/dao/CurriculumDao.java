@@ -7,4 +7,5 @@ import com.ateam.domain.Curriculum;
 @Repository
 public interface CurriculumDao extends BaseRepository<Curriculum, Integer>{
 
+	public Curriculum findCurriculumByCurriculumName(String curriculumName);
 }

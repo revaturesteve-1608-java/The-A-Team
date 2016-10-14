@@ -31,6 +31,11 @@ public class B_Status {
 		this.bsName = bsName;
 	}
 
+	public B_Status(int bStatusID) {
+		super();
+		this.bStatusID = bStatusID;
+	}
+
 	public int getbStatusID() {
 		return bStatusID;
 	}

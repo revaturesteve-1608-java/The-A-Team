@@ -10,6 +10,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -30,13 +32,27 @@ public class Curriculum {
 	@Column(name = "CUR_NAME", unique=true)
 	private String curriculumName;
 	
-	@ManyToMany(mappedBy="curriculum", cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+//	@ManyToMany(mappedBy="curriculum", cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	@ManyToMany(fetch=FetchType.EAGER)
+	@JoinTable(name="CUR_SKILL_JT", 
+	joinColumns=@JoinColumn(name="CUR_ID"), 
+	inverseJoinColumns=@JoinColumn(name="SKILL_ID"))
 	@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@id")					// ADDED this to fix serialization/infinite loop issues
 	private List<Skill> skill;
 
 	public Curriculum() {
 		super();
 		this.skill = new ArrayList<Skill>();
+	}
+
+	public Curriculum(int curriculumID) {
+		super();
+		this.curriculumID = curriculumID;
+	}
+
+	public Curriculum(String curriculumName) {
+		super();
+		this.curriculumName = curriculumName;
 	}
 
 	public Curriculum(int curriculumID, String curriculumName) {

@@ -30,24 +30,24 @@ public class Skill {
 	@Column(name = "SKILL_NAME", unique=true, nullable=false)
 	private String skillName;
 	
-	@ManyToMany(fetch=FetchType.LAZY)
+/*	@ManyToMany(fetch=FetchType.LAZY)
 	@JoinTable(name="CUR_SKILL_JT", 
 	joinColumns=@JoinColumn(name="SKILL_ID"), 
 	inverseJoinColumns=@JoinColumn(name="CUR_ID"))
 	@JsonBackReference
 	private List<Curriculum> curriculum;
-	
-	@ManyToMany(fetch=FetchType.LAZY)
-	@JoinTable(name="TR_SKILL_JT", 
-	joinColumns=@JoinColumn(name="SKILL_ID"), 
-	inverseJoinColumns=@JoinColumn(name="T_ID"))
-	@JsonBackReference
-	private List<Trainer> trainer;
+*/	
+//	@ManyToMany(fetch=FetchType.LAZY)
+//	@JoinTable(name="TR_SKILL_JT", 
+//	joinColumns=@JoinColumn(name="SKILL_ID"), 
+//	inverseJoinColumns=@JoinColumn(name="T_ID"))
+//	@JsonBackReference
+//	private List<Trainer> trainer;
 
 	public Skill() {
 		super();
-		this.curriculum = new ArrayList<Curriculum>();
-		this.trainer = new ArrayList<Trainer>();
+//		this.curriculum = new ArrayList<Curriculum>();
+//		this.trainer = new ArrayList<Trainer>();
 	}
 
 	public Skill(int skillID, String skillName) {
@@ -65,8 +65,8 @@ public class Skill {
 		super();
 		this.skillID = skillID;
 		this.skillName = skillName;
-		this.curriculum = curriculum;
-		this.trainer = trainer;
+//		this.curriculum = curriculum;
+//		this.trainer = trainer;
 	}
 
 	public int getSkillID() {
@@ -84,7 +84,7 @@ public class Skill {
 	public void setSkillName(String skillName) {
 		this.skillName = skillName;
 	}
-
+/*
 	public List<Curriculum> getCurriculum() {
 		return curriculum;
 	}
@@ -93,18 +93,19 @@ public class Skill {
 		this.curriculum = curriculum;
 	}
 
-	public List<Trainer> getTrainer() {
-		return trainer;
-	}
-
-	public void setTrainer(List<Trainer> trainer) {
-		this.trainer = trainer;
-	}
-
-	@Override
+*/	@Override
 	public String toString() {
-		return "Skill [skillID=" + skillID + ", skillName=" + skillName + ", curriculum=" + curriculum + ", trainer="
-				+ trainer + "]";
+		return "Skill [skillID=" + skillID + ", skillName=" + skillName + "]";
 	}
+
+//	public List<Trainer> getTrainer() {
+//		return trainer;
+//	}
+//
+//	public void setTrainer(List<Trainer> trainer) {
+//		this.trainer = trainer;
+//	}
+
+	
 	
 }
