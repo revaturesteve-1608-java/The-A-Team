@@ -24,6 +24,7 @@ public interface DaoService{
 	public List<Trainer> findAllTrainers();
 
 	public List<Batch> findAllBatches();
+	public Batch findByBatchID(int BatchID);
 	
 	public List<Room> getAllRooms();
 	
@@ -36,5 +37,7 @@ public interface DaoService{
 	public Curriculum findCurriculumByCurriculumName(String curriculumName);
 	
 	public Topic findTopicByTopicName(String topicName);
+	
+	
 
 }

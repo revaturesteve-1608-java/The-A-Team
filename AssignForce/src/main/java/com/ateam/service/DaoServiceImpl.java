@@ -325,4 +325,10 @@ public class DaoServiceImpl implements DaoService {
 		return TopicDao.findTopicByTopicName(topicName);
 	}
 	
+	@Override
+	public Batch findByBatchID(int BatchID){
+		return BatchDao.findByBatchID(BatchID);
+	}
+
+	
 }

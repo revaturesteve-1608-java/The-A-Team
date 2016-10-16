@@ -6,4 +6,6 @@ import com.ateam.domain.Batch;
 
 @Repository
 public interface BatchDao extends BaseRepository<Batch, Integer>{
+	public Batch findByBatchID(int BatchID);
+
 }
