@@ -6,6 +6,7 @@
 </head>
 <body>
 <h1>Create batch here:</h1>
+	<article class="createBatchContainer">
 <form>
 <div ng-controller="batchCtrl">
 <div class="form-group">
@@ -15,28 +16,24 @@
 <div class="form-group">
 	<label for="topic">Topic:</label>
 	<select ng-model="topic" ng-options="topic.topicName for topic in topics">
-		{{topic.topicName}}
 	</select>
 </div>
 <div class="form-group">
 	<label for="curriculum">Curriculum:</label>
 	<select ng-model="curr" ng-options="curr.curriculumName for curr in currs">
-		{{curr.curriculumName}}
 	</select>
 </div>
 <div class="form-group">
 	<label for="trainer">Trainer:</label>
 	<select ng-model="trainer" ng-options="trainer.trainerFirstName for trainer in trainers">
-		{{trainer.trainerFirstName}}
 	</select>
 </div>
 <div class="form-group">
 	<label for="location">Room:</label>
 	<select ng-model="room" ng-options="room.roomName for room in rooms">
-		{{room.roomName}}
 	</select>
 </div>
-<pre>Selected Date is: <em>{{dt | date:'fullDate'}}</em></pre>
+<pre>Today's Date is: <em>{{dt | date:'fullDate'}}</em></pre>
 <div class="row">
 	<div class="col-md-6">
 		<p class="input-group">
@@ -55,10 +52,11 @@
 	</div>
 </div>
 <div class="form-group">
-	<input type="submit" value="Create Batch" class="btn btn-warning btn-large btn-block" 
+	<input type="submit" value="{{ submitButton }}" class="btn btn-warning btn-large btn-block" 
 	ng-click="saveBatch(batchName, topic.topicName, curr.curriculumName, trainer.trainerFirstName, room.roomName, date, date2, batchID)">
 </div>
 </div>
 </form>
+</article>
 </body>
 </html>

@@ -5,6 +5,9 @@ var app = angular.module("batchApp");
 
 app.controller('batchCtrl', function($scope, batchService, trainerService, locationService, transferService){
 
+//	$scope.submitButton = !isNaN(batchID) ? "Create Batch" : "Update Batch";
+	$scope.submitButton = "Create Batch";
+	
 	$scope.viewBatch = batchService.getBatch(
 			//passed in callback
 			function(response){
@@ -206,6 +209,8 @@ app.controller('batchCtrl', function($scope, batchService, trainerService, locat
 		}
 		return '';
 	}
+	
+	
 });
 
 app.service('batchService', function($http, $q,$location){
