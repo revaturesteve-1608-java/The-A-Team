@@ -16,7 +16,7 @@ app.controller('batchCtrl', function($scope, batchService, trainerService, locat
 				console.log(response);
 				console.log("ENDresponse: ");
 
-
+				transferService.set(null);
 				setTimeout(initViewData(response), 30000);
 
 			}, 
