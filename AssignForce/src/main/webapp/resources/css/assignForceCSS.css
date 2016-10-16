@@ -1,4 +1,9 @@
 @CHARSET "ISO-8859-1";
+
+.dataContainer, .locationContainer, .createNewLocation, .batchView{
+	padding: 0 25px;
+}
+
 div.container nav{
 	padding: 5%;
     width: 110%;
