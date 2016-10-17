@@ -1,5 +1,4 @@
-var app = angular.module('showcase', [ 'datatables' ]).controller(
-		'WithAjaxCtrl', WithAjaxCtrl);
+var app = angular.module('showcase', [ 'datatables' ]);
 
 function WithAjaxCtrl(DTOptionsBuilder, DTColumnBuilder) {
 //	var src = 'resources/js/json/demoDataTable.json';
