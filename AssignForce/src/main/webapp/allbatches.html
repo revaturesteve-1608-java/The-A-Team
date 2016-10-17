@@ -6,8 +6,11 @@
 </head>
 <body>
 	<div class="batchView">
+		<header>
+			<h1>View All-Batches</h1>
+		</header>
 		<table style="width: 100%">
-			<tr>
+			<tr class="tableHeader" id="tableHeader">
 				<th>Batch Name</th>
 				<th>Topic</th>
 				<th>Curriculum</th>
@@ -15,7 +18,7 @@
 				<th>Start Date</th>
 				<th>End Date</th>
 			</tr>
-			<tr ng-repeat="batch in Batches" ng-click="editBatch(batch.batchID)">
+			<tr class="tableRow" ng-repeat="batch in Batches" ng-click="editBatch(batch.batchID)">
 				<td>{{ batch.bName }}</td>
 				<td>{{ batch.batchTopicID.topicName }}</td>
 				<td>{{ batch.batchCurriculumID.curriculumName}}</td>

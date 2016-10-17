@@ -57,7 +57,8 @@ System.out.println(re);
 			method = RequestMethod.GET, 
 			produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<Batch>> getBatches() {
-		List<Batch> re = daoService.findAllBatches();
+//		List<Batch> re = daoService.findAllBatches();
+		List<Batch> re = daoService.findAllBatchStartDate();
 
 		return new ResponseEntity<List<Batch>>(re, HttpStatus.OK);
 	}//end getTrainers()

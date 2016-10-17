@@ -38,6 +38,6 @@ public interface DaoService{
 	
 	public Topic findTopicByTopicName(String topicName);
 	
-	
+	public List<Batch> findAllBatchStartDate();
 
 }
