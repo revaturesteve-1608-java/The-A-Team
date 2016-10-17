@@ -12,6 +12,7 @@
 		<div class="locationContainer" ng-repeat="location in locations">
 			<h3>{{location.locationName}}</h3>
 		</div>
+		<div class="createNewLocation">
 		<button type="button" ng-click="createLocation =! createLocation">
 			<div ng-switch="createLocation">
 				<span ng-switch-when="false">Add Location</span>
@@ -23,7 +24,7 @@
 			<input class="creating-location" type="text" ng-show="createLocation" ng-model="nLocation.locationName"/>
 			<button type="button" ng-click="submitAndVerify(nLocation)">Add Location</button>
 		</div>
-	
+	</div>
 	
 	
 	</section>

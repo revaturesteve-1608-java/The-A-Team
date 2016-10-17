@@ -325,4 +325,18 @@ public class DaoServiceImpl implements DaoService {
 		return TopicDao.findTopicByTopicName(topicName);
 	}
 	
+	@Override
+	public Batch findByBatchID(int BatchID){
+		return BatchDao.findByBatchID(BatchID);
+	}
+
+	@Override
+	public List<Batch> findAllBatchStartDate() {
+		List<Batch> b = BatchDao.findAllByOrderByBatchStartDateDesc();
+		System.out.println("ordered Batch List");
+		System.out.println(b);
+		return b;
+	}
+
+	
 }
