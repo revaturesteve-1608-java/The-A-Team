@@ -88,7 +88,12 @@ public class Batch {
 		this.batchTrainerID = batchTrainerID;
 	}
 	
-
+	public Batch(int batchId, String batchName/*, Curriculum curr, Date date, Date date2, Room room, Topic topic, Trainer trainer*/){
+		super();
+		System.out.println("batch init i think");
+	}
+	
+	
 	public Batch(String bName, Timestamp batchStartDate, Timestamp batchEndDate, Topic batchTopicID,
 			Curriculum batchCurriculumID, Room batchRoomID, B_Status batchStatusID, Trainer batchTrainerID) {
 		super();

@@ -4,6 +4,7 @@ import java.sql.Date;
 
 public class BatchDTO {
 
+	private int batchId;
 	private String batchName;
 	private String topic;
 	private String curr;
@@ -11,6 +12,16 @@ public class BatchDTO {
 	private String room;
 	private Date date;
 	private Date date2;
+
+	
+	
+	
+	public int getBatchId() {
+		return batchId;
+	}
+	public void setBatchId(String batchId) {
+		this.batchId = Integer.parseInt(batchId);
+	}
 	public String getBatchName() {
 		return batchName;
 	}
