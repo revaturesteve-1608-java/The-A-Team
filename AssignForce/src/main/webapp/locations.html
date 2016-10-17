@@ -9,25 +9,26 @@
 		<header>
 			<h1>Locations:</h1>
 		</header>
-		<div class="locationContainer" ng-repeat="location in locations">
-			<h3>{{location.locationName}}</h3>
-		</div>
+
 		<div class="createNewLocation">
 		<br>
-		<button type="button" ng-click="createLocation =! createLocation">
+		<form>
+		<button class="form-control controlButton" type="button" ng-click="createLocation =! createLocation">
 			<div ng-switch="createLocation">
 				<span ng-switch-when="false">Add Location</span>
 				<span ng-switch-when="true">Cancel</span>
 				<span ng-switch-default>Add Location</span>
 			</div>
 		</button>
-		<div class="newLocation" ng-show="createLocation">
-			<input class="creating-location" type="text" ng-show="createLocation" ng-model="nLocation.locationName"/>
-			<button type="button" ng-click="submitAndVerify(nLocation)">Add Location</button>
-		</div>
+			<input class="creating-location form-control" type="text" ng-show="createLocation" ng-model="nLocation.locationName"/>
+			<button class="controlButton form-control" type="button"  ng-show="createLocation" ng-click="submitAndVerify(nLocation)">Add Location</button>
+	</form>
+	<br>	
 	</div>
+		<div class="locationContainer" ng-repeat="location in locations">
+			<h3>{{location.locationName}}</h3>
+		</div>
 		<br><br><br>
-	
 	
 	</section>
 
