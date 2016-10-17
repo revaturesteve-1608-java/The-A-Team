@@ -7,7 +7,7 @@
 	
 }
 
-.dataContainer, .locationContainer, .createNewLocation, .batchView{
+.dataContainer, .locationContainer, .createNewLocation, .batchView, #viewLocationContainer, #createBatchHeader{
 	padding: 0 25px;
 }
 
@@ -23,7 +23,7 @@ section#viewTrainerContainer{
 	margin: 0 auto;
 }
 
-section#viewTrainerContainer article.trainerDetailContainer, .tableRow{
+section#viewTrainerContainer article.trainerDetailContainer, .tableRow, .locationContainer{
 	padding: 5px 5%;
     border-top-style: solid;
     border-top: 2px solid rgba(0, 0, 0, 0.2);
