@@ -1,10 +1,19 @@
 @CHARSET "ISO-8859-1";
 
-.tableHeader {
-//	border-style: solid;
-//	border-width: 6px;
-//	border-color: gray;
-	
+#roomSelect{
+	width: 113px;
+}
+
+#trainerSelect{
+	width: 105px;
+}
+
+#topicSelect{
+	width: 117px;
+}
+
+#curriculumSelect{
+	width: 81px;
 }
 
 .dataContainer, .locationContainer, .createNewLocation, .batchView, #viewLocationContainer, #createBatchHeader{
