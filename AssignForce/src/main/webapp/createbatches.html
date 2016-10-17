@@ -5,7 +5,8 @@
 <title>Batch Creation Page</title>
 </head>
 <body>
-<h1>Create batch here:</h1>
+<h1 id="createBatchHeader">Create batch here:</h1>
+	<article class="dataContainer">
 <form>
 <div ng-controller="batchCtrl">
 <div class="form-group">
@@ -14,37 +15,25 @@
 </div>
 <div class="form-group">
 	<label for="topic">Topic:</label>
-	<select ng-model="topic">
-		<option class="item" ng-repeat="topic in topics">
-		{{topic.topicName}}
-		</option>
+	<select id="topicSelect" ng-model="topic" ng-options="topic.topicName for topic in topics">
 	</select>
 </div>
 <div class="form-group">
 	<label for="curriculum">Curriculum:</label>
-	<select ng-model="curr">
-		<option class="item" ng-repeat="curr in currs">
-		{{curr.curriculumName}}
-		</option>
+	<select id="curriculumSelect" ng-model="curr" ng-options="curr.curriculumName for curr in currs">
 	</select>
 </div>
 <div class="form-group">
 	<label for="trainer">Trainer:</label>
-	<select ng-model="trainer">
-	<option class="item" ng-repeat="trainer in trainers">
-		{{trainer.trainerFirstName}}
-		</option>
+	<select id="trainerSelect" ng-model="trainer" ng-options="trainer.trainerFirstName for trainer in trainers">
 	</select>
 </div>
 <div class="form-group">
 	<label for="location">Room:</label>
-	<select ng-model="room">
-		<option class="item" ng-repeat="room in rooms">
-		{{room.roomName}}
-		</option>
+	<select id="roomSelect" ng-model="room" ng-options="room.roomName for room in rooms">
 	</select>
 </div>
-<pre>Selected Date is: <em>{{dt | date:'fullDate'}}</em></pre>
+<pre>Today's Date is: <em>{{dt | date:'fullDate'}}</em></pre>
 <div class="row">
 	<div class="col-md-6">
 		<p class="input-group">
@@ -63,10 +52,12 @@
 	</div>
 </div>
 <div class="form-group">
-	<input type="submit" value="Create Batch" class="btn btn-warning btn-large btn-block" 
-	ng-click="saveBatch(batchName, topic, curr, trainer, room, date, date2)">
+	<input type="submit" value="{{ submitButton }}" class="btn btn-warning btn-large btn-block" 
+	ng-click="saveBatch(batchName, topic.topicName, curr.curriculumName, trainer.trainerFirstName, room.roomName, date, date2, batchID)">
 </div>
 </div>
 </form>
+</article>
+	<br><br>
 </body>
 </html>

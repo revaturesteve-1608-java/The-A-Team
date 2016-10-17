@@ -1,4 +1,37 @@
 @CHARSET "ISO-8859-1";
+
+.controlButton{
+	width: 300px;
+	background-color: rgba(222,222,222,1);
+	border-style: solid;
+	border-width: 2px;
+	border-color: rgba(0, 0, 0, 0.2);
+}
+
+.creating-location{
+	width: 300px;
+}
+
+#roomSelect{
+	width: 113px;
+}
+
+#trainerSelect{
+	width: 105px;
+}
+
+#topicSelect{
+	width: 117px;
+}
+
+#curriculumSelect{
+	width: 81px;
+}
+
+.dataContainer, .locationContainer, .createNewLocation, .batchView, #viewLocationContainer, #createBatchHeader{
+	padding: 0 25px;
+}
+
 div.container nav{
 	padding: 5%;
     width: 110%;
@@ -11,7 +44,7 @@ section#viewTrainerContainer{
 	margin: 0 auto;
 }
 
-section#viewTrainerContainer article.trainerDetailContainer{
+section#viewTrainerContainer article.trainerDetailContainer, .tableRow, .locationContainer{
 	padding: 5px 5%;
     border-top-style: solid;
     border-top: 2px solid rgba(0, 0, 0, 0.2);

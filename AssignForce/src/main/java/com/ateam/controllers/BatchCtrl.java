@@ -2,6 +2,7 @@ package com.ateam.controllers;
 
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ateam.domain.B_Status;
@@ -56,7 +58,8 @@ System.out.println(re);
 			method = RequestMethod.GET, 
 			produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<Batch>> getBatches() {
-		List<Batch> re = daoService.findAllBatches();
+//		List<Batch> re = daoService.findAllBatches();
+		List<Batch> re = daoService.findAllBatchStartDate();
 
 		return new ResponseEntity<List<Batch>>(re, HttpStatus.OK);
 	}//end getTrainers()
@@ -82,34 +85,59 @@ System.out.println(re);
 			return new ResponseEntity<List<Room>>(rooms, HttpStatus.OK);
 		}
 	
-	//Save batch
-	@RequestMapping(value = { "/savebatch"}, 
-			method = RequestMethod.POST, 
-			consumes = MediaType.APPLICATION_JSON_VALUE,
+		//Save batch
+		@RequestMapping(value = { "/savebatch"}, 
+				method = RequestMethod.POST, 
+				consumes = MediaType.APPLICATION_JSON_VALUE,
+				produces = MediaType.APPLICATION_JSON_VALUE)
+		public ResponseEntity<Batch> saveBatch(@RequestBody BatchDTO batchObj) throws InterruptedException{
+			
+
+			Trainer t = bServ.getTrainerByName(batchObj.getTrainer());
+			System.out.println(t.toString());
+			Room room = bServ.getRoomByName(batchObj.getRoom());
+			System.out.println(room);
+			Curriculum c = bServ.getCurriculumByName(batchObj.getCurr());
+			System.out.println(c);
+			Topic topic = bServ.getTopicByName(batchObj.getTopic());
+			System.out.println(topic);
+			
+			Batch b = new Batch(batchObj.getBatchName(), new Timestamp(batchObj.getDate().getTime()), 
+					new Timestamp(batchObj.getDate2().getTime()), topic,
+					c, room, 
+					new B_Status(1), t);
+			b.setBatchID(batchObj.getBatchId());
+			System.out.println("-------------------------------");
+			System.out.println(batchObj.getBatchId());
+			System.out.println(b.toString());
+			System.out.println("-------------------------------");
+			
+			bServ.saveBatch(b);
+			
+		return new ResponseEntity<Batch>(b, HttpStatus.OK);
+//			return null;
+		}
+	
+	@RequestMapping(value = { "/getbatch"}, 
+			method = RequestMethod.GET, 
+//			consumes = MediaType.APPLICATION_JSON_VALUE,
 			produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Batch> saveBatch(@RequestBody BatchDTO batchObj) throws InterruptedException{
+	public ResponseEntity<Batch> getBatchById(@RequestParam("bId") String bId) throws InterruptedException{
+		System.out.println("getBatchById Ctrl: "+bId);
+		System.out.println("---------------------------------------------------------------");
+		Batch batch = daoService.findByBatchID(Integer.parseInt(bId));
+
+		try {
+			TimeUnit.SECONDS.sleep(2);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 		
-		
-		Trainer t = bServ.getTrainerByName(batchObj.getTrainer());
-		System.out.println(t.toString());
-		Room room = bServ.getRoomByName(batchObj.getRoom());
-		System.out.println(room);
-		Curriculum c = bServ.getCurriculumByName(batchObj.getCurr());
-		System.out.println(c);
-		Topic topic = bServ.getTopicByName(batchObj.getTopic());
-		System.out.println(topic);
-		
-		Batch b = new Batch(batchObj.getBatchName(), new Timestamp(batchObj.getDate().getTime()), 
-				new Timestamp(batchObj.getDate2().getTime()), topic,
-				c, room, 
-				new B_Status(1), t);
-		
-		System.out.println(b.toString());
-		
-		bServ.saveBatch(b);
-		
-	return new ResponseEntity<Batch>(b, HttpStatus.OK);
-//		return null;
+//		System.out.println(batch);
+		return new ResponseEntity<Batch>(batch, HttpStatus.OK);
+
 	}
 	
 }
