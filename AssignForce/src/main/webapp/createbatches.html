@@ -5,7 +5,7 @@
 <title>Batch Creation Page</title>
 </head>
 <body>
-<h1>Create batch here:</h1>
+<h1 id="createBatchHeader">Create batch here:</h1>
 	<article class="dataContainer">
 <form>
 <div ng-controller="batchCtrl">
@@ -15,22 +15,22 @@
 </div>
 <div class="form-group">
 	<label for="topic">Topic:</label>
-	<select ng-model="topic" ng-options="topic.topicName for topic in topics">
+	<select id="topicSelect" ng-model="topic" ng-options="topic.topicName for topic in topics">
 	</select>
 </div>
 <div class="form-group">
 	<label for="curriculum">Curriculum:</label>
-	<select ng-model="curr" ng-options="curr.curriculumName for curr in currs">
+	<select id="curriculumSelect" ng-model="curr" ng-options="curr.curriculumName for curr in currs">
 	</select>
 </div>
 <div class="form-group">
 	<label for="trainer">Trainer:</label>
-	<select ng-model="trainer" ng-options="trainer.trainerFirstName for trainer in trainers">
+	<select id="trainerSelect" ng-model="trainer" ng-options="trainer.trainerFirstName for trainer in trainers">
 	</select>
 </div>
 <div class="form-group">
 	<label for="location">Room:</label>
-	<select ng-model="room" ng-options="room.roomName for room in rooms">
+	<select id="roomSelect" ng-model="room" ng-options="room.roomName for room in rooms">
 	</select>
 </div>
 <pre>Today's Date is: <em>{{dt | date:'fullDate'}}</em></pre>
@@ -58,5 +58,6 @@
 </div>
 </form>
 </article>
+	<br><br>
 </body>
 </html>

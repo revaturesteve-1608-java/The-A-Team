@@ -2,6 +2,7 @@ package com.ateam.controllers;
 
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -126,6 +127,14 @@ System.out.println(re);
 		System.out.println("---------------------------------------------------------------");
 		Batch batch = daoService.findByBatchID(Integer.parseInt(bId));
 
+		try {
+			TimeUnit.SECONDS.sleep(2);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		
 //		System.out.println(batch);
 		return new ResponseEntity<Batch>(batch, HttpStatus.OK);
 
