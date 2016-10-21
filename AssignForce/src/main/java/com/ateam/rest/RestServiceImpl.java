@@ -25,8 +25,7 @@ public class RestServiceImpl implements RestService {
 	// put this on a random server application for the time being
 	private static final String BASE_URL = "http://54.165.139.13:2403";
 	// Zach's local
-	// private static final String BASE_URL =
-	// "C:/Users/Zach/Repositories/The-A-Team/AssignForce/src/main/webapp/resources/js/json";
+	
 
 	@Override
 	public <T> List<T> getItemFromRest(T type) {

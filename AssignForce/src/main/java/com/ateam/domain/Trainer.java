@@ -49,32 +49,21 @@ public class Trainer {
 	@Column(name = "T_LASTNAME", nullable = false)
 	private String trainerLastName;
 
-	// @ManyToOne(fetch=FetchType.LAZY)
-	// @ManyToOne(fetch=FetchType.EAGER)
 	@ManyToOne
 	@JoinColumn(name = "TS_ID")
 	@Fetch(FetchMode.JOIN)
 	private T_Status trainerStatusID;
-
-	// @OneToOne(fetch=FetchType.LAZY)
-	// @OneToOne(fetch=FetchType.EAGER)
 	
 	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name = "L_ID")
-	//@OneToOne
-	//@JoinColumn(name = "L_ID")
-	//@Fetch(FetchMode.JOIN)
 	private Location trainerLocationID;
 
-//	@ManyToMany(mappedBy="trainer", cascade=CascadeType.ALL, fetch=FetchType.EAGER)
-//	@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@id")						// ADDED this to fix serialization/infinite loop issues
 	@ManyToMany(fetch=FetchType.EAGER)
 	@JoinTable(name="TR_UN_JT", 
 	joinColumns=@JoinColumn(name="T_ID"), 
 	inverseJoinColumns=@JoinColumn(name="UN_ID"))
 	private List<Unavailable> unavailable;
 
-	//@ManyToMany(mappedBy="trainer", cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	@ManyToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinTable(name="TR_SKILL_JT",
     joinColumns=@JoinColumn(name="T_ID"),

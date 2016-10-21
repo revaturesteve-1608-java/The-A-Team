@@ -24,17 +24,22 @@ import com.ateam.service.BatchService;
 import com.ateam.service.DaoService;
 import com.revature.dto.BatchDTO;
 
+//Controller for the createbatch.html
 
 @RestController
 public class BatchCtrl {
 
 
+	//Get the dao service
 	@Autowired
 	DaoService daoService;
 	
+	//Get the batch service
 	@Autowired
 	BatchService bServ;
 
+	
+	//Gets a list of Curriculums and converts them to JSON format when called by AJAX
 	@RequestMapping(value = { "/curriculum"}, 
 			method = RequestMethod.GET,
 			produces = MediaType.APPLICATION_JSON_VALUE)
@@ -44,6 +49,8 @@ public class BatchCtrl {
 		return new ResponseEntity<List<Curriculum>>(re, HttpStatus.OK);
 	}//end getCurriculums()
 
+	
+	//Gets a list of Trainers and converts them to JSON format when called by AJAX
 	@RequestMapping(value = { "/trainer"}, 
 			method = RequestMethod.GET,
 			produces = MediaType.APPLICATION_JSON_VALUE)
@@ -54,90 +61,91 @@ System.out.println(re);
 		return new ResponseEntity<List<Trainer>>(re, HttpStatus.OK);
 	}//end getTrainers()
 
+	
+	//Gets a list of Batches and converts them to JSON format when called by AJAX
 	@RequestMapping(value = { "/batches"}, 
 			method = RequestMethod.GET, 
 			produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<Batch>> getBatches() {
-//		List<Batch> re = daoService.findAllBatches();
+
 		List<Batch> re = daoService.findAllBatchStartDate();
 
 		return new ResponseEntity<List<Batch>>(re, HttpStatus.OK);
 	}//end getTrainers()
 	
-	//Get Topics
+	//Gets a list of Topics and converts them to JSON format when called by AJAX
 	@RequestMapping(value = { "/topics"}, 
 			method = RequestMethod.GET, 
 			produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<Topic>> getTopics() {
+		//Retrieves all topic data from the database
 		List<Topic> topics = daoService.getAllItem(new Topic());
 
+		//Returns the list of topics as JSON data
 		return new ResponseEntity<List<Topic>>(topics, HttpStatus.OK);
 	}
 	
-	//Get Rooms
+	//Gets a list of Rooms and converts them to JSON format when called by AJAX
 		@RequestMapping(value = { "/rooms"}, 
 				method = RequestMethod.GET, 
 				produces = MediaType.APPLICATION_JSON_VALUE)
 		public ResponseEntity<List<Room>> getRooms() {
+			//Retrieves all room data from the database
 			List<Room> rooms = daoService.getAllItem(new Room());
 
-			System.out.println(rooms);
 			return new ResponseEntity<List<Room>>(rooms, HttpStatus.OK);
 		}
 	
-		//Save batch
+		//Retrieves the form data from createbatch.html into the BatchDTO object
 		@RequestMapping(value = { "/savebatch"}, 
 				method = RequestMethod.POST, 
 				consumes = MediaType.APPLICATION_JSON_VALUE,
 				produces = MediaType.APPLICATION_JSON_VALUE)
 		public ResponseEntity<Batch> saveBatch(@RequestBody BatchDTO batchObj) throws InterruptedException{
 			
-
+			//Transfer BatchDTO data into object data 
 			Trainer t = bServ.getTrainerByName(batchObj.getTrainer());
-			System.out.println(t.toString());
 			Room room = bServ.getRoomByName(batchObj.getRoom());
-			System.out.println(room);
 			Curriculum c = bServ.getCurriculumByName(batchObj.getCurr());
-			System.out.println(c);
 			Topic topic = bServ.getTopicByName(batchObj.getTopic());
-			System.out.println(topic);
 			
+			//Create a batch object with the object data
 			Batch b = new Batch(batchObj.getBatchName(), new Timestamp(batchObj.getDate().getTime()), 
 					new Timestamp(batchObj.getDate2().getTime()), topic,
 					c, room, 
 					new B_Status(1), t);
 			b.setBatchID(batchObj.getBatchId());
-			System.out.println("-------------------------------");
-			System.out.println(batchObj.getBatchId());
-			System.out.println(b.toString());
-			System.out.println("-------------------------------");
 			
+			//Put the batch data into the database 
 			bServ.saveBatch(b);
-			
+		
+		//Return the new batch as JSON data	
 		return new ResponseEntity<Batch>(b, HttpStatus.OK);
-//			return null;
 		}
 	
+		//Get a batch JSON data by ID 
 	@RequestMapping(value = { "/getbatch"}, 
 			method = RequestMethod.GET, 
-//			consumes = MediaType.APPLICATION_JSON_VALUE,
 			produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Batch> getBatchById(@RequestParam("bId") String bId) throws InterruptedException{
-		System.out.println("getBatchById Ctrl: "+bId);
-		System.out.println("---------------------------------------------------------------");
+		
+		//Get batch object by ID
 		Batch batch = daoService.findByBatchID(Integer.parseInt(bId));
 
+		
+		//Tell the thread to sleep to 2 seconds
 		try {
 			TimeUnit.SECONDS.sleep(2);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
 		
-//		System.out.println(batch);
+		//Sends over the BatchJSON data along with a successful status code
 		return new ResponseEntity<Batch>(batch, HttpStatus.OK);
 
 	}
+	
+	
 	
 }

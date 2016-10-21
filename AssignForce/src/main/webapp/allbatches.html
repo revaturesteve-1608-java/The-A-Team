@@ -9,6 +9,7 @@
 		<header>
 			<h1>View All-Batches</h1>
 		</header>
+		<!-- Table of the list of batch data -->
 		<table style="width: 100%">
 			<tr class="tableHeader" id="tableHeader">
 				<th>Batch Name</th>
@@ -18,6 +19,8 @@
 				<th>Start Date</th>
 				<th>End Date</th>
 			</tr>
+			<!-- Loop through each batch and put a click event on each batch to edit it 
+				Also put the batch attributes as data in the table-->
 			<tr class="tableRow" ng-repeat="batch in Batches" ng-click="editBatch(batch.batchID)">
 				<td>{{ batch.bName }}</td>
 				<td>{{ batch.batchTopicID.topicName }}</td>

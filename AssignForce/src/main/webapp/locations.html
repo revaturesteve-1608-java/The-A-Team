@@ -13,6 +13,7 @@
 		<div class="createNewLocation">
 		<br>
 		<form>
+		<!-- Click to switch between Add Location to the input and submit option -->
 		<button class="form-control controlButton" type="button" ng-click="createLocation =! createLocation">
 			<div ng-switch="createLocation">
 				<span ng-switch-when="false">Add Location</span>
@@ -20,11 +21,15 @@
 				<span ng-switch-default>Add Location</span>
 			</div>
 		</button>
+			<!-- ng-show createLocation will only show textbox with Add Location button when true -->
+			<!-- set the input textbox to ng-model nLocation with a locationName attribute -->
 			<input class="creating-location form-control" type="text" ng-show="createLocation" ng-model="nLocation.locationName"/>
+			<!-- This Add Location button has an ng-click that'll call the function submitAndVerify() -->
 			<button class="controlButton form-control" type="button"  ng-show="createLocation" ng-click="submitAndVerify(nLocation)">Add Location</button>
 	</form>
 	<br>	
 	</div>
+	<!-- Display each location in its own div -->
 		<div class="locationContainer" ng-repeat="location in locations">
 			<h3>{{location.locationName}}</h3>
 		</div>

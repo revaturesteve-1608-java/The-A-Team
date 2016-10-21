@@ -8,6 +8,7 @@ import com.ateam.domain.Room;
 import com.ateam.domain.Topic;
 import com.ateam.domain.Trainer;
 
+//Operations for the BatchCtrl 
 public interface BatchService {
 
 	public List<Curriculum> getCurriculums();

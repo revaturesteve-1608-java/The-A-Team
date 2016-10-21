@@ -2,6 +2,7 @@ package com.revature.dto;
 
 import java.sql.Date;
 
+//Created a Data Transfer Object to get JSON data from the createbatch.html
 public class BatchDTO {
 
 	private int batchId;

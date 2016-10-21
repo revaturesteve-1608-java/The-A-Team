@@ -17,34 +17,23 @@ import com.ateam.service.TrainerService;
 @RestController
 public class TrainerCtrl {
 	
+	//Inject trainer service 
 	@Autowired
 	TrainerService trainerServiceImpl;
 	
-	@RequestMapping(value="/savetrainer", method=RequestMethod.POST,
-			consumes=MediaType.APPLICATION_JSON_VALUE,
-			produces=MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Trainer> saveTrainer(Trainer t){
-		System.out.println("Saving trainer: " + t);
-		
-		trainerServiceImpl.saveTrainer(t);
-		
-		return new ResponseEntity<Trainer>(t, HttpStatus.OK);
-		
-	}
-	
+	//Returns Trainer List JSON data
 	@RequestMapping(value="/viewtrainers", method=RequestMethod.GET, 
 					produces=MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<Trainer>> getTrainers(){
-		System.out.println("Getting Trainers...");
 		
 		List<Trainer> trainers = trainerServiceImpl.getTrainers();
 		
 		return new ResponseEntity<List<Trainer>>(trainers, HttpStatus.OK);
 	}
 	
+	//Throws an exception when there's an error with the other rest controllers
 	@ExceptionHandler(Exception.class)
 	public ResponseEntity<Exception> trainerException(Exception e){
-		System.out.println("You've received an exception");
 		
 		return new ResponseEntity<Exception>(e, HttpStatus.CONFLICT);
 	}

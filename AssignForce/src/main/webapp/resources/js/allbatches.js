@@ -18,6 +18,7 @@ app.controller("allBatchCtrl", function($scope, $location, allBatchService, tran
 		return allBatchService.createDate(ms);
 	}
 	
+	//Saves the batch id in transferService then route to the createbatches.html
 	$scope.editBatch = function(id){
 		transferService.set(id);
 		$location.path("/createbatches");
@@ -26,15 +27,18 @@ app.controller("allBatchCtrl", function($scope, $location, allBatchService, tran
 });// end app.controller("allBatchCtrl")
 
 app.service("allBatchService", function($http, $q) {
+	
+	//Gets all batches
 	this.getAllBatches = function(callback) {
 		$http.get("rest/batches").then(callback);
 	}
 	
 	this.createDate = function(ms){
 		var date = new Date(ms).toDateString();
-
+		
+		//Future implementation
 		if(date == "Invalid Date"){
-			console.log("here");
+			
 			return "";
 		}
 		return date;

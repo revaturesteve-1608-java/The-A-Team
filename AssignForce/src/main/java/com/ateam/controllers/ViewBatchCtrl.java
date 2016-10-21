@@ -17,21 +17,26 @@ import com.ateam.service.ViewBatchService;
 @RestController
 public class ViewBatchCtrl {
 	
+	//Inject ViewBatchServiceImpl
 	@Autowired
 	ViewBatchService viewBatchService;
 
+	
+	//Returns a list of batches as JSON data
 	@RequestMapping(value = "/viewbatches", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<Batch>> getTrainers() {
-		System.out.println("Getting Batches...");
 
+		//Retrieves batch data from the database
 		List<Batch> batches = viewBatchService.getBatches();
 
+		//Returns the List of batches along with the status code
 		return new ResponseEntity<List<Batch>>(batches, HttpStatus.OK);
 	}
+	
 
+	//When there in error accessing a controller, throw exception
 	@ExceptionHandler(Exception.class)
 	public ResponseEntity<Exception> batchException(Exception e) {
-		System.out.println("You've received an exception");
 
 		return new ResponseEntity<Exception>(e, HttpStatus.CONFLICT);
 	}

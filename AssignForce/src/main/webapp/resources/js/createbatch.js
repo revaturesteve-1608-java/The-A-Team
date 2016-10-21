@@ -5,16 +5,13 @@ var app = angular.module("batchApp");
 
 app.controller('batchCtrl', function($scope, batchService, trainerService, locationService, transferService){
 
-//	$scope.submitButton = !isNaN(batchID) ? "Create Batch" : "Update Batch";
+
 	$scope.submitButton = "Create Batch";
 	
+	//Autofill the create batch form with the batch data that was clicked on in view batches
 	$scope.viewBatch = batchService.getBatch(
 			//passed in callback
 			function(response){
-				console.log("i hope this works..");
-				console.log("response: ");
-				console.log(response);
-				console.log("ENDresponse: ");
 
 				transferService.set(null);
 				setTimeout(initViewData(response), 30000);
@@ -23,11 +20,10 @@ app.controller('batchCtrl', function($scope, batchService, trainerService, locat
 			transferService.get()
 	);
 	
+	//Fills the batch JSON data from the view batch data
 	function initViewData(response){
 		//Initializing data
 		$scope.batchID = response.data.batchID;
-		console.log("resp: "+ response.data.batchID);
-		console.log("scopeBID: "+ $scope.batchID);
 		
 		$scope.batchName = response.data.bName;
 		$scope.topic = $scope.topics[selectTopicByName(response.data.batchTopicID.topicName)];
@@ -35,13 +31,13 @@ app.controller('batchCtrl', function($scope, batchService, trainerService, locat
 		$scope.date = new Date(response.data.batchStartDate);
 		$scope.date2 = new Date(response.data.batchEndDate);
 
-//		$scope.topic = $scope.topics[selectTopicByName(response.data.batchTopicID.topicName)];
 		$scope.room = $scope.rooms[selectRoomByName(response.data.batchRoomID.roomName)];
 		$scope.trainer = $scope.trainers[selectTrainerByName(response.data.batchTrainerID.trainerFirstName)];
 
 	}
 	
-	
+	//All "ByName" functions returns the index of the matching data
+	//So we can populate initViewData
 	function selectRoomByName(name){
 		for(var i = 0; i < $scope.rooms.length; i++){
 			if(name === $scope.rooms[i].roomName){
@@ -51,8 +47,6 @@ app.controller('batchCtrl', function($scope, batchService, trainerService, locat
 	}
 	
 	function selectTrainerByName(name){
-		console.log("trainers?");
-		console.log($scope.trainers);
 		for(var i = 0; i < $scope.trainers.length; i++){
 			if(name === $scope.trainers[i].trainerFirstName){
 				return i;
@@ -81,7 +75,6 @@ app.controller('batchCtrl', function($scope, batchService, trainerService, locat
 	$scope.getCurrs = batchService.getCurrs(
 			//passed in callback
 			function(response){
-				console.log(response)
 				$scope.currs = response.data;
 			})
 	
@@ -103,19 +96,18 @@ app.controller('batchCtrl', function($scope, batchService, trainerService, locat
 	
 	$scope.getRooms = batchService.getRooms(
 			function(response){
-				console.log(response)
 				$scope.rooms = response.data
 			}
 		);
 	
+	//Sends the batch data from createbatch.html to a rest controller for database entry
 	$scope.saveBatch = function(batchName, topic, curr, trainer, room, date, date2, batchID){
-		console.log('Trying to save...')
 		$scope.updateTask = 
 			batchService.saveBatch(batchName, topic, curr, trainer, room, date, date2, batchID);
 	}
 
 	
-	//////Date Data////////////////////////
+	//////Date Data for createbatch.html////////////////////////
 			$scope.today = function(){
 		$scope.dt = new Date();
 	};
@@ -211,18 +203,21 @@ app.controller('batchCtrl', function($scope, batchService, trainerService, locat
 	}
 	
 	
-});
+}); //End of date data
 
 app.service('batchService', function($http, $q,$location){
-	console.log('calling batchService');
-	
+
+	//Get a batch from database function
 	this.getBatch = function(callback, id){
-//		$http.get('rest/getbatch').then(callback);
+
 		if(typeof(id) == typeof(NaN)){
+			//RestController for this path takes "bId" param
+			//"params" converts it to bId
 			$http.get('rest/getbatch', {params: {bId: id}}).then(callback);
 		}
 	}
 	
+	//The get() functions retrieves a list a JSON objects from the rest controller
 	this.getCurrs = function(callback){
 		$http.get('rest/curriculum').then(callback);
 	}
@@ -235,13 +230,11 @@ app.service('batchService', function($http, $q,$location){
 		$http.get('rest/rooms').then(callback);
 	}
 	
-	var ex = null;
-	
+	//Gets data from createbatch.html
 	this.saveBatch = function(batchName, topic, curr, trainer, room, date, date2, batchID){
-		console.log('hitting saveBatch js')
+		
+		//Convert function params to a JSON object "batchObj"
 		var batchObj = {};
-	
-		console.log("batchID: "+ batchID);
 		
 		if(typeof(batchID) == typeof(NaN)){
 			batchObj.batchId = batchID;
@@ -258,19 +251,16 @@ app.service('batchService', function($http, $q,$location){
 		batchObj.date = date;
 		batchObj.date2 = date2;
 		
-		console.log("stuff");
-		console.log(batchObj);
-		
 		var promise = $http.post('rest/savebatch', batchObj).
 		then(
 				function(response){
-					console.log(' Hope it worked');
-					console.log(response);
+					//After hitting the "createbatch" button in createbatch.html
+					//The page will route to the view all batches pages(allbatches.html)
 					$location.path("/allbatches");
 				},
 				
 				function(error){
-					console.log($q.reject(error));
+					
 				}
 		)
 		

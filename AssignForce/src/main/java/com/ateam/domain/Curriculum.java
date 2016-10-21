@@ -32,7 +32,6 @@ public class Curriculum {
 	@Column(name = "CUR_NAME", unique=true)
 	private String curriculumName;
 	
-//	@ManyToMany(mappedBy="curriculum", cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	@ManyToMany(fetch=FetchType.EAGER)
 	@JoinTable(name="CUR_SKILL_JT", 
 	joinColumns=@JoinColumn(name="CUR_ID"), 

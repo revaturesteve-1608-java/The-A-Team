@@ -23,6 +23,7 @@ public class InitServiceImpl implements InitService {
 	private DaoService dao = new DaoServiceImpl();
 	// autowiring isnt working... ^ this should not be needed
 
+	//Retrieve data from REST service
 	public void initSetup() {
 		// TODO
 		// grab data from BB

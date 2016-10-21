@@ -35,22 +35,17 @@ public class Room {
 	@Column(name = "R_NAME", unique = true, nullable = false)
 	private String roomName;
 
-//	@ManyToMany(mappedBy = "room", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@ManyToMany(fetch=FetchType.EAGER)
 	@JoinTable(name="R_UN_JT", joinColumns=@JoinColumn(name="R_ID"), 
 	inverseJoinColumns=@JoinColumn(name="UN_ID"))
 	@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@id")						// ADDED this to fix serialization/infinite loop issues
 	private List<Unavailable> unavailable;
 
-	// @ManyToOne(fetch=FetchType.LAZY)
-	// @ManyToOne(fetch=FetchType.EAGER)
 	@ManyToOne
 	@JoinColumn(name = "RS_ID")
 	@Fetch(FetchMode.JOIN)
 	private R_Status roomStatusID;
 
-	// @ManyToOne(fetch=FetchType.LAZY)
-	// @ManyToOne(fetch=FetchType.EAGER)
 	@ManyToOne
 	@JoinColumn(name = "L_ID")
 	@Fetch(FetchMode.JOIN)

@@ -8,6 +8,7 @@ import java.util.Optional;
 import org.springframework.data.repository.NoRepositoryBean;
 import org.springframework.data.repository.Repository;
 
+//Spring data BaseRepository for other DAOs to extends
 @NoRepositoryBean
 interface BaseRepository<T, ID extends Serializable> extends Repository<T, ID> {
 	

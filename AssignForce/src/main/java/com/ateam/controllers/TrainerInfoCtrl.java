@@ -16,12 +16,15 @@ import com.ateam.service.DaoService;
 @RestController
 public class TrainerInfoCtrl {
 
+	//Inject DaoService
 	@Autowired
 	DaoService daoService;
 	
+	//Inject TrainerDAO
 	@Autowired
 	TrainerDao tdao;
 
+	//Return a single Trainer JSON data by trainer ID 
 	@RequestMapping(value = { "/getTrainer"}, 
 			method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, 
 			produces = MediaType.APPLICATION_JSON_VALUE)
@@ -31,14 +34,5 @@ public class TrainerInfoCtrl {
 		return new ResponseEntity<Trainer>(re, HttpStatus.OK);
 	}//end getCurriculums()
 
-/*	@RequestMapping(value = { "/getTrainerTest"}, 
-			method = RequestMethod.POST, 
-			produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Trainer> getTrainerTest() {
-		Trainer re = daoService.findTrainerById(4);
-		return new ResponseEntity<Trainer>(re, HttpStatus.OK);
-	}//end getCurriculums()
-
-*/
 	
 }

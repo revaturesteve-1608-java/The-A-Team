@@ -36,36 +36,26 @@ public class Batch {
 	@Column(name = "B_END_DATE", nullable=false)
 	private Timestamp batchEndDate;
 
-	//@ManyToOne(fetch=FetchType.LAZY)
-	//@ManyToOne(fetch=FetchType.EAGER)
 	@ManyToOne
 	@JoinColumn(name = "TOP_ID")
 	@Fetch(FetchMode.JOIN)
 	private Topic batchTopicID;
 
-	//@ManyToOne(fetch=FetchType.LAZY)
-	//@ManyToOne(fetch=FetchType.EAGER)
 	@ManyToOne
 	@JoinColumn(name = "CUR_ID")
 	@Fetch(FetchMode.JOIN)
 	private Curriculum batchCurriculumID;
 	
-	//@OneToOne(fetch=FetchType.LAZY)
-	//@OneToOne(fetch=FetchType.EAGER)
 	@OneToOne
 	@JoinColumn(name = "R_ID")
 	@Fetch(FetchMode.JOIN)
 	private Room batchRoomID;
 	
-	//@ManyToOne(fetch=FetchType.LAZY)
-	//@ManyToOne(fetch=FetchType.EAGER)
 	@ManyToOne
 	@JoinColumn(name = "BS_ID")
 	@Fetch(FetchMode.JOIN)
 	private B_Status batchStatusID;
 	
-	//@ManyToOne(fetch=FetchType.LAZY)
-	//@ManyToOne(fetch=FetchType.EAGER)
 	@OneToOne
 	@JoinColumn(name = "T_ID")
 	@Fetch(FetchMode.JOIN)

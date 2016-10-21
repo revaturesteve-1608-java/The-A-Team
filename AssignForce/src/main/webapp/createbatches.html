@@ -11,33 +11,40 @@
 <div ng-controller="batchCtrl">
 <div class="form-group">
 	<label for="name">Name:</label>
+	<!-- Map ng-model "batchName" to the input string-->
 	<input type="text" class="form-control" ng-model="batchName">
 </div>
 <div class="form-group">
 	<label for="topic">Topic:</label>
+	<!-- Map ng-model "topic" to selected ng-option "topic.topicName" -->
 	<select id="topicSelect" ng-model="topic" ng-options="topic.topicName for topic in topics">
 	</select>
 </div>
 <div class="form-group">
 	<label for="curriculum">Curriculum:</label>
+	<!-- Map ng-model "curr" to selected ng-option "curr.curriculumName" -->
 	<select id="curriculumSelect" ng-model="curr" ng-options="curr.curriculumName for curr in currs">
 	</select>
 </div>
 <div class="form-group">
 	<label for="trainer">Trainer:</label>
+	<!-- Map ng-model "trainer" to selected ng-option "trainer.trainerFirstName" -->
 	<select id="trainerSelect" ng-model="trainer" ng-options="trainer.trainerFirstName for trainer in trainers">
 	</select>
 </div>
 <div class="form-group">
 	<label for="location">Room:</label>
+	<!-- Map ng-model "room" to selected ng-option "room.roomName" -->
 	<select id="roomSelect" ng-model="room" ng-options="room.roomName for room in rooms">
 	</select>
 </div>
+<!-- Displays Today's date using angular data -->
 <pre>Today's Date is: <em>{{dt | date:'fullDate'}}</em></pre>
 <div class="row">
 	<div class="col-md-6">
 		<p class="input-group">
 		<h5>Start Date</h5>
+		<!-- Has a datepicker popup to choose start date -->
 			<input type="date" class="form-control" datepicker-popup="{{format}}" ng-model="date"
 			 is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close"/>
 		</p>
@@ -46,12 +53,15 @@
 	<div class="col-md-6">
 		<p class="input-group">
 		<h5>End Date</h5>
+		<!-- Has a datepicker popup to choose end date -->
 			<input type="date" class="form-control" datepicker-popup="{{format}}" ng-model="date2"
 			 is-open="popup2.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close"/>
 		</p>
 	</div>
 </div>
 <div class="form-group">
+	<!-- Submit batch data and saves it using the ng-click saveBatch() angular function
+	  and a rest call to the /savebatch controller -->
 	<input type="submit" value="{{ submitButton }}" class="btn btn-warning btn-large btn-block" 
 	ng-click="saveBatch(batchName, topic.topicName, curr.curriculumName, trainer.trainerFirstName, room.roomName, date, date2, batchID)">
 </div>

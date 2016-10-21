@@ -30,6 +30,7 @@ import com.ateam.domain.Unavailable;
 @Transactional
 @Service
 public class DaoServiceImpl implements DaoService {
+	//Add a few service methods using needed DAO
 	@Autowired
 	BatchDao BatchDao;
 	@Autowired
@@ -54,12 +55,6 @@ public class DaoServiceImpl implements DaoService {
 	@SuppressWarnings("unchecked")
 	@Override
 	public <T> List<T> getAllItem(T sample) {
-		System.out.println("getAllItem");
-		/*
-		 * System.out.println("sample class: "+ sample.getClass());
-		 * System.out.println("trainer class: "+ Trainer.class);
-		 * System.out.println("cast trainer class: "+ (Class<T>)Trainer.class);
-		 */
 
 		if ((Class<T>) sample.getClass() == Batch.class) {
 			return (List<T>) BatchDao.findAll();
@@ -167,11 +162,16 @@ public class DaoServiceImpl implements DaoService {
 		return TrainerDao.save((Trainer) trainer);
 	}
 
+
+	//Check loc data to the data within the database before
+	//entering the data into the database
 	private Location checksLocationBeforeSave(Location loc) {
 		loc = checkLocation(loc);
 		return LocationDao.save((Location) loc);
 	}
 
+	//If the location data matches the data in the Database
+	//Just set the id to the original data
 	private Location checkLocation(Location loc) {
 		List<Location> locs = LocationDao.findAll();
 		for (Location location : locs) {
@@ -182,6 +182,8 @@ public class DaoServiceImpl implements DaoService {
 		return loc;
 	}
 
+	
+	//Same concept as location
 	private Skill checksSkillBeforeSave(Skill skill) {
 		skill = checkSkill(skill);
 		return SkillDao.save((Skill) skill);
@@ -197,6 +199,7 @@ public class DaoServiceImpl implements DaoService {
 		return skill;
 	}
 
+	//Same concept as location
 	private Unavailable checksUnavailableBeforeSave(Unavailable away) {
 		away = checkUnavailable(away);
 		return UnavailableDao.save(away);
@@ -213,55 +216,31 @@ public class DaoServiceImpl implements DaoService {
 		return away;
 	}
 
+	//Gets a trainer object by ID
 	@Override
 	public Trainer findTrainerById(int id){
 		Trainer trainer = TrainerDao.findByTrainerID(id);
-//		trainer.getSkill()
-		
-/*		for (Skill skill : trainer.getSkill()) {
-			skill.setCurriculum(null);
-		}
-*/		
+	
 		return trainer;
 	}
 	
+	//Retrieves all trainers
 	@Override
 	public List<Trainer> findAllTrainers(){
 		List<Trainer> trainers = TrainerDao.findAll();
 		
-		for (Trainer trainer : trainers) {
-/*			for (Skill skill : trainer.getSkill()) {
-				skill.setCurriculum(null);
-			}
-*/		}
 		return trainers;
 	}
 
+	//Retrieves all batch data
 	public List<Batch> findAllBatches(){
 		List<Batch> batches = BatchDao.findAll();
 		
 		
-	/*	for (Batch batch : batches) {
-//			batch.setBatchTrainerID(null);
-
-			if(batch.getBatchTrainerID() != null){
-				batch.getBatchTrainerID().setSkill(null);
-			}
-
-			if(batch.getBatchCurriculumID() != null){
-				for(Skill skill : batch.getBatchCurriculumID().getSkill()){
-					skill.setCurriculum(null);
-				}
-			}// set redundant to null
-			
-			if(batch.getBatchRoomID() != null){
-				batch.getBatchRoomID().setUnavailable(null);
-			}
-		}
-		*/
 		return batches;
 	}
 	
+	//Retrieves all Room data
 	@Override
 	public List<Room> getAllRooms() {
 		List<Room> rooms = RoomDao.findAll();
@@ -285,6 +264,7 @@ public class DaoServiceImpl implements DaoService {
 		
 	}
 
+	//Retrieves all Curriculum data
 	@Override
 	public List<Curriculum> getAllCurriculums() {
 		List<Curriculum> cs = CurriculumDao.findAll();
@@ -301,35 +281,36 @@ public class DaoServiceImpl implements DaoService {
 		
 	}
 
-	
+	//Finds a trainer by their first name
 	public Trainer findByTrainerFirstName(String trainerFirstName){
 		Trainer t = TrainerDao.findByTrainerFirstName(trainerFirstName);
-//		for (Skill skill : t.getSkill()) {
-//			skill.setCurriculum(null);
-//		}
-//		for (Skill skill : t.getSkill()) {
-////			skill.setTrainer(null);
-//		}
+
 		return t;
 	}
 
+	//Finds a room by room name
 	public Room findRoomByRoomName(String roomName){
 		return RoomDao.findRoomByRoomName(roomName);
 	}
 	
+	//Finds a Curriculum by name
 	public Curriculum findCurriculumByCurriculumName(String curriculumName){
 		return CurriculumDao.findCurriculumByCurriculumName(curriculumName);
 	}
 	
+	//Finds a topic name
 	public Topic findTopicByTopicName(String topicName){
 		return TopicDao.findTopicByTopicName(topicName);
 	}
 	
+	//Finds a batch by ID
 	@Override
 	public Batch findByBatchID(int BatchID){
 		return BatchDao.findByBatchID(BatchID);
 	}
 
+	//Get a sorted order of Batch start date data in
+	//descending data
 	@Override
 	public List<Batch> findAllBatchStartDate() {
 		List<Batch> b = BatchDao.findAllByOrderByBatchStartDateDesc();

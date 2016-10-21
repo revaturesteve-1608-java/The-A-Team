@@ -15,6 +15,7 @@ import com.ateam.domain.Trainer;
 @Service
 public class BatchServiceImpl implements BatchService{
 
+	//Using Dao operations for Service operations
 	@Autowired
 	DaoService dao;
 	
@@ -29,7 +30,9 @@ public class BatchServiceImpl implements BatchService{
 		dao.saveItem(b);
 		
 	}
-
+/*
+ * Trim all strings that come from client-side 
+ */
 	@Override
 	public Trainer getTrainerByName(String name) {
 		
@@ -52,8 +55,4 @@ public class BatchServiceImpl implements BatchService{
 		
 		return dao.findRoomByRoomName(name.trim());
 	}
-	
-	
-	
-	
 }
